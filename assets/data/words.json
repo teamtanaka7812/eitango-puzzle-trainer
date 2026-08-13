@@ -1,0 +1,365 @@
+[
+  {
+    "id": "illegal_l1",
+    "word": "illegal",
+    "level": 1,
+    "parts": ["il", "legal"],
+    "meaningJa": "違法の",
+    "exampleEn": "It is illegal to drive without a license in most countries.",
+    "exampleJa": "ほとんどの国で、免許なしで運転するのは違法です。",
+    "choices": [
+      {"text": "un", "image": "02008green.png"},
+      {"text": "il", "image": "02012blue.png"},
+      {"text": "dis", "image": "02013red.png"},
+      {"text": "law", "image": "02006blue.png"},
+      {"text": "legal", "image": "02002yellow.png"}
+    ]
+  },
+  {
+    "id": "development_l1",
+    "word": "development",
+    "level": 1,
+    "parts": ["develop", "ment"],
+    "meaningJa": "発展",
+    "exampleEn": "The development of new technology has changed the way we live.",
+    "exampleJa": "新しい技術の発展は、私たちの生活の仕方を変えてきた。",
+    "choices": [
+      {"text": "develop", "image": "02008green.png"},
+      {"text": "invent", "image": "02012blue.png"},
+      {"text": "ion", "image": "02013red.png"},
+      {"text": "ment", "image": "02006blue.png"},
+      {"text": "ful", "image": "02002yellow.png"}
+    ]
+  },
+  {
+    "id": "unfortunately",
+    "word": "unfortunately",
+    "level": 1,
+    "parts": ["un", "fortunate", "ly"],
+    "meaningJa": "不運にも",
+    "exampleEn": "Unfortunately, the event was canceled due to bad weather.",
+    "exampleJa": "残念ながら、悪天候のためイベントは中止になった。",
+    "choices": [
+      {"text": "ion", "image": "01.png"},
+      {"text": "fortunate", "image": "05.png"},
+      {"text": "dis", "image": "02.png"},
+      {"text": "in", "image": "03.png"},
+      {"text": "happy", "image": "01.png"},
+      {"text": "ly", "image": "04.png"},
+      {"text": "un", "image": "06.png"},
+      {"text": "il", "image": "05.png"}
+    ]
+  },
+  {
+    "id": "reappearance",
+    "word": "reappearance",
+    "level": 1,
+    "parts": ["re", "appear", "ance"],
+    "meaningJa": "再出現、再登場",
+    "exampleEn": "The sudden reappearance of the actor surprised the audience.",
+    "exampleJa": "その俳優が突然再び現れたことに、観客は驚いた。",
+    "choices": [
+      {"text": "pre", "image": "02008green.png"},
+      {"text": "re", "image": "02012blue.png"},
+      {"text": "un", "image": "02013red.png"},
+      {"text": "ion", "image": "02006blue.png"},
+      {"text": "appear", "image": "02002yellow.png"},
+      {"text": "ance", "image": "01.png"},
+      {"text": "ly", "image": "02001red.png"}
+    ]
+  },
+  {
+    "id": "independently",
+    "word": "independently",
+    "level": 1,
+    "parts": ["in", "dependent", "ly"],
+    "meaningJa": "独立して",
+    "exampleEn": "She solved the problem independently without any help.",
+    "exampleJa": "彼女は誰の助けも借りずに、独力でその問題を解決した。",
+    "choices": [
+      {"text": "ly", "image": "02008green.png"},
+      {"text": "un", "image": "02012blue.png"},
+      {"text": "im", "image": "02013red.png"},
+      {"text": "dependent", "image": "02006blue.png"},
+      {"text": "depend", "image": "02002yellow.png"},
+      {"text": "dis", "image": "02009orange.png"},
+      {"text": "in", "image": "02001red.png"},
+      {"text": "ful", "image": "02010orange.png"},
+      {"text": "less", "image": "02011green.png"}
+    ]
+  },
+  {
+    "id": "reconsideration",
+    "word": "reconsideration",
+    "level": 1,
+    "parts": ["re", "consider", "ation"],
+    "meaningJa": "再考",
+    "exampleEn": "After hearing everyone's opinions, the manager agreed to a reconsideration of the plan.",
+    "exampleJa": "全員の意見を聞いたあと、マネージャーは計画の再検討に同意した。",
+    "choices": [
+      {"text": "in", "image": "02008green.png"},
+      {"text": "re", "image": "02012blue.png"},
+      {"text": "pre", "image": "02013red.png"},
+      {"text": "think", "image": "02006blue.png"},
+      {"text": "consider", "image": "02002yellow.png"},
+      {"text": "tion", "image": "02009orange.png"},
+      {"text": "ation", "image": "02001red.png"},
+      {"text": "ion", "image": "02010orange.png"}
+    ]
+  },
+  {
+    "id": "unbelievable",
+    "word": "unbelievable",
+    "level": 1,
+    "parts": ["un", "believe", "able"],
+    "meaningJa": "信じられない",
+    "exampleEn": "The magician's final trick was truly unbelievable.",
+    "exampleJa": "そのマジシャンの最後のトリックは、本当に信じられないものだった。",
+    "choices": [
+      {"text": "in", "image": "02008green.png"},
+      {"text": "un", "image": "02012blue.png"},
+      {"text": "dis", "image": "02013red.png"},
+      {"text": "rely", "image": "02006blue.png"},
+      {"text": "believe", "image": "02002yellow.png"},
+      {"text": "ful", "image": "02009orange.png"},
+      {"text": "less", "image": "02001red.png"},
+      {"text": "able", "image": "02010orange.png"}
+    ]
+  },
+  {
+    "id": "uncomfortable_l1",
+    "word": "uncomfortable",
+    "level": 1,
+    "parts": ["un", "comfort", "able"],
+    "meaningJa": "不快な、心地よくない",
+    "exampleEn": "I felt uncomfortable speaking in front of such a large audience.",
+    "exampleJa": "あれほど大勢の聴衆の前で話すのは、居心地が悪かった。",
+    "choices": [
+      {"text": "in", "image": "02008green.png"},
+      {"text": "un", "image": "02012blue.png"},
+      {"text": "il", "image": "02013red.png"},
+      {"text": "convenient", "image": "02006blue.png"},
+      {"text": "comfort", "image": "02002yellow.png"},
+      {"text": "able", "image": "02009orange.png"},
+      {"text": "tion", "image": "02001red.png"},
+      {"text": "less", "image": "02010orange.png"}
+    ]
+  },
+  {
+    "id": "disagreement",
+    "word": "disagreement",
+    "level": 1,
+    "parts": ["dis", "agree", "ment"],
+    "meaningJa": "不一致、意見の相違",
+    "exampleEn": "Their disagreement over the budget delayed the project.",
+    "exampleJa": "予算をめぐる意見の相違が、プロジェクトを遅らせた。",
+    "choices": [
+      {"text": "il", "image": "04.png"},
+      {"text": "ful", "image": "02.png"},
+      {"text": "in", "image": "03.png"},
+      {"text": "agree", "image": "01.png"},
+      {"text": "ee", "image": "05.png"},
+      {"text": "ment", "image": "02.png"},
+      {"text": "dis", "image": "06.png"}
+    ]
+  },
+  {
+    "id": "undependable",
+    "word": "undependable",
+    "level": 1,
+    "parts": ["un", "depend", "able"],
+    "meaningJa": "頼りにならない",
+    "exampleEn": "He's talented, but unfortunately quite undependable under pressure.",
+    "exampleJa": "彼は才能があるが、残念ながらプレッシャーのかかる場面ではあまり頼りにならない。",
+    "choices": [
+      {"text": "dis", "image": "02008green.png"},
+      {"text": "un", "image": "02012blue.png"},
+      {"text": "mis", "image": "02013red.png"},
+      {"text": "rely", "image": "02006blue.png"},
+      {"text": "depend", "image": "02002yellow.png"},
+      {"text": "able", "image": "02009orange.png"},
+      {"text": "ment", "image": "02001red.png"},
+      {"text": "less", "image": "02010orange.png"}
+    ]
+  },
+  {
+    "id": "unhappy",
+    "word": "unhappy",
+    "level": 1,
+    "parts": ["un", "happy"],
+    "meaningJa": "不幸な",
+    "exampleEn": "She felt unhappy after losing her favorite pen.",
+    "exampleJa": "彼女はお気に入りのペンをなくして悲しかった。"
+  },
+  {
+    "id": "rewrite",
+    "word": "rewrite",
+    "level": 1,
+    "parts": ["re", "write"],
+    "meaningJa": "書き直す",
+    "exampleEn": "I need to rewrite this letter because I made a mistake.",
+    "exampleJa": "間違えたので、この手紙を書き直す必要がある。"
+  },
+  {
+    "id": "helpful",
+    "word": "helpful",
+    "level": 1,
+    "parts": ["help", "ful"],
+    "meaningJa": "役に立つ",
+    "exampleEn": "My sister is always helpful when I have homework.",
+    "exampleJa": "宿題があるとき、姉はいつも助けてくれる。"
+  },
+  {
+    "id": "careless",
+    "word": "careless",
+    "level": 1,
+    "parts": ["care", "less"],
+    "meaningJa": "不注意な",
+    "exampleEn": "It was careless of him to leave the door open.",
+    "exampleJa": "ドアを開けたままにするなんて、彼は不注意だった。"
+  },
+  {
+    "id": "prepaid",
+    "word": "prepaid",
+    "level": 2,
+    "parts": ["pre", "paid"],
+    "meaningJa": "前払いの",
+    "exampleEn": "We used a prepaid card to buy the tickets.",
+    "exampleJa": "私たちはチケットを買うのにプリペイドカードを使った。"
+  },
+  {
+    "id": "unusual",
+    "word": "unusual",
+    "level": 2,
+    "parts": ["un", "usual"],
+    "meaningJa": "普通でない",
+    "exampleEn": "It is unusual for him to be late for school.",
+    "exampleJa": "彼が学校に遅れるのは珍しいことだ。"
+  },
+  {
+    "id": "misunderstand",
+    "word": "misunderstand",
+    "level": 2,
+    "parts": ["mis", "understand"],
+    "meaningJa": "誤解する",
+    "exampleEn": "Please don't misunderstand what I said.",
+    "exampleJa": "私の言ったことを誤解しないでください。"
+  },
+  {
+    "id": "beautiful",
+    "word": "beautiful",
+    "level": 2,
+    "parts": ["beauti", "ful"],
+    "meaningJa": "美しい",
+    "exampleEn": "The sunset over the mountains was beautiful.",
+    "exampleJa": "山に沈む夕日は美しかった。"
+  },
+  {
+    "id": "national",
+    "word": "national",
+    "level": 2,
+    "parts": ["nation", "al"],
+    "meaningJa": "国の",
+    "exampleEn": "Today is a national holiday in Japan.",
+    "exampleJa": "今日は日本の祝日です。"
+  },
+  {
+    "id": "pollution",
+    "word": "pollution",
+    "level": 3,
+    "parts": ["pollut", "ion"],
+    "meaningJa": "汚染",
+    "exampleEn": "Air pollution is a serious problem in big cities.",
+    "exampleJa": "大気汚染は大都市で深刻な問題だ。"
+  },
+  {
+    "id": "disagree",
+    "word": "disagree",
+    "level": 3,
+    "parts": ["dis", "agree"],
+    "meaningJa": "同意しない",
+    "exampleEn": "I disagree with your opinion on this matter.",
+    "exampleJa": "この件については、あなたの意見に同意できません。"
+  },
+  {
+    "id": "employee",
+    "word": "employee",
+    "level": 3,
+    "parts": ["employ", "ee"],
+    "meaningJa": "従業員",
+    "exampleEn": "Every employee must wear a name tag at work.",
+    "exampleJa": "従業員は全員、職場で名札をつけなければならない。"
+  },
+  {
+    "id": "impossible",
+    "word": "impossible",
+    "level": 3,
+    "parts": ["im", "possible"],
+    "meaningJa": "不可能な",
+    "exampleEn": "It is impossible to finish this work in one day.",
+    "exampleJa": "この仕事を1日で終わらせるのは不可能だ。"
+  },
+  {
+    "id": "illegal",
+    "word": "illegal",
+    "level": 3,
+    "parts": ["il", "legal"],
+    "meaningJa": "違法の",
+    "exampleEn": "Parking here is illegal, so you should move your car.",
+    "exampleJa": "ここに駐車するのは違法なので、車を移動させたほうがいい。"
+  },
+  {
+    "id": "successfully",
+    "word": "successfully",
+    "level": 3,
+    "parts": ["success", "ful", "ly"],
+    "meaningJa": "成功して",
+    "exampleEn": "She successfully passed the difficult exam.",
+    "exampleJa": "彼女は難しい試験に見事合格した。"
+  },
+  {
+    "id": "independent",
+    "word": "independent",
+    "level": 3,
+    "parts": ["in", "depend", "ent"],
+    "meaningJa": "独立した",
+    "exampleEn": "He wants to be independent from his parents someday.",
+    "exampleJa": "彼はいつか親から独立したいと思っている。"
+  },
+  {
+    "id": "development",
+    "word": "development",
+    "level": 3,
+    "parts": ["develop", "ment"],
+    "meaningJa": "発展",
+    "exampleEn": "The development of this town has been very fast.",
+    "exampleJa": "この町の発展はとても速かった。"
+  },
+  {
+    "id": "environmental",
+    "word": "environmental",
+    "level": 3,
+    "parts": ["environment", "al"],
+    "meaningJa": "環境の",
+    "exampleEn": "We should think more about environmental problems.",
+    "exampleJa": "私たちは環境問題についてもっと考えるべきだ。"
+  },
+  {
+    "id": "preview",
+    "word": "preview",
+    "level": 3,
+    "parts": ["pre", "view"],
+    "meaningJa": "予告、試写",
+    "exampleEn": "We watched a preview of the new movie yesterday.",
+    "exampleJa": "私たちは昨日、新作映画の予告編を見た。"
+  },
+  {
+    "id": "uncomfortable",
+    "word": "uncomfortable",
+    "level": 3,
+    "parts": ["un", "comfort", "able"],
+    "meaningJa": "不快な",
+    "exampleEn": "These shoes are too small and uncomfortable to wear.",
+    "exampleJa": "この靴は小さすぎて履くと不快だ。"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "flutter-web",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "C:\\Users\\t-tanaka\\dev\\flutter\\bin\\flutter.bat run -d web-server --web-port 8765 < NUL"
+      ],
+      "port": 8765
+    }
+  ]
+}
