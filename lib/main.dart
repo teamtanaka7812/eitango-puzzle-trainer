@@ -14,6 +14,7 @@ class WordPuzzleTrainerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '英単語パズルトレーナー',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF5B9BD5)),
         useMaterial3: true,
