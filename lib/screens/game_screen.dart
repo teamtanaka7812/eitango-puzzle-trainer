@@ -186,13 +186,15 @@ class _GameScreenState extends State<GameScreen> {
     final touch = _touchOverlapBetween(leftSlot, rightSlot);
 
     final rightOptionIndex = _slots[rightSlot];
-    if (rightOptionIndex == null)
+    if (rightOptionIndex == null) {
       return (touch + kExtraOverlap).clamp(0, kMaxSlotOverlap);
+    }
 
     final rightOption = _options[rightOptionIndex];
     final rightMargins = _margins[rightOption.assetPath];
-    if (rightMargins == null)
+    if (rightMargins == null) {
       return (touch + kExtraOverlap).clamp(0, kMaxSlotOverlap);
+    }
 
     final textHalfWidth = measurePieceLabelWidth(rightOption.text) / 2;
     final distanceToTextEdge =
