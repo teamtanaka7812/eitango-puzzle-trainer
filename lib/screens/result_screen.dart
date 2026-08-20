@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/puzzle_word.dart';
+import '../services/sound_service.dart';
 
 /// 結果画面のボタン操作を呼び出し元（LevelPlayScreen）に伝えるための戻り値。
 enum ResultAction { retry, next }
@@ -36,6 +37,12 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
     _slide = Tween<Offset>(begin: const Offset(0, 0.2), end: Offset.zero)
         .animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
     _controller.forward();
+
+    if (widget.isCorrect) {
+      playCorrectSound();
+    } else {
+      playIncorrectSound();
+    }
   }
 
   @override
@@ -90,13 +97,16 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
                       style: const TextStyle(fontSize: 18, color: Color(0xFF37474F)),
                     ),
                     const SizedBox(height: 28),
-                    Text(
-                      puzzle.word,
+                    _SpeakableText(
+                      text: puzzle.word,
                       style: const TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.bold,
                         color: Color(0xFF37474F),
+                        decoration: TextDecoration.underline,
+                        decorationColor: Color(0xFFB0BEC5),
                       ),
+                      iconSize: 22,
                     ),
                     const SizedBox(height: 4),
                     Text(
@@ -107,7 +117,16 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(puzzle.exampleEn, style: const TextStyle(fontSize: 15, height: 1.5)),
+                        _SpeakableText(
+                          text: puzzle.exampleEn,
+                          style: const TextStyle(
+                            fontSize: 15,
+                            height: 1.5,
+                            decoration: TextDecoration.underline,
+                            decorationColor: Color(0xFFB0BEC5),
+                          ),
+                          iconSize: 18,
+                        ),
                         const SizedBox(height: 6),
                         Text(
                           puzzle.exampleJa,
@@ -156,6 +175,42 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// タップすると英語の音声合成で読み上げるテキスト。タップできる範囲が分かる
+/// よう、下線とスピーカーアイコンを添える。
+class _SpeakableText extends StatelessWidget {
+  const _SpeakableText({
+    required this.text,
+    required this.style,
+    required this.iconSize,
+  });
+
+  final String text;
+  final TextStyle style;
+  final double iconSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => speak(text),
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
+        child: Row(
+          // 長い単語・例文でも折り返しが効くよう、テキストはExpandedで
+          // 幅を確保する（Flexible+mainAxisSize.minだと、Rowの子には
+          // 主軸方向に無制限の幅が渡ってしまい折り返さないため）。
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: Text(text, style: style)),
+            const SizedBox(width: 6),
+            Icon(Icons.volume_up_rounded, size: iconSize, color: const Color(0xFF78909C)),
+          ],
         ),
       ),
     );
