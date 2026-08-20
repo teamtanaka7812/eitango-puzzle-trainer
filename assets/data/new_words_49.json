@@ -1,0 +1,1815 @@
+[
+  {
+    "q_No": 11,
+    "q_answer": "adopt",
+    "q_Japanese": "養子にする、採用する",
+    "q_Prefixes": "ad",
+    "q_Stem": "opt",
+    "q_Suffix": "",
+    "q_Example": "Schools are beginning to adopt digital textbooks in the classroom.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "tend",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "il",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ad",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "opt",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "min",
+        "q_pi": "05.png"
+      }
+    ],
+    "q_ExampleJa": "学校ではデジタル教科書を採用し始めている。"
+  },
+  {
+    "q_No": 12,
+    "q_answer": "admire",
+    "q_Japanese": "敬服する、感心する",
+    "q_Prefixes": "ad",
+    "q_Stem": "mire",
+    "q_Suffix": "",
+    "q_Example": "I truly admire her dedication to helping others.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "dis",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "re",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "comfort",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ad",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "city",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "mire",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "彼女が人助けに尽くす姿を、私は心から尊敬している。"
+  },
+  {
+    "q_No": 13,
+    "q_answer": "arrest",
+    "q_Japanese": "逮捕する、逮捕",
+    "q_Prefixes": "ar",
+    "q_Stem": "rest",
+    "q_Suffix": "",
+    "q_Example": "The police arrested the suspect at the airport.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ute",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "cept",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "ar",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "rest",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "警察は空港でその容疑者を逮捕した。"
+  },
+  {
+    "q_No": 14,
+    "q_answer": "adapt",
+    "q_Japanese": "適応する、適応させる",
+    "q_Prefixes": "ad",
+    "q_Stem": "apt",
+    "q_Suffix": "",
+    "q_Example": "Animals must adapt to changes in their environment to survive.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ad",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "dis",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "apt",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "cap",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ac",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "voc",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "動物は生き延びるために、環境の変化に適応しなければならない。"
+  },
+  {
+    "q_No": 15,
+    "q_answer": "adventure",
+    "q_Japanese": "冒険",
+    "q_Prefixes": "ad",
+    "q_Stem": "vent",
+    "q_Suffix": "ure",
+    "q_Example": "They went on an exciting adventure through the jungle.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "as",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "vent",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ad",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "or",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ure",
+        "q_pi": "02.png"
+      }
+    ],
+    "q_ExampleJa": "彼らはジャングルでわくわくする冒険に出かけた。"
+  },
+  {
+    "q_No": 16,
+    "q_answer": "address",
+    "q_Japanese": "住所、演説、宛先を書く、演説をする",
+    "q_Prefixes": "ad",
+    "q_Stem": "dress",
+    "q_Suffix": "",
+    "q_Example": "The president addressed the issue in his speech.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "ad",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "dress",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "il",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "chieve",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "mire",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ion",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "大統領は演説の中でその問題について述べた。"
+  },
+  {
+    "q_No": 17,
+    "q_answer": "minister",
+    "q_Japanese": "大臣、牧師",
+    "q_Prefixes": "",
+    "q_Stem": "mini",
+    "q_Suffix": "ster",
+    "q_Example": "The minister gave a moving sermon at the Sunday service.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "mini",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ob",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ster",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "as",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ly",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "その牧師は日曜礼拝で感動的な説教をした。"
+  },
+  {
+    "q_No": 18,
+    "q_answer": "minute",
+    "q_Japanese": "細かい、綿密な、～分、瞬間",
+    "q_Prefixes": "",
+    "q_Stem": "min",
+    "q_Suffix": "ute",
+    "q_Example": "There was a minute crack in the glass, barely visible.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "ad",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "min",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "apt",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "dependent",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "punct",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ute",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "ガラスにはほとんど見えないほどの小さなひびが入っていた。"
+  },
+  {
+    "q_No": 19,
+    "q_answer": "minoｒ",
+    "q_Japanese": "小さいほうの、重要でない、未成年者",
+    "q_Prefixes": "",
+    "q_Stem": "min",
+    "q_Suffix": "or",
+    "q_Example": "He's still a minor and cannot sign legal documents.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "min",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ance",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "or",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "fen",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "per",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "彼はまだ未成年なので、法的な書類にサインできない。"
+  },
+  {
+    "q_No": 20,
+    "q_answer": "attract",
+    "q_Japanese": "魅力",
+    "q_Prefixes": "at",
+    "q_Stem": "tract",
+    "q_Suffix": "",
+    "q_Example": "The bright colors of the ad attracted many customers.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "il",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "at",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ster",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "ual",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "tract",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "per",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "その広告の鮮やかな色は、多くの客を引きつけた。"
+  },
+  {
+    "q_No": 21,
+    "q_answer": "advocate",
+    "q_Japanese": "擁護する、主張する、擁護（主張）者",
+    "q_Prefixes": "ad",
+    "q_Stem": "voc",
+    "q_Suffix": "ate",
+    "q_Example": "She advocates for animal rights.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "ad",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "ate",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "voc",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "mino",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "appoint",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "at",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は動物の権利を擁護している。"
+  },
+  {
+    "q_No": 22,
+    "q_answer": "monitor",
+    "q_Japanese": "モニター、学級委員、監視する",
+    "q_Prefixes": "",
+    "q_Stem": "monit",
+    "q_Suffix": "or",
+    "q_Example": "We need to monitor the patient's condition closely.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "fen",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "ac",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "min",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "monit",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "or",
+        "q_pi": "05.png"
+      }
+    ],
+    "q_ExampleJa": "私たちは患者の容体を注意深く監視する必要がある。"
+  },
+  {
+    "q_No": 23,
+    "q_answer": "demonstrate",
+    "q_Japanese": "（実演して）説明する、証明する、デモをする",
+    "q_Prefixes": "de",
+    "q_Stem": "monstr",
+    "q_Suffix": "ate",
+    "q_Example": "The teacher demonstrated how to solve the equation.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ate",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "pre",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "believe",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "oc",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "monstr",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "先生は方程式の解き方を実演して見せた。"
+  },
+  {
+    "q_No": 24,
+    "q_answer": "adjust",
+    "q_Japanese": "調整する、適合させる",
+    "q_Prefixes": "ad",
+    "q_Stem": "just",
+    "q_Suffix": "",
+    "q_Example": "You can adjust the volume using this knob.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "just",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "cape",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ad",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "punct",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "sign",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "このつまみで音量を調整できます。"
+  },
+  {
+    "q_No": 25,
+    "q_answer": "justice",
+    "q_Japanese": "公平、正義、正当性、裁判",
+    "q_Prefixes": "",
+    "q_Stem": "just",
+    "q_Suffix": "ice",
+    "q_Example": "They fought for justice and equality.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "rity",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "il",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "chieve",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "just",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "fend",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ice",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "彼らは正義と平等のために戦った。"
+  },
+  {
+    "q_No": 26,
+    "q_answer": "prejudice",
+    "q_Japanese": "偏見、偏見を持たせる",
+    "q_Prefixes": "pre",
+    "q_Stem": "jud",
+    "q_Suffix": "ice",
+    "q_Example": "We must overcome prejudice and treat everyone fairly.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ice",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "re",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "pre",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ious",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "jud",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "cur",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "私たちは偏見を乗り越え、誰もを公平に扱わなければならない。"
+  },
+  {
+    "q_No": 27,
+    "q_answer": "disappoint",
+    "q_Japanese": "失望させる、がっかりさせる",
+    "q_Prefixes": "dis",
+    "q_Stem": "appoint",
+    "q_Suffix": "",
+    "q_Example": "I didn't want to disappoint my parents, so I studied hard.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "dis",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "tal",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "cur",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "appoint",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ual",
+        "q_pi": "02.png"
+      }
+    ],
+    "q_ExampleJa": "両親をがっかりさせたくなかったので、私は一生懸命勉強した。"
+  },
+  {
+    "q_No": 28,
+    "q_answer": "punctual",
+    "q_Japanese": "時間通りの",
+    "q_Prefixes": "",
+    "q_Stem": "punct",
+    "q_Suffix": "ual",
+    "q_Example": "She is always punctual and arrives five minutes early.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "ac",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "voc",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ual",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "punct",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "able",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "per",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "彼女はいつも時間に正確で、5分前には到着する。"
+  },
+  {
+    "q_No": 29,
+    "q_answer": "attend",
+    "q_Japanese": "参加する、出席する、注意する",
+    "q_Prefixes": "at",
+    "q_Stem": "tend",
+    "q_Suffix": "",
+    "q_Example": "I couldn't attend the meeting due to illness.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "per",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "tal",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "tend",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "min",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "of",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "at",
+        "q_pi": "01.png"
+      }
+    ],
+    "q_ExampleJa": "病気のため、私は会議に出席できなかった。"
+  },
+  {
+    "q_No": 30,
+    "q_answer": "extend",
+    "q_Japanese": "延長する、広げる、伸ばす",
+    "q_Prefixes": "ex",
+    "q_Stem": "tend",
+    "q_Suffix": "",
+    "q_Example": "We decided to extend the deadline by one week.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ex",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "tend",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ance",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ion",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "a",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "con",
+        "q_pi": "05.png"
+      }
+    ],
+    "q_ExampleJa": "私たちは締め切りを1週間延長することにした。"
+  },
+  {
+    "q_No": 31,
+    "q_answer": "pretend",
+    "q_Japanese": "～のふりをする",
+    "q_Prefixes": "pre",
+    "q_Stem": "tend",
+    "q_Suffix": "",
+    "q_Example": "The child pretended to be asleep when his parents came in.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "cap",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "a",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "con",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "il",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "pre",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "tend",
+        "q_pi": "05.png"
+      }
+    ],
+    "q_ExampleJa": "両親が入ってきたとき、その子どもは眠っているふりをした。"
+  },
+  {
+    "q_No": 32,
+    "q_answer": "accurate",
+    "q_Japanese": "正確な、精密な",
+    "q_Prefixes": "ac",
+    "q_Stem": "cur",
+    "q_Suffix": "ate",
+    "q_Example": "The data must be accurate before we submit the report.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ac",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "cur",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "tract",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ate",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "monit",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "報告書を提出する前に、データは正確でなければならない。"
+  },
+  {
+    "q_No": 33,
+    "q_answer": "curious",
+    "q_Japanese": "好奇心が強い、～したがる",
+    "q_Prefixes": "",
+    "q_Stem": "cur",
+    "q_Suffix": "ious",
+    "q_Example": "She was curious about how the magic trick worked.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ex",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "at",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ious",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "cur",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "fensive",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "彼女はその手品がどういう仕組みなのか興味を持った。"
+  },
+  {
+    "q_No": 34,
+    "q_answer": "secure",
+    "q_Japanese": "安全な、不安のない、確実な、確保する",
+    "q_Prefixes": "se",
+    "q_Stem": "cure",
+    "q_Suffix": "",
+    "q_Example": "Make sure the door is secure before you leave.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "capi",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ex",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "fend",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ob",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "cure",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "出かける前に、ドアがしっかり閉まっていることを確認してください。"
+  },
+  {
+    "q_No": 35,
+    "q_answer": "achieve",
+    "q_Japanese": "成し遂げる、達成する",
+    "q_Prefixes": "a",
+    "q_Stem": "chieve",
+    "q_Suffix": "",
+    "q_Example": "She worked hard to achieve her goals.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "a",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "chieve",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "cept",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "dress",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "tract",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ar",
+        "q_pi": "01.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は目標を達成するために一生懸命努力した。"
+  },
+  {
+    "q_No": 36,
+    "q_answer": "capital",
+    "q_Japanese": "首都、資本（金）、大文字の、最も重要な、資本の",
+    "q_Prefixes": "",
+    "q_Stem": "capi",
+    "q_Suffix": "tal",
+    "q_Example": "He invested a large amount of capital in the new business.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "ceive",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ious",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "tal",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "opt",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "capi",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "彼は新しい事業に多額の資本を投資した。"
+  },
+  {
+    "q_No": 37,
+    "q_answer": "escape",
+    "q_Japanese": "逃げる、逃亡、脱出",
+    "q_Prefixes": "es",
+    "q_Stem": "cape",
+    "q_Suffix": "",
+    "q_Example": "The prisoners tried to escape through a tunnel.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "dis",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "es",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "appoint",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "able",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "city",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "cape",
+        "q_pi": "02.png"
+      }
+    ],
+    "q_ExampleJa": "囚人たちはトンネルを通って脱出しようとした。"
+  },
+  {
+    "q_No": 38,
+    "q_answer": "capable",
+    "q_Japanese": "能力がある、～する可能性がある",
+    "q_Prefixes": "",
+    "q_Stem": "cap",
+    "q_Suffix": "able",
+    "q_Example": "She is capable of handling difficult situations.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "il",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "cap",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "able",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "re",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "min",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "fend",
+        "q_pi": "02.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は難しい状況にも対応できる能力がある。"
+  },
+  {
+    "q_No": 39,
+    "q_answer": "capacity",
+    "q_Japanese": "（受け入れ）能力",
+    "q_Prefixes": "",
+    "q_Stem": "capa",
+    "q_Suffix": "city",
+    "q_Example": "The stadium has a seating capacity of 50,000.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "city",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "capa",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "cape",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "as",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "dependent",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "cure",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "そのスタジアムの収容人数は5万人だ。"
+  },
+  {
+    "q_No": 40,
+    "q_answer": "accept",
+    "q_Japanese": "受け入れる、受け取る",
+    "q_Prefixes": "ac",
+    "q_Stem": "cept",
+    "q_Suffix": "",
+    "q_Example": "It's hard to accept failure, but it's part of growth.",
+    "q_Level": 1,
+    "q_Choices": [
+      {
+        "q_pt": "oc",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ac",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "per",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "of",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ual",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "cept",
+        "q_pi": "02.png"
+      }
+    ],
+    "q_ExampleJa": "失敗を受け入れるのは難しいが、それは成長の一部だ。"
+  },
+  {
+    "q_No": 41,
+    "q_answer": "unacceptable",
+    "q_Japanese": "受け入れられない",
+    "q_Prefixes": "un",
+    "q_Stem": "accept",
+    "q_Suffix": "able",
+    "q_Example": "His behavior at the meeting was completely unacceptable.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "able",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "opt",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "un",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "fensive",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "accept",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "believe",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "会議での彼の振る舞いは、まったく受け入れられないものだった。"
+  },
+  {
+    "q_No": 42,
+    "q_answer": "concept",
+    "q_Japanese": "概念、観念",
+    "q_Prefixes": "con",
+    "q_Stem": "cept",
+    "q_Suffix": "",
+    "q_Example": "She explained the concept of gravity in simple terms.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "ious",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "cept",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "per",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ad",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "con",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "as",
+        "q_pi": "01.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は重力の概念を分かりやすく説明した。"
+  },
+  {
+    "q_No": 43,
+    "q_answer": "exception",
+    "q_Japanese": "例外",
+    "q_Prefixes": "ex",
+    "q_Stem": "cept",
+    "q_Suffix": "ion",
+    "q_Example": "Everyone passed the test, with one exception.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "un",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ion",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ure",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "con",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "cept",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ex",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "一人を除いて、全員がそのテストに合格した。"
+  },
+  {
+    "q_No": 44,
+    "q_answer": "deceive",
+    "q_Japanese": "騙す、思い違いをさせる",
+    "q_Prefixes": "de",
+    "q_Stem": "ceive",
+    "q_Suffix": "",
+    "q_Example": "He tried to deceive the audience with a fake story.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "ceive",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "rest",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ment",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ice",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "jud",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "彼は偽の話で観客をだまそうとした。"
+  },
+  {
+    "q_No": 45,
+    "q_answer": "perceive",
+    "q_Japanese": "わかる、気づく",
+    "q_Prefixes": "per",
+    "q_Stem": "ceive",
+    "q_Suffix": "",
+    "q_Example": "She perceived a change in his attitude.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "rest",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "apt",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "per",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "opt",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は彼の態度の変化に気づいた。"
+  },
+  {
+    "q_No": 46,
+    "q_answer": "assign",
+    "q_Japanese": "割り当てる、指定する",
+    "q_Prefixes": "as",
+    "q_Stem": "sign",
+    "q_Suffix": "",
+    "q_Example": "The teacher assigned homework to the students.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "tal",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "fen",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "punct",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "as",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "sign",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "es",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "先生は生徒たちに宿題を課した。"
+  },
+  {
+    "q_No": 47,
+    "q_answer": "resign",
+    "q_Japanese": "辞職する、退く",
+    "q_Prefixes": "re",
+    "q_Stem": "sign",
+    "q_Suffix": "",
+    "q_Example": "He resigned from his position as manager.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "accept",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "re",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ation",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "sign",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "彼はマネージャーの職を辞任した。"
+  },
+  {
+    "q_No": 48,
+    "q_answer": "observe",
+    "q_Japanese": "観察する、気づく、守る",
+    "q_Prefixes": "ob",
+    "q_Stem": "serve",
+    "q_Suffix": "",
+    "q_Example": "Scientists observe animal behavior in the wild.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "depend",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "cap",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "tend",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "cape",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ob",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "科学者たちは野生動物の行動を観察する。"
+  },
+  {
+    "q_No": 49,
+    "q_answer": "reserve",
+    "q_Japanese": "予約する、取っておく",
+    "q_Prefixes": "re",
+    "q_Stem": "serve",
+    "q_Suffix": "",
+    "q_Example": "I reserved a table at the restaurant.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "tract",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "tal",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "apt",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ure",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "re",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "私はそのレストランの席を予約した。"
+  },
+  {
+    "q_No": 50,
+    "q_answer": "conserve",
+    "q_Japanese": "保存する、保護する、大切に使う",
+    "q_Prefixes": "con",
+    "q_Stem": "serve",
+    "q_Suffix": "",
+    "q_Example": "We must conserve energy to protect the environment.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "ual",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "con",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "mini",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "ad",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "min",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "環境を守るために、私たちはエネルギーを節約しなければならない。"
+  },
+  {
+    "q_No": 51,
+    "q_answer": "preserve",
+    "q_Japanese": "保存する、保つ",
+    "q_Prefixes": "pre",
+    "q_Stem": "serve",
+    "q_Suffix": "",
+    "q_Example": "The museum preserves ancient artifacts.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "se",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "opt",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "just",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "tract",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "pre",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "その博物館は古代の遺物を保存している。"
+  },
+  {
+    "q_No": 52,
+    "q_answer": "deserve",
+    "q_Japanese": "値する、価値がある",
+    "q_Prefixes": "de",
+    "q_Stem": "serve",
+    "q_Suffix": "",
+    "q_Example": "She deserves praise for her hard work.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "serve",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "rest",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "oc",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "cept",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "vent",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "05.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は努力を称賛されるに値する。"
+  },
+  {
+    "q_No": 53,
+    "q_answer": "occur",
+    "q_Japanese": "起こる、生じる、浮かぶ、存在する",
+    "q_Prefixes": "oc",
+    "q_Stem": "cur",
+    "q_Suffix": "",
+    "q_Example": "The accident occurred late at night.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "jud",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "oc",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "rity",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "apt",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "ob",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "cur",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "その事故は夜遅くに起きた。"
+  },
+  {
+    "q_No": 54,
+    "q_answer": "offend",
+    "q_Japanese": "感情を害する、不快感を与える、罪を犯す",
+    "q_Prefixes": "of",
+    "q_Stem": "fend",
+    "q_Suffix": "",
+    "q_Example": "He didn't mean to offend anyone with his comment.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "fend",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "of",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "ation",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "un",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "fortunate",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "serve",
+        "q_pi": "03.png"
+      }
+    ],
+    "q_ExampleJa": "彼はそのコメントで誰かを不快にさせるつもりはなかった。"
+  },
+  {
+    "q_No": 55,
+    "q_answer": "offense",
+    "q_Japanese": "違反、立腹、攻撃",
+    "q_Prefixes": "of",
+    "q_Stem": "fen",
+    "q_Suffix": "se",
+    "q_Example": "His words were taken as a serious offense.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "of",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "fen",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "in",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ob",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "彼の言葉は重大な侮辱として受け取られた。"
+  },
+  {
+    "q_No": 56,
+    "q_answer": "defend",
+    "q_Japanese": "防御する、弁護する",
+    "q_Prefixes": "de",
+    "q_Stem": "fend",
+    "q_Suffix": "",
+    "q_Example": "She tried to defend her friend from criticism.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "cap",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "capa",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "fend",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "tal",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ex",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "彼女は批判から友人を守ろうとした。"
+  },
+  {
+    "q_No": 57,
+    "q_answer": "defense",
+    "q_Japanese": "防御、守備、弁護",
+    "q_Prefixes": "de",
+    "q_Stem": "fen",
+    "q_Suffix": "se",
+    "q_Example": "The lawyer gave a strong defense in court.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "able",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "fen",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "se",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "monit",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "as",
+        "q_pi": "02.png"
+      }
+    ],
+    "q_ExampleJa": "その弁護士は法廷で力強い弁護をした。"
+  },
+  {
+    "q_No": 58,
+    "q_answer": "defensively",
+    "q_Japanese": "守備的に、擁護的に",
+    "q_Prefixes": "de",
+    "q_Stem": "fensive",
+    "q_Suffix": "ly",
+    "q_Example": "He responded defensively to the question.",
+    "q_Level": 3,
+    "q_Choices": [
+      {
+        "q_pt": "ly",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "de",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "fensive",
+        "q_pi": "06.png"
+      },
+      {
+        "q_pt": "ceive",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "ual",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "mire",
+        "q_pi": "04.png"
+      }
+    ],
+    "q_ExampleJa": "彼はその質問に守りの姿勢で答えた。"
+  },
+  {
+    "q_No": 59,
+    "q_answer": "minority",
+    "q_Japanese": "少数",
+    "q_Prefixes": "",
+    "q_Stem": "mino",
+    "q_Suffix": "rity",
+    "q_Example": "In a democracy, it's important to protect the rights of the minority.",
+    "q_Level": 2,
+    "q_Choices": [
+      {
+        "q_pt": "cure",
+        "q_pi": "01.png"
+      },
+      {
+        "q_pt": "vent",
+        "q_pi": "03.png"
+      },
+      {
+        "q_pt": "comfort",
+        "q_pi": "02.png"
+      },
+      {
+        "q_pt": "rity",
+        "q_pi": "05.png"
+      },
+      {
+        "q_pt": "mino",
+        "q_pi": "04.png"
+      },
+      {
+        "q_pt": "punct",
+        "q_pi": "06.png"
+      }
+    ],
+    "q_ExampleJa": "民主主義においては、少数派の権利を守ることが重要だ。"
+  }
+]

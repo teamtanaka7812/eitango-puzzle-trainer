@@ -3,363 +3,2312 @@
     "id": "illegal_l1",
     "word": "illegal",
     "level": 1,
-    "parts": ["il", "legal"],
+    "parts": [
+      "il",
+      "legal"
+    ],
     "meaningJa": "違法の",
     "exampleEn": "It is illegal to drive without a license in most countries.",
     "exampleJa": "ほとんどの国で、免許なしで運転するのは違法です。",
     "choices": [
-      {"text": "un", "image": "02008green.png"},
-      {"text": "il", "image": "02012blue.png"},
-      {"text": "dis", "image": "02013red.png"},
-      {"text": "law", "image": "02006blue.png"},
-      {"text": "legal", "image": "02002yellow.png"}
+      {
+        "text": "un",
+        "image": "02008green.png"
+      },
+      {
+        "text": "il",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "dis",
+        "image": "02013red.png"
+      },
+      {
+        "text": "law",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "legal",
+        "image": "02002yellow.png"
+      }
     ]
   },
   {
     "id": "development_l1",
     "word": "development",
     "level": 1,
-    "parts": ["develop", "ment"],
+    "parts": [
+      "develop",
+      "ment"
+    ],
     "meaningJa": "発展",
     "exampleEn": "The development of new technology has changed the way we live.",
     "exampleJa": "新しい技術の発展は、私たちの生活の仕方を変えてきた。",
     "choices": [
-      {"text": "develop", "image": "02008green.png"},
-      {"text": "invent", "image": "02012blue.png"},
-      {"text": "ion", "image": "02013red.png"},
-      {"text": "ment", "image": "02006blue.png"},
-      {"text": "ful", "image": "02002yellow.png"}
+      {
+        "text": "develop",
+        "image": "02008green.png"
+      },
+      {
+        "text": "invent",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "ion",
+        "image": "02013red.png"
+      },
+      {
+        "text": "ment",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "ful",
+        "image": "02002yellow.png"
+      }
     ]
   },
   {
     "id": "unfortunately",
     "word": "unfortunately",
     "level": 1,
-    "parts": ["un", "fortunate", "ly"],
+    "parts": [
+      "un",
+      "fortunate",
+      "ly"
+    ],
     "meaningJa": "不運にも",
     "exampleEn": "Unfortunately, the event was canceled due to bad weather.",
     "exampleJa": "残念ながら、悪天候のためイベントは中止になった。",
     "choices": [
-      {"text": "ion", "image": "01.png"},
-      {"text": "fortunate", "image": "05.png"},
-      {"text": "dis", "image": "02.png"},
-      {"text": "in", "image": "03.png"},
-      {"text": "happy", "image": "01.png"},
-      {"text": "ly", "image": "04.png"},
-      {"text": "un", "image": "06.png"},
-      {"text": "il", "image": "05.png"}
+      {
+        "text": "ion",
+        "image": "01.png"
+      },
+      {
+        "text": "fortunate",
+        "image": "05.png"
+      },
+      {
+        "text": "dis",
+        "image": "02.png"
+      },
+      {
+        "text": "in",
+        "image": "03.png"
+      },
+      {
+        "text": "happy",
+        "image": "01.png"
+      },
+      {
+        "text": "ly",
+        "image": "04.png"
+      },
+      {
+        "text": "un",
+        "image": "06.png"
+      },
+      {
+        "text": "il",
+        "image": "05.png"
+      }
     ]
   },
   {
     "id": "reappearance",
     "word": "reappearance",
     "level": 1,
-    "parts": ["re", "appear", "ance"],
+    "parts": [
+      "re",
+      "appear",
+      "ance"
+    ],
     "meaningJa": "再出現、再登場",
     "exampleEn": "The sudden reappearance of the actor surprised the audience.",
     "exampleJa": "その俳優が突然再び現れたことに、観客は驚いた。",
     "choices": [
-      {"text": "pre", "image": "02008green.png"},
-      {"text": "re", "image": "02012blue.png"},
-      {"text": "un", "image": "02013red.png"},
-      {"text": "ion", "image": "02006blue.png"},
-      {"text": "appear", "image": "02002yellow.png"},
-      {"text": "ance", "image": "01.png"},
-      {"text": "ly", "image": "02001red.png"}
+      {
+        "text": "pre",
+        "image": "02008green.png"
+      },
+      {
+        "text": "re",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "un",
+        "image": "02013red.png"
+      },
+      {
+        "text": "ion",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "appear",
+        "image": "02002yellow.png"
+      },
+      {
+        "text": "ance",
+        "image": "01.png"
+      },
+      {
+        "text": "ly",
+        "image": "02001red.png"
+      }
     ]
   },
   {
     "id": "independently",
     "word": "independently",
     "level": 1,
-    "parts": ["in", "dependent", "ly"],
+    "parts": [
+      "in",
+      "dependent",
+      "ly"
+    ],
     "meaningJa": "独立して",
     "exampleEn": "She solved the problem independently without any help.",
     "exampleJa": "彼女は誰の助けも借りずに、独力でその問題を解決した。",
     "choices": [
-      {"text": "ly", "image": "02008green.png"},
-      {"text": "un", "image": "02012blue.png"},
-      {"text": "im", "image": "02013red.png"},
-      {"text": "dependent", "image": "02006blue.png"},
-      {"text": "depend", "image": "02002yellow.png"},
-      {"text": "dis", "image": "02009orange.png"},
-      {"text": "in", "image": "02001red.png"},
-      {"text": "ful", "image": "02010orange.png"},
-      {"text": "less", "image": "02011green.png"}
+      {
+        "text": "ly",
+        "image": "02008green.png"
+      },
+      {
+        "text": "un",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "im",
+        "image": "02013red.png"
+      },
+      {
+        "text": "dependent",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "depend",
+        "image": "02002yellow.png"
+      },
+      {
+        "text": "dis",
+        "image": "02009orange.png"
+      },
+      {
+        "text": "in",
+        "image": "02001red.png"
+      },
+      {
+        "text": "ful",
+        "image": "02010orange.png"
+      },
+      {
+        "text": "less",
+        "image": "02011green.png"
+      }
     ]
   },
   {
     "id": "reconsideration",
     "word": "reconsideration",
     "level": 1,
-    "parts": ["re", "consider", "ation"],
+    "parts": [
+      "re",
+      "consider",
+      "ation"
+    ],
     "meaningJa": "再考",
     "exampleEn": "After hearing everyone's opinions, the manager agreed to a reconsideration of the plan.",
     "exampleJa": "全員の意見を聞いたあと、マネージャーは計画の再検討に同意した。",
     "choices": [
-      {"text": "in", "image": "02008green.png"},
-      {"text": "re", "image": "02012blue.png"},
-      {"text": "pre", "image": "02013red.png"},
-      {"text": "think", "image": "02006blue.png"},
-      {"text": "consider", "image": "02002yellow.png"},
-      {"text": "tion", "image": "02009orange.png"},
-      {"text": "ation", "image": "02001red.png"},
-      {"text": "ion", "image": "02010orange.png"}
+      {
+        "text": "in",
+        "image": "02008green.png"
+      },
+      {
+        "text": "re",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "pre",
+        "image": "02013red.png"
+      },
+      {
+        "text": "think",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "consider",
+        "image": "02002yellow.png"
+      },
+      {
+        "text": "tion",
+        "image": "02009orange.png"
+      },
+      {
+        "text": "ation",
+        "image": "02001red.png"
+      },
+      {
+        "text": "ion",
+        "image": "02010orange.png"
+      }
     ]
   },
   {
     "id": "unbelievable",
     "word": "unbelievable",
     "level": 1,
-    "parts": ["un", "believe", "able"],
+    "parts": [
+      "un",
+      "believe",
+      "able"
+    ],
     "meaningJa": "信じられない",
     "exampleEn": "The magician's final trick was truly unbelievable.",
     "exampleJa": "そのマジシャンの最後のトリックは、本当に信じられないものだった。",
     "choices": [
-      {"text": "in", "image": "02008green.png"},
-      {"text": "un", "image": "02012blue.png"},
-      {"text": "dis", "image": "02013red.png"},
-      {"text": "rely", "image": "02006blue.png"},
-      {"text": "believe", "image": "02002yellow.png"},
-      {"text": "ful", "image": "02009orange.png"},
-      {"text": "less", "image": "02001red.png"},
-      {"text": "able", "image": "02010orange.png"}
+      {
+        "text": "in",
+        "image": "02008green.png"
+      },
+      {
+        "text": "un",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "dis",
+        "image": "02013red.png"
+      },
+      {
+        "text": "rely",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "believe",
+        "image": "02002yellow.png"
+      },
+      {
+        "text": "ful",
+        "image": "02009orange.png"
+      },
+      {
+        "text": "less",
+        "image": "02001red.png"
+      },
+      {
+        "text": "able",
+        "image": "02010orange.png"
+      }
     ]
   },
   {
     "id": "uncomfortable_l1",
     "word": "uncomfortable",
     "level": 1,
-    "parts": ["un", "comfort", "able"],
+    "parts": [
+      "un",
+      "comfort",
+      "able"
+    ],
     "meaningJa": "不快な、心地よくない",
     "exampleEn": "I felt uncomfortable speaking in front of such a large audience.",
     "exampleJa": "あれほど大勢の聴衆の前で話すのは、居心地が悪かった。",
     "choices": [
-      {"text": "in", "image": "02008green.png"},
-      {"text": "un", "image": "02012blue.png"},
-      {"text": "il", "image": "02013red.png"},
-      {"text": "convenient", "image": "02006blue.png"},
-      {"text": "comfort", "image": "02002yellow.png"},
-      {"text": "able", "image": "02009orange.png"},
-      {"text": "tion", "image": "02001red.png"},
-      {"text": "less", "image": "02010orange.png"}
+      {
+        "text": "in",
+        "image": "02008green.png"
+      },
+      {
+        "text": "un",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "il",
+        "image": "02013red.png"
+      },
+      {
+        "text": "convenient",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "comfort",
+        "image": "02002yellow.png"
+      },
+      {
+        "text": "able",
+        "image": "02009orange.png"
+      },
+      {
+        "text": "tion",
+        "image": "02001red.png"
+      },
+      {
+        "text": "less",
+        "image": "02010orange.png"
+      }
     ]
   },
   {
     "id": "disagreement",
     "word": "disagreement",
     "level": 1,
-    "parts": ["dis", "agree", "ment"],
+    "parts": [
+      "dis",
+      "agree",
+      "ment"
+    ],
     "meaningJa": "不一致、意見の相違",
     "exampleEn": "Their disagreement over the budget delayed the project.",
     "exampleJa": "予算をめぐる意見の相違が、プロジェクトを遅らせた。",
     "choices": [
-      {"text": "il", "image": "04.png"},
-      {"text": "ful", "image": "02.png"},
-      {"text": "in", "image": "03.png"},
-      {"text": "agree", "image": "01.png"},
-      {"text": "ee", "image": "05.png"},
-      {"text": "ment", "image": "02.png"},
-      {"text": "dis", "image": "06.png"}
+      {
+        "text": "il",
+        "image": "04.png"
+      },
+      {
+        "text": "ful",
+        "image": "02.png"
+      },
+      {
+        "text": "in",
+        "image": "03.png"
+      },
+      {
+        "text": "agree",
+        "image": "01.png"
+      },
+      {
+        "text": "ee",
+        "image": "05.png"
+      },
+      {
+        "text": "ment",
+        "image": "02.png"
+      },
+      {
+        "text": "dis",
+        "image": "06.png"
+      }
     ]
   },
   {
     "id": "undependable",
     "word": "undependable",
     "level": 1,
-    "parts": ["un", "depend", "able"],
+    "parts": [
+      "un",
+      "depend",
+      "able"
+    ],
     "meaningJa": "頼りにならない",
     "exampleEn": "He's talented, but unfortunately quite undependable under pressure.",
     "exampleJa": "彼は才能があるが、残念ながらプレッシャーのかかる場面ではあまり頼りにならない。",
     "choices": [
-      {"text": "dis", "image": "02008green.png"},
-      {"text": "un", "image": "02012blue.png"},
-      {"text": "mis", "image": "02013red.png"},
-      {"text": "rely", "image": "02006blue.png"},
-      {"text": "depend", "image": "02002yellow.png"},
-      {"text": "able", "image": "02009orange.png"},
-      {"text": "ment", "image": "02001red.png"},
-      {"text": "less", "image": "02010orange.png"}
+      {
+        "text": "dis",
+        "image": "02008green.png"
+      },
+      {
+        "text": "un",
+        "image": "02012blue.png"
+      },
+      {
+        "text": "mis",
+        "image": "02013red.png"
+      },
+      {
+        "text": "rely",
+        "image": "02006blue.png"
+      },
+      {
+        "text": "depend",
+        "image": "02002yellow.png"
+      },
+      {
+        "text": "able",
+        "image": "02009orange.png"
+      },
+      {
+        "text": "ment",
+        "image": "02001red.png"
+      },
+      {
+        "text": "less",
+        "image": "02010orange.png"
+      }
     ]
   },
   {
-    "id": "unhappy",
-    "word": "unhappy",
+    "id": "admire",
+    "word": "admire",
     "level": 1,
-    "parts": ["un", "happy"],
-    "meaningJa": "不幸な",
-    "exampleEn": "She felt unhappy after losing her favorite pen.",
-    "exampleJa": "彼女はお気に入りのペンをなくして悲しかった。"
+    "parts": [
+      "ad",
+      "mire"
+    ],
+    "meaningJa": "敬服する、感心する",
+    "exampleEn": "I truly admire her dedication to helping others.",
+    "exampleJa": "彼女が人助けに尽くす姿を、私は心から尊敬している。",
+    "choices": [
+      {
+        "text": "dis",
+        "image": "01.png"
+      },
+      {
+        "text": "re",
+        "image": "05.png"
+      },
+      {
+        "text": "comfort",
+        "image": "03.png"
+      },
+      {
+        "text": "ad",
+        "image": "02.png"
+      },
+      {
+        "text": "city",
+        "image": "04.png"
+      },
+      {
+        "text": "mire",
+        "image": "06.png"
+      }
+    ]
   },
   {
-    "id": "rewrite",
-    "word": "rewrite",
+    "id": "adventure",
+    "word": "adventure",
     "level": 1,
-    "parts": ["re", "write"],
-    "meaningJa": "書き直す",
-    "exampleEn": "I need to rewrite this letter because I made a mistake.",
-    "exampleJa": "間違えたので、この手紙を書き直す必要がある。"
+    "parts": [
+      "ad",
+      "vent",
+      "ure"
+    ],
+    "meaningJa": "冒険",
+    "exampleEn": "They went on an exciting adventure through the jungle.",
+    "exampleJa": "彼らはジャングルでわくわくする冒険に出かけた。",
+    "choices": [
+      {
+        "text": "as",
+        "image": "05.png"
+      },
+      {
+        "text": "vent",
+        "image": "06.png"
+      },
+      {
+        "text": "se",
+        "image": "04.png"
+      },
+      {
+        "text": "ad",
+        "image": "01.png"
+      },
+      {
+        "text": "or",
+        "image": "03.png"
+      },
+      {
+        "text": "ure",
+        "image": "02.png"
+      }
+    ]
   },
   {
-    "id": "helpful",
-    "word": "helpful",
+    "id": "address",
+    "word": "address",
     "level": 1,
-    "parts": ["help", "ful"],
-    "meaningJa": "役に立つ",
-    "exampleEn": "My sister is always helpful when I have homework.",
-    "exampleJa": "宿題があるとき、姉はいつも助けてくれる。"
+    "parts": [
+      "ad",
+      "dress"
+    ],
+    "meaningJa": "住所、演説、宛先を書く、演説をする",
+    "exampleEn": "The president addressed the issue in his speech.",
+    "exampleJa": "大統領は演説の中でその問題について述べた。",
+    "choices": [
+      {
+        "text": "ad",
+        "image": "06.png"
+      },
+      {
+        "text": "dress",
+        "image": "02.png"
+      },
+      {
+        "text": "il",
+        "image": "01.png"
+      },
+      {
+        "text": "chieve",
+        "image": "05.png"
+      },
+      {
+        "text": "mire",
+        "image": "04.png"
+      },
+      {
+        "text": "ion",
+        "image": "03.png"
+      }
+    ]
   },
   {
-    "id": "careless",
-    "word": "careless",
+    "id": "minute",
+    "word": "minute",
     "level": 1,
-    "parts": ["care", "less"],
-    "meaningJa": "不注意な",
-    "exampleEn": "It was careless of him to leave the door open.",
-    "exampleJa": "ドアを開けたままにするなんて、彼は不注意だった。"
+    "parts": [
+      "min",
+      "ute"
+    ],
+    "meaningJa": "細かい、綿密な、～分、瞬間",
+    "exampleEn": "There was a minute crack in the glass, barely visible.",
+    "exampleJa": "ガラスにはほとんど見えないほどの小さなひびが入っていた。",
+    "choices": [
+      {
+        "text": "ad",
+        "image": "01.png"
+      },
+      {
+        "text": "min",
+        "image": "03.png"
+      },
+      {
+        "text": "apt",
+        "image": "05.png"
+      },
+      {
+        "text": "dependent",
+        "image": "02.png"
+      },
+      {
+        "text": "punct",
+        "image": "06.png"
+      },
+      {
+        "text": "ute",
+        "image": "04.png"
+      }
+    ]
   },
   {
-    "id": "prepaid",
-    "word": "prepaid",
+    "id": "adjust",
+    "word": "adjust",
+    "level": 1,
+    "parts": [
+      "ad",
+      "just"
+    ],
+    "meaningJa": "調整する、適合させる",
+    "exampleEn": "You can adjust the volume using this knob.",
+    "exampleJa": "このつまみで音量を調整できます。",
+    "choices": [
+      {
+        "text": "just",
+        "image": "03.png"
+      },
+      {
+        "text": "cape",
+        "image": "06.png"
+      },
+      {
+        "text": "serve",
+        "image": "01.png"
+      },
+      {
+        "text": "ad",
+        "image": "05.png"
+      },
+      {
+        "text": "punct",
+        "image": "02.png"
+      },
+      {
+        "text": "sign",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "achieve",
+    "word": "achieve",
+    "level": 1,
+    "parts": [
+      "a",
+      "chieve"
+    ],
+    "meaningJa": "成し遂げる、達成する",
+    "exampleEn": "She worked hard to achieve her goals.",
+    "exampleJa": "彼女は目標を達成するために一生懸命努力した。",
+    "choices": [
+      {
+        "text": "a",
+        "image": "02.png"
+      },
+      {
+        "text": "chieve",
+        "image": "06.png"
+      },
+      {
+        "text": "cept",
+        "image": "04.png"
+      },
+      {
+        "text": "dress",
+        "image": "03.png"
+      },
+      {
+        "text": "tract",
+        "image": "05.png"
+      },
+      {
+        "text": "ar",
+        "image": "01.png"
+      }
+    ]
+  },
+  {
+    "id": "capital",
+    "word": "capital",
+    "level": 1,
+    "parts": [
+      "capi",
+      "tal"
+    ],
+    "meaningJa": "首都、資本（金）、大文字の、最も重要な、資本の",
+    "exampleEn": "He invested a large amount of capital in the new business.",
+    "exampleJa": "彼は新しい事業に多額の資本を投資した。",
+    "choices": [
+      {
+        "text": "ceive",
+        "image": "01.png"
+      },
+      {
+        "text": "ious",
+        "image": "05.png"
+      },
+      {
+        "text": "tal",
+        "image": "06.png"
+      },
+      {
+        "text": "opt",
+        "image": "02.png"
+      },
+      {
+        "text": "se",
+        "image": "04.png"
+      },
+      {
+        "text": "capi",
+        "image": "03.png"
+      }
+    ]
+  },
+  {
+    "id": "escape",
+    "word": "escape",
+    "level": 1,
+    "parts": [
+      "es",
+      "cape"
+    ],
+    "meaningJa": "逃げる、逃亡、脱出",
+    "exampleEn": "The prisoners tried to escape through a tunnel.",
+    "exampleJa": "囚人たちはトンネルを通って脱出しようとした。",
+    "choices": [
+      {
+        "text": "dis",
+        "image": "03.png"
+      },
+      {
+        "text": "es",
+        "image": "05.png"
+      },
+      {
+        "text": "appoint",
+        "image": "01.png"
+      },
+      {
+        "text": "able",
+        "image": "06.png"
+      },
+      {
+        "text": "city",
+        "image": "04.png"
+      },
+      {
+        "text": "cape",
+        "image": "02.png"
+      }
+    ]
+  },
+  {
+    "id": "accept",
+    "word": "accept",
+    "level": 1,
+    "parts": [
+      "ac",
+      "cept"
+    ],
+    "meaningJa": "受け入れる、受け取る",
+    "exampleEn": "It's hard to accept failure, but it's part of growth.",
+    "exampleJa": "失敗を受け入れるのは難しいが、それは成長の一部だ。",
+    "choices": [
+      {
+        "text": "oc",
+        "image": "06.png"
+      },
+      {
+        "text": "ac",
+        "image": "05.png"
+      },
+      {
+        "text": "per",
+        "image": "03.png"
+      },
+      {
+        "text": "of",
+        "image": "04.png"
+      },
+      {
+        "text": "ual",
+        "image": "01.png"
+      },
+      {
+        "text": "cept",
+        "image": "02.png"
+      }
+    ]
+  },
+  {
+    "id": "adopt",
+    "word": "adopt",
     "level": 2,
-    "parts": ["pre", "paid"],
-    "meaningJa": "前払いの",
-    "exampleEn": "We used a prepaid card to buy the tickets.",
-    "exampleJa": "私たちはチケットを買うのにプリペイドカードを使った。"
+    "parts": [
+      "ad",
+      "opt"
+    ],
+    "meaningJa": "養子にする、採用する",
+    "exampleEn": "Schools are beginning to adopt digital textbooks in the classroom.",
+    "exampleJa": "学校ではデジタル教科書を採用し始めている。",
+    "choices": [
+      {
+        "text": "tend",
+        "image": "02.png"
+      },
+      {
+        "text": "de",
+        "image": "01.png"
+      },
+      {
+        "text": "il",
+        "image": "06.png"
+      },
+      {
+        "text": "ad",
+        "image": "03.png"
+      },
+      {
+        "text": "opt",
+        "image": "04.png"
+      },
+      {
+        "text": "min",
+        "image": "05.png"
+      }
+    ]
   },
   {
-    "id": "unusual",
-    "word": "unusual",
+    "id": "arrest",
+    "word": "arrest",
     "level": 2,
-    "parts": ["un", "usual"],
-    "meaningJa": "普通でない",
-    "exampleEn": "It is unusual for him to be late for school.",
-    "exampleJa": "彼が学校に遅れるのは珍しいことだ。"
+    "parts": [
+      "ar",
+      "rest"
+    ],
+    "meaningJa": "逮捕する、逮捕",
+    "exampleEn": "The police arrested the suspect at the airport.",
+    "exampleJa": "警察は空港でその容疑者を逮捕した。",
+    "choices": [
+      {
+        "text": "ute",
+        "image": "04.png"
+      },
+      {
+        "text": "cept",
+        "image": "02.png"
+      },
+      {
+        "text": "ar",
+        "image": "06.png"
+      },
+      {
+        "text": "rest",
+        "image": "05.png"
+      },
+      {
+        "text": "de",
+        "image": "01.png"
+      },
+      {
+        "text": "se",
+        "image": "03.png"
+      }
+    ]
   },
   {
-    "id": "misunderstand",
-    "word": "misunderstand",
+    "id": "adapt",
+    "word": "adapt",
     "level": 2,
-    "parts": ["mis", "understand"],
-    "meaningJa": "誤解する",
-    "exampleEn": "Please don't misunderstand what I said.",
-    "exampleJa": "私の言ったことを誤解しないでください。"
+    "parts": [
+      "ad",
+      "apt"
+    ],
+    "meaningJa": "適応する、適応させる",
+    "exampleEn": "Animals must adapt to changes in their environment to survive.",
+    "exampleJa": "動物は生き延びるために、環境の変化に適応しなければならない。",
+    "choices": [
+      {
+        "text": "ad",
+        "image": "06.png"
+      },
+      {
+        "text": "dis",
+        "image": "05.png"
+      },
+      {
+        "text": "apt",
+        "image": "03.png"
+      },
+      {
+        "text": "cap",
+        "image": "01.png"
+      },
+      {
+        "text": "ac",
+        "image": "02.png"
+      },
+      {
+        "text": "voc",
+        "image": "04.png"
+      }
+    ]
   },
   {
-    "id": "beautiful",
-    "word": "beautiful",
+    "id": "minor",
+    "word": "minor",
     "level": 2,
-    "parts": ["beauti", "ful"],
-    "meaningJa": "美しい",
-    "exampleEn": "The sunset over the mountains was beautiful.",
-    "exampleJa": "山に沈む夕日は美しかった。"
+    "parts": [
+      "min",
+      "or"
+    ],
+    "meaningJa": "未成年者",
+    "exampleEn": "He's still a minor and cannot sign legal documents.",
+    "exampleJa": "彼はまだ未成年なので、法的な書類にサインできない。",
+    "choices": [
+      {
+        "text": "min",
+        "image": "05.png"
+      },
+      {
+        "text": "ance",
+        "image": "04.png"
+      },
+      {
+        "text": "or",
+        "image": "02.png"
+      },
+      {
+        "text": "ceive",
+        "image": "03.png"
+      },
+      {
+        "text": "fen",
+        "image": "01.png"
+      },
+      {
+        "text": "per",
+        "image": "06.png"
+      }
+    ]
   },
   {
-    "id": "national",
-    "word": "national",
+    "id": "attract",
+    "word": "attract",
     "level": 2,
-    "parts": ["nation", "al"],
-    "meaningJa": "国の",
-    "exampleEn": "Today is a national holiday in Japan.",
-    "exampleJa": "今日は日本の祝日です。"
+    "parts": [
+      "at",
+      "tract"
+    ],
+    "meaningJa": "魅力",
+    "exampleEn": "The bright colors of the ad attracted many customers.",
+    "exampleJa": "その広告の鮮やかな色は、多くの客を引きつけた。",
+    "choices": [
+      {
+        "text": "il",
+        "image": "05.png"
+      },
+      {
+        "text": "at",
+        "image": "03.png"
+      },
+      {
+        "text": "ster",
+        "image": "02.png"
+      },
+      {
+        "text": "ual",
+        "image": "01.png"
+      },
+      {
+        "text": "tract",
+        "image": "04.png"
+      },
+      {
+        "text": "per",
+        "image": "06.png"
+      }
+    ]
   },
   {
-    "id": "pollution",
-    "word": "pollution",
-    "level": 3,
-    "parts": ["pollut", "ion"],
-    "meaningJa": "汚染",
-    "exampleEn": "Air pollution is a serious problem in big cities.",
-    "exampleJa": "大気汚染は大都市で深刻な問題だ。"
+    "id": "monitor",
+    "word": "monitor",
+    "level": 2,
+    "parts": [
+      "monit",
+      "or"
+    ],
+    "meaningJa": "モニター、学級委員、監視する",
+    "exampleEn": "We need to monitor the patient's condition closely.",
+    "exampleJa": "私たちは患者の容体を注意深く監視する必要がある。",
+    "choices": [
+      {
+        "text": "fen",
+        "image": "01.png"
+      },
+      {
+        "text": "serve",
+        "image": "02.png"
+      },
+      {
+        "text": "ac",
+        "image": "06.png"
+      },
+      {
+        "text": "min",
+        "image": "04.png"
+      },
+      {
+        "text": "monit",
+        "image": "03.png"
+      },
+      {
+        "text": "or",
+        "image": "05.png"
+      }
+    ]
   },
   {
-    "id": "disagree",
-    "word": "disagree",
-    "level": 3,
-    "parts": ["dis", "agree"],
-    "meaningJa": "同意しない",
-    "exampleEn": "I disagree with your opinion on this matter.",
-    "exampleJa": "この件については、あなたの意見に同意できません。"
+    "id": "demonstrate",
+    "word": "demonstrate",
+    "level": 2,
+    "parts": [
+      "de",
+      "monstr",
+      "ate"
+    ],
+    "meaningJa": "（実演して）説明する、証明する、デモをする",
+    "exampleEn": "The teacher demonstrated how to solve the equation.",
+    "exampleJa": "先生は方程式の解き方を実演して見せた。",
+    "choices": [
+      {
+        "text": "ate",
+        "image": "06.png"
+      },
+      {
+        "text": "pre",
+        "image": "05.png"
+      },
+      {
+        "text": "believe",
+        "image": "02.png"
+      },
+      {
+        "text": "oc",
+        "image": "01.png"
+      },
+      {
+        "text": "monstr",
+        "image": "04.png"
+      },
+      {
+        "text": "de",
+        "image": "03.png"
+      }
+    ]
   },
   {
-    "id": "employee",
-    "word": "employee",
-    "level": 3,
-    "parts": ["employ", "ee"],
-    "meaningJa": "従業員",
-    "exampleEn": "Every employee must wear a name tag at work.",
-    "exampleJa": "従業員は全員、職場で名札をつけなければならない。"
+    "id": "justice",
+    "word": "justice",
+    "level": 2,
+    "parts": [
+      "just",
+      "ice"
+    ],
+    "meaningJa": "公平、正義、正当性、裁判",
+    "exampleEn": "They fought for justice and equality.",
+    "exampleJa": "彼らは正義と平等のために戦った。",
+    "choices": [
+      {
+        "text": "rity",
+        "image": "02.png"
+      },
+      {
+        "text": "il",
+        "image": "05.png"
+      },
+      {
+        "text": "chieve",
+        "image": "03.png"
+      },
+      {
+        "text": "just",
+        "image": "06.png"
+      },
+      {
+        "text": "fend",
+        "image": "01.png"
+      },
+      {
+        "text": "ice",
+        "image": "04.png"
+      }
+    ]
   },
   {
-    "id": "impossible",
-    "word": "impossible",
-    "level": 3,
-    "parts": ["im", "possible"],
-    "meaningJa": "不可能な",
-    "exampleEn": "It is impossible to finish this work in one day.",
-    "exampleJa": "この仕事を1日で終わらせるのは不可能だ。"
+    "id": "prejudice",
+    "word": "prejudice",
+    "level": 2,
+    "parts": [
+      "pre",
+      "jud",
+      "ice"
+    ],
+    "meaningJa": "偏見、偏見を持たせる",
+    "exampleEn": "We must overcome prejudice and treat everyone fairly.",
+    "exampleJa": "私たちは偏見を乗り越え、誰もを公平に扱わなければならない。",
+    "choices": [
+      {
+        "text": "ice",
+        "image": "01.png"
+      },
+      {
+        "text": "re",
+        "image": "06.png"
+      },
+      {
+        "text": "pre",
+        "image": "04.png"
+      },
+      {
+        "text": "ious",
+        "image": "02.png"
+      },
+      {
+        "text": "jud",
+        "image": "05.png"
+      },
+      {
+        "text": "cur",
+        "image": "03.png"
+      }
+    ]
   },
   {
-    "id": "illegal",
-    "word": "illegal",
-    "level": 3,
-    "parts": ["il", "legal"],
-    "meaningJa": "違法の",
-    "exampleEn": "Parking here is illegal, so you should move your car.",
-    "exampleJa": "ここに駐車するのは違法なので、車を移動させたほうがいい。"
+    "id": "disappoint",
+    "word": "disappoint",
+    "level": 2,
+    "parts": [
+      "dis",
+      "appoint"
+    ],
+    "meaningJa": "失望させる、がっかりさせる",
+    "exampleEn": "I didn't want to disappoint my parents, so I studied hard.",
+    "exampleJa": "両親をがっかりさせたくなかったので、私は一生懸命勉強した。",
+    "choices": [
+      {
+        "text": "dis",
+        "image": "04.png"
+      },
+      {
+        "text": "tal",
+        "image": "05.png"
+      },
+      {
+        "text": "cur",
+        "image": "01.png"
+      },
+      {
+        "text": "ceive",
+        "image": "03.png"
+      },
+      {
+        "text": "appoint",
+        "image": "06.png"
+      },
+      {
+        "text": "ual",
+        "image": "02.png"
+      }
+    ]
   },
   {
-    "id": "successfully",
-    "word": "successfully",
-    "level": 3,
-    "parts": ["success", "ful", "ly"],
-    "meaningJa": "成功して",
-    "exampleEn": "She successfully passed the difficult exam.",
-    "exampleJa": "彼女は難しい試験に見事合格した。"
+    "id": "attend",
+    "word": "attend",
+    "level": 2,
+    "parts": [
+      "at",
+      "tend"
+    ],
+    "meaningJa": "参加する、出席する、注意する",
+    "exampleEn": "I couldn't attend the meeting due to illness.",
+    "exampleJa": "病気のため、私は会議に出席できなかった。",
+    "choices": [
+      {
+        "text": "per",
+        "image": "03.png"
+      },
+      {
+        "text": "tal",
+        "image": "04.png"
+      },
+      {
+        "text": "tend",
+        "image": "05.png"
+      },
+      {
+        "text": "min",
+        "image": "02.png"
+      },
+      {
+        "text": "of",
+        "image": "06.png"
+      },
+      {
+        "text": "at",
+        "image": "01.png"
+      }
+    ]
   },
   {
-    "id": "independent",
-    "word": "independent",
-    "level": 3,
-    "parts": ["in", "depend", "ent"],
-    "meaningJa": "独立した",
-    "exampleEn": "He wants to be independent from his parents someday.",
-    "exampleJa": "彼はいつか親から独立したいと思っている。"
+    "id": "extend",
+    "word": "extend",
+    "level": 2,
+    "parts": [
+      "ex",
+      "tend"
+    ],
+    "meaningJa": "延長する、広げる、伸ばす",
+    "exampleEn": "We decided to extend the deadline by one week.",
+    "exampleJa": "私たちは締め切りを1週間延長することにした。",
+    "choices": [
+      {
+        "text": "ex",
+        "image": "06.png"
+      },
+      {
+        "text": "tend",
+        "image": "01.png"
+      },
+      {
+        "text": "ance",
+        "image": "03.png"
+      },
+      {
+        "text": "ion",
+        "image": "04.png"
+      },
+      {
+        "text": "a",
+        "image": "02.png"
+      },
+      {
+        "text": "con",
+        "image": "05.png"
+      }
+    ]
   },
   {
-    "id": "development",
-    "word": "development",
-    "level": 3,
-    "parts": ["develop", "ment"],
-    "meaningJa": "発展",
-    "exampleEn": "The development of this town has been very fast.",
-    "exampleJa": "この町の発展はとても速かった。"
+    "id": "accurate",
+    "word": "accurate",
+    "level": 2,
+    "parts": [
+      "ac",
+      "cur",
+      "ate"
+    ],
+    "meaningJa": "正確な、精密な",
+    "exampleEn": "The data must be accurate before we submit the report.",
+    "exampleJa": "報告書を提出する前に、データは正確でなければならない。",
+    "choices": [
+      {
+        "text": "ac",
+        "image": "02.png"
+      },
+      {
+        "text": "cur",
+        "image": "05.png"
+      },
+      {
+        "text": "se",
+        "image": "06.png"
+      },
+      {
+        "text": "tract",
+        "image": "04.png"
+      },
+      {
+        "text": "ate",
+        "image": "01.png"
+      },
+      {
+        "text": "monit",
+        "image": "03.png"
+      }
+    ]
   },
   {
-    "id": "environmental",
-    "word": "environmental",
-    "level": 3,
-    "parts": ["environment", "al"],
-    "meaningJa": "環境の",
-    "exampleEn": "We should think more about environmental problems.",
-    "exampleJa": "私たちは環境問題についてもっと考えるべきだ。"
+    "id": "curious",
+    "word": "curious",
+    "level": 2,
+    "parts": [
+      "cur",
+      "ious"
+    ],
+    "meaningJa": "好奇心が強い、～したがる",
+    "exampleEn": "She was curious about how the magic trick worked.",
+    "exampleJa": "彼女はその手品がどういう仕組みなのか興味を持った。",
+    "choices": [
+      {
+        "text": "ex",
+        "image": "01.png"
+      },
+      {
+        "text": "ceive",
+        "image": "02.png"
+      },
+      {
+        "text": "at",
+        "image": "05.png"
+      },
+      {
+        "text": "ious",
+        "image": "04.png"
+      },
+      {
+        "text": "cur",
+        "image": "03.png"
+      },
+      {
+        "text": "fensive",
+        "image": "06.png"
+      }
+    ]
   },
   {
-    "id": "preview",
-    "word": "preview",
-    "level": 3,
-    "parts": ["pre", "view"],
-    "meaningJa": "予告、試写",
-    "exampleEn": "We watched a preview of the new movie yesterday.",
-    "exampleJa": "私たちは昨日、新作映画の予告編を見た。"
+    "id": "secure",
+    "word": "secure",
+    "level": 2,
+    "parts": [
+      "se",
+      "cure"
+    ],
+    "meaningJa": "安全な、不安のない、確実な、確保する",
+    "exampleEn": "Make sure the door is secure before you leave.",
+    "exampleJa": "出かける前に、ドアがしっかり閉まっていることを確認してください。",
+    "choices": [
+      {
+        "text": "capi",
+        "image": "05.png"
+      },
+      {
+        "text": "ex",
+        "image": "04.png"
+      },
+      {
+        "text": "se",
+        "image": "02.png"
+      },
+      {
+        "text": "fend",
+        "image": "01.png"
+      },
+      {
+        "text": "ob",
+        "image": "03.png"
+      },
+      {
+        "text": "cure",
+        "image": "06.png"
+      }
+    ]
   },
   {
-    "id": "uncomfortable",
-    "word": "uncomfortable",
+    "id": "capable",
+    "word": "capable",
+    "level": 2,
+    "parts": [
+      "cap",
+      "able"
+    ],
+    "meaningJa": "能力がある、～する可能性がある",
+    "exampleEn": "She is capable of handling difficult situations.",
+    "exampleJa": "彼女は難しい状況にも対応できる能力がある。",
+    "choices": [
+      {
+        "text": "il",
+        "image": "06.png"
+      },
+      {
+        "text": "cap",
+        "image": "01.png"
+      },
+      {
+        "text": "able",
+        "image": "04.png"
+      },
+      {
+        "text": "re",
+        "image": "03.png"
+      },
+      {
+        "text": "min",
+        "image": "05.png"
+      },
+      {
+        "text": "fend",
+        "image": "02.png"
+      }
+    ]
+  },
+  {
+    "id": "capacity",
+    "word": "capacity",
+    "level": 2,
+    "parts": [
+      "capa",
+      "city"
+    ],
+    "meaningJa": "（受け入れ）能力",
+    "exampleEn": "The stadium has a seating capacity of 50,000.",
+    "exampleJa": "そのスタジアムの収容人数は5万人だ。",
+    "choices": [
+      {
+        "text": "city",
+        "image": "06.png"
+      },
+      {
+        "text": "capa",
+        "image": "05.png"
+      },
+      {
+        "text": "cape",
+        "image": "01.png"
+      },
+      {
+        "text": "as",
+        "image": "03.png"
+      },
+      {
+        "text": "dependent",
+        "image": "02.png"
+      },
+      {
+        "text": "cure",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "concept",
+    "word": "concept",
+    "level": 2,
+    "parts": [
+      "con",
+      "cept"
+    ],
+    "meaningJa": "概念、観念",
+    "exampleEn": "She explained the concept of gravity in simple terms.",
+    "exampleJa": "彼女は重力の概念を分かりやすく説明した。",
+    "choices": [
+      {
+        "text": "ious",
+        "image": "02.png"
+      },
+      {
+        "text": "cept",
+        "image": "04.png"
+      },
+      {
+        "text": "per",
+        "image": "05.png"
+      },
+      {
+        "text": "ad",
+        "image": "06.png"
+      },
+      {
+        "text": "con",
+        "image": "03.png"
+      },
+      {
+        "text": "as",
+        "image": "01.png"
+      }
+    ]
+  },
+  {
+    "id": "assign",
+    "word": "assign",
+    "level": 2,
+    "parts": [
+      "as",
+      "sign"
+    ],
+    "meaningJa": "割り当てる、指定する",
+    "exampleEn": "The teacher assigned homework to the students.",
+    "exampleJa": "先生は生徒たちに宿題を課した。",
+    "choices": [
+      {
+        "text": "tal",
+        "image": "04.png"
+      },
+      {
+        "text": "fen",
+        "image": "02.png"
+      },
+      {
+        "text": "punct",
+        "image": "01.png"
+      },
+      {
+        "text": "as",
+        "image": "03.png"
+      },
+      {
+        "text": "sign",
+        "image": "05.png"
+      },
+      {
+        "text": "es",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "resign",
+    "word": "resign",
+    "level": 2,
+    "parts": [
+      "re",
+      "sign"
+    ],
+    "meaningJa": "辞職する、退く",
+    "exampleEn": "He resigned from his position as manager.",
+    "exampleJa": "彼はマネージャーの職を辞任した。",
+    "choices": [
+      {
+        "text": "accept",
+        "image": "03.png"
+      },
+      {
+        "text": "se",
+        "image": "06.png"
+      },
+      {
+        "text": "re",
+        "image": "05.png"
+      },
+      {
+        "text": "ation",
+        "image": "01.png"
+      },
+      {
+        "text": "ceive",
+        "image": "02.png"
+      },
+      {
+        "text": "sign",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "observe",
+    "word": "observe",
+    "level": 2,
+    "parts": [
+      "ob",
+      "serve"
+    ],
+    "meaningJa": "観察する、気づく、守る",
+    "exampleEn": "Scientists observe animal behavior in the wild.",
+    "exampleJa": "科学者たちは野生動物の行動を観察する。",
+    "choices": [
+      {
+        "text": "depend",
+        "image": "03.png"
+      },
+      {
+        "text": "cap",
+        "image": "01.png"
+      },
+      {
+        "text": "tend",
+        "image": "02.png"
+      },
+      {
+        "text": "cape",
+        "image": "05.png"
+      },
+      {
+        "text": "ob",
+        "image": "04.png"
+      },
+      {
+        "text": "serve",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "reserve",
+    "word": "reserve",
+    "level": 2,
+    "parts": [
+      "re",
+      "serve"
+    ],
+    "meaningJa": "予約する、取っておく",
+    "exampleEn": "I reserved a table at the restaurant.",
+    "exampleJa": "私はそのレストランの席を予約した。",
+    "choices": [
+      {
+        "text": "tract",
+        "image": "05.png"
+      },
+      {
+        "text": "tal",
+        "image": "02.png"
+      },
+      {
+        "text": "apt",
+        "image": "04.png"
+      },
+      {
+        "text": "ure",
+        "image": "01.png"
+      },
+      {
+        "text": "serve",
+        "image": "06.png"
+      },
+      {
+        "text": "re",
+        "image": "03.png"
+      }
+    ]
+  },
+  {
+    "id": "preserve",
+    "word": "preserve",
+    "level": 2,
+    "parts": [
+      "pre",
+      "serve"
+    ],
+    "meaningJa": "保存する、保つ",
+    "exampleEn": "The museum preserves ancient artifacts.",
+    "exampleJa": "その博物館は古代の遺物を保存している。",
+    "choices": [
+      {
+        "text": "se",
+        "image": "03.png"
+      },
+      {
+        "text": "serve",
+        "image": "04.png"
+      },
+      {
+        "text": "opt",
+        "image": "01.png"
+      },
+      {
+        "text": "just",
+        "image": "05.png"
+      },
+      {
+        "text": "tract",
+        "image": "02.png"
+      },
+      {
+        "text": "pre",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "deserve",
+    "word": "deserve",
+    "level": 2,
+    "parts": [
+      "de",
+      "serve"
+    ],
+    "meaningJa": "値する、価値がある",
+    "exampleEn": "She deserves praise for her hard work.",
+    "exampleJa": "彼女は努力を称賛されるに値する。",
+    "choices": [
+      {
+        "text": "serve",
+        "image": "03.png"
+      },
+      {
+        "text": "rest",
+        "image": "06.png"
+      },
+      {
+        "text": "oc",
+        "image": "04.png"
+      },
+      {
+        "text": "cept",
+        "image": "01.png"
+      },
+      {
+        "text": "vent",
+        "image": "02.png"
+      },
+      {
+        "text": "de",
+        "image": "05.png"
+      }
+    ]
+  },
+  {
+    "id": "occur",
+    "word": "occur",
+    "level": 2,
+    "parts": [
+      "oc",
+      "cur"
+    ],
+    "meaningJa": "起こる、生じる、浮かぶ、存在する",
+    "exampleEn": "The accident occurred late at night.",
+    "exampleJa": "その事故は夜遅くに起きた。",
+    "choices": [
+      {
+        "text": "jud",
+        "image": "05.png"
+      },
+      {
+        "text": "oc",
+        "image": "04.png"
+      },
+      {
+        "text": "rity",
+        "image": "01.png"
+      },
+      {
+        "text": "apt",
+        "image": "03.png"
+      },
+      {
+        "text": "ob",
+        "image": "02.png"
+      },
+      {
+        "text": "cur",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "defend",
+    "word": "defend",
+    "level": 2,
+    "parts": [
+      "de",
+      "fend"
+    ],
+    "meaningJa": "防御する、弁護する",
+    "exampleEn": "She tried to defend her friend from criticism.",
+    "exampleJa": "彼女は批判から友人を守ろうとした。",
+    "choices": [
+      {
+        "text": "cap",
+        "image": "01.png"
+      },
+      {
+        "text": "capa",
+        "image": "05.png"
+      },
+      {
+        "text": "fend",
+        "image": "02.png"
+      },
+      {
+        "text": "tal",
+        "image": "03.png"
+      },
+      {
+        "text": "de",
+        "image": "06.png"
+      },
+      {
+        "text": "ex",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "minority",
+    "word": "minority",
+    "level": 2,
+    "parts": [
+      "mino",
+      "rity"
+    ],
+    "meaningJa": "少数",
+    "exampleEn": "In a democracy, it's important to protect the rights of the minority.",
+    "exampleJa": "民主主義においては、少数派の権利を守ることが重要だ。",
+    "choices": [
+      {
+        "text": "cure",
+        "image": "01.png"
+      },
+      {
+        "text": "vent",
+        "image": "03.png"
+      },
+      {
+        "text": "comfort",
+        "image": "02.png"
+      },
+      {
+        "text": "rity",
+        "image": "05.png"
+      },
+      {
+        "text": "mino",
+        "image": "04.png"
+      },
+      {
+        "text": "punct",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "minister",
+    "word": "minister",
     "level": 3,
-    "parts": ["un", "comfort", "able"],
-    "meaningJa": "不快な",
-    "exampleEn": "These shoes are too small and uncomfortable to wear.",
-    "exampleJa": "この靴は小さすぎて履くと不快だ。"
+    "parts": [
+      "mini",
+      "ster"
+    ],
+    "meaningJa": "大臣、牧師",
+    "exampleEn": "The minister gave a moving sermon at the Sunday service.",
+    "exampleJa": "その牧師は日曜礼拝で感動的な説教をした。",
+    "choices": [
+      {
+        "text": "mini",
+        "image": "04.png"
+      },
+      {
+        "text": "ob",
+        "image": "03.png"
+      },
+      {
+        "text": "ster",
+        "image": "02.png"
+      },
+      {
+        "text": "as",
+        "image": "05.png"
+      },
+      {
+        "text": "ly",
+        "image": "01.png"
+      },
+      {
+        "text": "serve",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "advocate",
+    "word": "advocate",
+    "level": 3,
+    "parts": [
+      "ad",
+      "voc",
+      "ate"
+    ],
+    "meaningJa": "擁護する、主張する、擁護（主張）者",
+    "exampleEn": "She advocates for animal rights.",
+    "exampleJa": "彼女は動物の権利を擁護している。",
+    "choices": [
+      {
+        "text": "ad",
+        "image": "02.png"
+      },
+      {
+        "text": "ate",
+        "image": "01.png"
+      },
+      {
+        "text": "voc",
+        "image": "04.png"
+      },
+      {
+        "text": "mino",
+        "image": "03.png"
+      },
+      {
+        "text": "appoint",
+        "image": "05.png"
+      },
+      {
+        "text": "at",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "punctual",
+    "word": "punctual",
+    "level": 3,
+    "parts": [
+      "punct",
+      "ual"
+    ],
+    "meaningJa": "時間通りの",
+    "exampleEn": "She is always punctual and arrives five minutes early.",
+    "exampleJa": "彼女はいつも時間に正確で、5分前には到着する。",
+    "choices": [
+      {
+        "text": "ac",
+        "image": "02.png"
+      },
+      {
+        "text": "voc",
+        "image": "05.png"
+      },
+      {
+        "text": "ual",
+        "image": "01.png"
+      },
+      {
+        "text": "punct",
+        "image": "03.png"
+      },
+      {
+        "text": "able",
+        "image": "04.png"
+      },
+      {
+        "text": "per",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "pretend",
+    "word": "pretend",
+    "level": 3,
+    "parts": [
+      "pre",
+      "tend"
+    ],
+    "meaningJa": "～のふりをする",
+    "exampleEn": "The child pretended to be asleep when his parents came in.",
+    "exampleJa": "両親が入ってきたとき、その子どもは眠っているふりをした。",
+    "choices": [
+      {
+        "text": "cap",
+        "image": "02.png"
+      },
+      {
+        "text": "a",
+        "image": "01.png"
+      },
+      {
+        "text": "con",
+        "image": "06.png"
+      },
+      {
+        "text": "il",
+        "image": "04.png"
+      },
+      {
+        "text": "pre",
+        "image": "03.png"
+      },
+      {
+        "text": "tend",
+        "image": "05.png"
+      }
+    ]
+  },
+  {
+    "id": "unacceptable",
+    "word": "unacceptable",
+    "level": 3,
+    "parts": [
+      "un",
+      "accept",
+      "able"
+    ],
+    "meaningJa": "受け入れられない",
+    "exampleEn": "His behavior at the meeting was completely unacceptable.",
+    "exampleJa": "会議での彼の振る舞いは、まったく受け入れられないものだった。",
+    "choices": [
+      {
+        "text": "able",
+        "image": "02.png"
+      },
+      {
+        "text": "opt",
+        "image": "03.png"
+      },
+      {
+        "text": "un",
+        "image": "05.png"
+      },
+      {
+        "text": "fensive",
+        "image": "01.png"
+      },
+      {
+        "text": "accept",
+        "image": "06.png"
+      },
+      {
+        "text": "believe",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "exception",
+    "word": "exception",
+    "level": 3,
+    "parts": [
+      "ex",
+      "cept",
+      "ion"
+    ],
+    "meaningJa": "例外",
+    "exampleEn": "Everyone passed the test, with one exception.",
+    "exampleJa": "一人を除いて、全員がそのテストに合格した。",
+    "choices": [
+      {
+        "text": "un",
+        "image": "05.png"
+      },
+      {
+        "text": "ion",
+        "image": "04.png"
+      },
+      {
+        "text": "ure",
+        "image": "01.png"
+      },
+      {
+        "text": "con",
+        "image": "02.png"
+      },
+      {
+        "text": "cept",
+        "image": "06.png"
+      },
+      {
+        "text": "ex",
+        "image": "03.png"
+      }
+    ]
+  },
+  {
+    "id": "deceive",
+    "word": "deceive",
+    "level": 3,
+    "parts": [
+      "de",
+      "ceive"
+    ],
+    "meaningJa": "騙す、思い違いをさせる",
+    "exampleEn": "He tried to deceive the audience with a fake story.",
+    "exampleJa": "彼は偽の話で観客をだまそうとした。",
+    "choices": [
+      {
+        "text": "ceive",
+        "image": "01.png"
+      },
+      {
+        "text": "rest",
+        "image": "05.png"
+      },
+      {
+        "text": "ment",
+        "image": "03.png"
+      },
+      {
+        "text": "ice",
+        "image": "02.png"
+      },
+      {
+        "text": "de",
+        "image": "04.png"
+      },
+      {
+        "text": "jud",
+        "image": "06.png"
+      }
+    ]
+  },
+  {
+    "id": "perceive",
+    "word": "perceive",
+    "level": 3,
+    "parts": [
+      "per",
+      "ceive"
+    ],
+    "meaningJa": "わかる、気づく",
+    "exampleEn": "She perceived a change in his attitude.",
+    "exampleJa": "彼女は彼の態度の変化に気づいた。",
+    "choices": [
+      {
+        "text": "rest",
+        "image": "01.png"
+      },
+      {
+        "text": "apt",
+        "image": "05.png"
+      },
+      {
+        "text": "per",
+        "image": "06.png"
+      },
+      {
+        "text": "ceive",
+        "image": "02.png"
+      },
+      {
+        "text": "opt",
+        "image": "03.png"
+      },
+      {
+        "text": "se",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "conserve",
+    "word": "conserve",
+    "level": 3,
+    "parts": [
+      "con",
+      "serve"
+    ],
+    "meaningJa": "保存する、保護する、大切に使う",
+    "exampleEn": "We must conserve energy to protect the environment.",
+    "exampleJa": "環境を守るために、私たちはエネルギーを節約しなければならない。",
+    "choices": [
+      {
+        "text": "ual",
+        "image": "01.png"
+      },
+      {
+        "text": "con",
+        "image": "06.png"
+      },
+      {
+        "text": "mini",
+        "image": "05.png"
+      },
+      {
+        "text": "serve",
+        "image": "04.png"
+      },
+      {
+        "text": "ad",
+        "image": "02.png"
+      },
+      {
+        "text": "min",
+        "image": "03.png"
+      }
+    ]
+  },
+  {
+    "id": "offend",
+    "word": "offend",
+    "level": 3,
+    "parts": [
+      "of",
+      "fend"
+    ],
+    "meaningJa": "感情を害する、不快感を与える、罪を犯す",
+    "exampleEn": "He didn't mean to offend anyone with his comment.",
+    "exampleJa": "彼はそのコメントで誰かを不快にさせるつもりはなかった。",
+    "choices": [
+      {
+        "text": "fend",
+        "image": "04.png"
+      },
+      {
+        "text": "of",
+        "image": "05.png"
+      },
+      {
+        "text": "ation",
+        "image": "01.png"
+      },
+      {
+        "text": "un",
+        "image": "02.png"
+      },
+      {
+        "text": "fortunate",
+        "image": "06.png"
+      },
+      {
+        "text": "serve",
+        "image": "03.png"
+      }
+    ]
+  },
+  {
+    "id": "offense",
+    "word": "offense",
+    "level": 3,
+    "parts": [
+      "of",
+      "fen",
+      "se"
+    ],
+    "meaningJa": "違反、立腹、攻撃",
+    "exampleEn": "His words were taken as a serious offense.",
+    "exampleJa": "彼の言葉は重大な侮辱として受け取られた。",
+    "choices": [
+      {
+        "text": "of",
+        "image": "02.png"
+      },
+      {
+        "text": "fen",
+        "image": "06.png"
+      },
+      {
+        "text": "ceive",
+        "image": "03.png"
+      },
+      {
+        "text": "se",
+        "image": "05.png"
+      },
+      {
+        "text": "in",
+        "image": "01.png"
+      },
+      {
+        "text": "ob",
+        "image": "04.png"
+      }
+    ]
+  },
+  {
+    "id": "defense",
+    "word": "defense",
+    "level": 3,
+    "parts": [
+      "de",
+      "fen",
+      "se"
+    ],
+    "meaningJa": "防御、守備、弁護",
+    "exampleEn": "The lawyer gave a strong defense in court.",
+    "exampleJa": "その弁護士は法廷で力強い弁護をした。",
+    "choices": [
+      {
+        "text": "able",
+        "image": "03.png"
+      },
+      {
+        "text": "fen",
+        "image": "06.png"
+      },
+      {
+        "text": "de",
+        "image": "04.png"
+      },
+      {
+        "text": "se",
+        "image": "05.png"
+      },
+      {
+        "text": "monit",
+        "image": "01.png"
+      },
+      {
+        "text": "as",
+        "image": "02.png"
+      }
+    ]
+  },
+  {
+    "id": "defensively",
+    "word": "defensively",
+    "level": 3,
+    "parts": [
+      "de",
+      "fensive",
+      "ly"
+    ],
+    "meaningJa": "守備的に、擁護的に",
+    "exampleEn": "He responded defensively to the question.",
+    "exampleJa": "彼はその質問に守りの姿勢で答えた。",
+    "choices": [
+      {
+        "text": "ly",
+        "image": "05.png"
+      },
+      {
+        "text": "de",
+        "image": "03.png"
+      },
+      {
+        "text": "fensive",
+        "image": "06.png"
+      },
+      {
+        "text": "ceive",
+        "image": "01.png"
+      },
+      {
+        "text": "ual",
+        "image": "02.png"
+      },
+      {
+        "text": "mire",
+        "image": "04.png"
+      }
+    ]
   }
 ]
