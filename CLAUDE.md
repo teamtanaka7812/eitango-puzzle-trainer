@@ -15,6 +15,18 @@
 - フレームワーク：**Flutter**（Dart言語）
 - 第一弾：スマートフォンアプリ（iOS/Android）。将来的にFlutter Webでブラウザ版も展開予定
 - ドラッグ＆ドロップ：Flutter標準の `Draggable` / `DragTarget` ウィジェットを使用
+- Web版は**GitHub Pages**で公開している（2026年時点の決定）。`main`ブランチへのpushの
+  たびに、GitHub Actions（`.github/workflows/deploy.yml`）が`flutter build web --release
+  --base-href /eitango-puzzle-trainer/`でビルドし、自動デプロイする。公開URLは
+  `https://teamtanaka7812.github.io/eitango-puzzle-trainer/`。
+- 効果音・読み上げはWeb版のみ実装済み（2026年時点の決定）。`lib/services/sound_service.dart`
+  が、条件付きエクスポート（`if (dart.library.js_interop)`）でWeb向け実装
+  （`sound_service_web.dart`、Web Audio APIでファンファーレ・ブザー音をその場で合成、
+  音声ファイルは使わない）と、それ以外向けの何もしないスタブ（`sound_service_stub.dart`）を
+  切り替える。結果画面で、正解／不正解時にそれぞれの音を鳴らし、単語・例文をタップすると
+  Web Speech API（`speechSynthesis`）で英語読み上げする（`_SpeakableText`、
+  `lib/screens/result_screen.dart`）。スマホアプリ版（iOS/Android）をビルドしても
+  コンパイルは壊れず、単に音が出ないだけになる。
 
 ## データ設計（決定事項）
 
@@ -33,10 +45,19 @@
   のテキストと一致する`choices`要素を正解として扱う。
 - Level 1の先頭10問（2026年時点で追加）は、以前手作業で作成されていたJavaScript版の
   問題データ（`window.q_list`）を移植したもの。`choices`を持ち、選択肢数は問題により
-  5〜9個と異なる。既存の4問（unhappy/rewrite/helpful/careless）はその後に続く
-  （Level 1は合計14問）。`illegal`・`development`・`uncomfortable`はLevel 3にも
-  同じ単語があるため、Level 1側のIDには`_l1`を付けて区別している
-  （例：`illegal_l1`）。
+  5〜9個と異なる。
+- 出題数は2026年時点で合計**59問**（Level 1: 19問、Level 2: 27問、Level 3: 13問）。
+  上記の先頭10問はそのまま維持し、そこに49問を新規追加した
+  （Level 1 +9、Level 2 +27、Level 3 +13）。新規49問はすべて`01〜06.png`のかみ合う
+  6色セットを使う`choices`固定形式（6択）で用意されているため、既存の重なり表示・
+  当たり判定ロジックの変更は不要だった。追加元データは`assets/data/new_words_49.json`
+  に残している。
+  - この拡張に伴い、以前Level 1に含まれていた4問（unhappy/rewrite/helpful/careless）は
+    意図的に削除し、9つの新しい単語（admire/adventure/address/minute/adjust/achieve/
+    capital/escape/accept）に置き換えた。
+  - 以前は`illegal`・`development`・`uncomfortable`がLevel 3にも重複して存在し、
+    Level 1側のIDには`_l1`を付けて区別していたが、この拡張に伴いLevel 3側の重複は
+    意図的に削除した（2026年時点の決定）。現在はLevel 1側（`_l1`付きID）にのみ存在する。
 
 ## ゲームロジック（決定事項）
 

@@ -21,10 +21,10 @@ Future<void> _dragToTarget(
 }
 
 void main() {
-  testWidgets('uncomfortable（Level3の3ピース単語）が実データ通り3ピースで表示され、正しく解ける', (tester) async {
+  testWidgets('uncomfortable（Level1の3ピース単語）が実データ通り3ピースで表示され、正しく解ける', (tester) async {
     final byLevel = await WordRepository.loadByLevel();
-    final level3 = byLevel[3]!;
-    final uncomfortable = level3.firstWhere((w) => w.id == 'uncomfortable');
+    final level1 = byLevel[1]!;
+    final uncomfortable = level1.firstWhere((w) => w.id == 'uncomfortable_l1');
 
     // design書5.3の通り、un + comfort + able の3ピースであること。
     expect(uncomfortable.parts.length, 3);

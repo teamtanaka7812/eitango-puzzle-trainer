@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:word_puzzle_trainer/screens/level_play_screen.dart';
 
-// Level 1 は assets/data/words.json の順で、以下の14問（q_listの10問→従来の4問）。
+// Level 1 は assets/data/words.json の順で、以下の19問（59問への拡張後、2026年時点）。
 const _level1Words = <List<String>>[
   ['il', 'legal'],
   ['develop', 'ment'],
@@ -15,10 +15,15 @@ const _level1Words = <List<String>>[
   ['un', 'comfort', 'able'],
   ['dis', 'agree', 'ment'],
   ['un', 'depend', 'able'],
-  ['un', 'happy'],
-  ['re', 'write'],
-  ['help', 'ful'],
-  ['care', 'less'],
+  ['ad', 'mire'],
+  ['ad', 'vent', 'ure'],
+  ['ad', 'dress'],
+  ['min', 'ute'],
+  ['ad', 'just'],
+  ['a', 'chieve'],
+  ['capi', 'tal'],
+  ['es', 'cape'],
+  ['ac', 'cept'],
 ];
 
 Future<void> _dragPieceToSlot(
@@ -51,7 +56,7 @@ Future<void> _tapButton(WidgetTester tester, String label) async {
 }
 
 void main() {
-  testWidgets('Level 1（14問）を最後まで正しく解くとレベル選択画面（前の画面）に戻る', (tester) async {
+  testWidgets('Level 1（19問）を最後まで正しく解くとレベル選択画面（前の画面）に戻る', (tester) async {
     await tester.pumpWidget(
       MaterialApp(
         home: Builder(
