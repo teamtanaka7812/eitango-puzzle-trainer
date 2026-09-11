@@ -15,10 +15,11 @@
 - フレームワーク：**Flutter**（Dart言語）
 - 第一弾：スマートフォンアプリ（iOS/Android）。将来的にFlutter Webでブラウザ版も展開予定
 - ドラッグ＆ドロップ：Flutter標準の `Draggable` / `DragTarget` ウィジェットを使用
-- Web版は**GitHub Pages**で公開している（2026年時点の決定）。`main`ブランチへのpushの
-  たびに、GitHub Actions（`.github/workflows/deploy.yml`）が`flutter build web --release
-  --base-href /eitango-puzzle-trainer/`でビルドし、自動デプロイする。公開URLは
-  `https://teamtanaka7812.github.io/eitango-puzzle-trainer/`。
+- Web版は**GitHub Pages**で公開している（2026年時点の決定）。`production`ブランチへの
+  pushのたびに、GitHub Actions（`.github/workflows/deploy.yml`）が`flutter build web
+  --release --base-href /eitango-puzzle-trainer/`でビルドし、自動デプロイする。公開URLは
+  `https://teamtanaka7812.github.io/eitango-puzzle-trainer/`。（`main`ではなく
+  `production`がトリガーになっている経緯は下記「Gitブランチ運用」を参照）
 - 効果音・読み上げはWeb版のみ実装済み（2026年時点の決定）。`lib/services/sound_service.dart`
   が、条件付きエクスポート（`if (dart.library.js_interop)`）でWeb向け実装
   （`sound_service_web.dart`、Web Audio APIでファンファーレ・ブザー音をその場で合成、
@@ -199,6 +200,20 @@
 - 開発環境本体（Flutter SDK / JDK / Android SDK）は `C:\Users\t-tanaka\dev\` 配下に個別インストール済み
   （`flutter`, `jdk-17.0.19+10`, `android-sdk`）。Android Studio（GUI）は未導入で、
   コマンドラインツール（`sdkmanager`）のみで運用している。
+
+## Gitブランチ運用（決定事項）
+
+- **`production`ブランチ＝アンケート・発表で公開している版。直接変更しないこと。**
+  GitHub Pagesへの自動デプロイ（上記「技術スタック」参照）は、このブランチへのpushで
+  実行される。
+- **`main`ブランチ＝今後の開発を続ける場所。** 普段の開発作業（コミット・push）は
+  すべて`main`に対して行う。`main`にpushしても、`production`および公開中のアプリには
+  一切影響しない。
+- 新しいバージョンを公開したくなったときは、`main`の内容を`production`に反映する
+  （例：`git checkout production && git merge main && git push origin production`）、
+  という手順を踏む。`production`ブランチを普段の開発作業で直接操作しないこと。
+- 2026年時点で、`production`は「59問への拡張・効果音/読み上げ機能・GitHub Pages自動
+  デプロイ設定」までを含むmainの状態から分岐した（アンケート公開中のスナップショット）。
 
 ## 開発の進め方
 
