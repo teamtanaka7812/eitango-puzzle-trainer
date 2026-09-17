@@ -33,7 +33,11 @@
 
 - 出題英単語データ：アプリ本体に同梱（JSON形式、`assets/data/words.json`）。最大2,000語想定、初期は100語
 - 学習履歴データ（進捗・正答率・反復学習の状態）：端末内ローカルDB（`sqflite`等）に保存
-- サーバーは構築しない。クラウド連携は端末OS標準のバックアップ機能（iCloud / Googleバックアップ）に任せる
+- サーバーは自前で構築しない。クラウド連携は端末OS標準のバックアップ機能
+  （iCloud / Googleバックアップ）に任せる。ただし2026年時点で、アンケート・研究用の
+  学習データ収集のためFirebase（Firestore）を導入した（下記「参加者ID・データ収集」
+  参照）。これは「自前のサーバーを構築しない」方針とは別枠の、外部マネージドサービス
+  としての利用。
 - 音声再生：基本は端末OS標準のTTS。音声ファイルの同梱は主要単語のみ（詳細未定）
 - `words.json`の各問題には、任意で`choices`（`{text, image}`の配列）を持たせられる
   （`PuzzleWord.presetChoices`、`lib/models/puzzle_word.dart`）。これがある問題は、
@@ -59,6 +63,36 @@
   - 以前は`illegal`・`development`・`uncomfortable`がLevel 3にも重複して存在し、
     Level 1側のIDには`_l1`を付けて区別していたが、この拡張に伴いLevel 3側の重複は
     意図的に削除した（2026年時点の決定）。現在はLevel 1側（`_l1`付きID）にのみ存在する。
+
+## 参加者ID・データ収集（決定事項）
+
+- アンケート・研究用に学習データを収集するため、Firebaseプロジェクト
+  `eitango-puzzle-trainer`のFirestore（Standardエディション、本番環境モード、
+  asia-northeast1、データベースID `(default)`）に接続している（2026年時点の決定）。
+  接続情報は`lib/firebase_options.dart`に直書きしている（この開発環境にFlutterFire
+  CLIが入っていないため、`flutterfire configure`の自動生成ではなく手作業で用意した）。
+  現時点ではWeb版のみ対応（`main.dart`で`kIsWeb`のときだけ`Firebase.initializeApp()`
+  する）。**この段階（2026年9月時点）では、実際の学習データはまだFirestoreに送信して
+  いない**。次回、HISTORY画面の実装とあわせて書き込み処理を追加する予定。
+- アプリを初めて開いたとき、参加者ID（アンケートで割り振られた番号など）の入力を求める
+  （`lib/screens/participant_id_screen.dart`）。入力されたIDは端末内
+  （`shared_preferences`、`lib/services/participant_service.dart`）に保存し、次回以降は
+  この画面を出さずそのままホーム画面へ進む（起動時の分岐は`main.dart`の
+  `_StartupGate`が担う）。ホーム画面右上の歯車アイコンから、参加者IDの確認・変更が
+  できる簡易設定画面（`lib/screens/settings_screen.dart`）を開ける。
+- Firestoreのデータ構造は`participants/{参加者ID}/attempts/{記録ID}`
+  （参加者ごとのサブコレクションに、1問答えるたびの記録を1件ずつ保存する想定）。
+- **セキュリティルール**（`firestore.rules`、Firebaseコンソールの
+  Firestore Database → ルール タブに貼り付けて反映済み）：ログイン機能
+  （Firebase Authenticationなど）は実装していないため、「本当にその参加者ID本人からの
+  書き込みか」をサーバー側で検証する手段がない。そのため、書き込み（作成）のみ許可し、
+  読み取り・更新・削除はクライアントから一切禁止する方針にした
+  （なりすまし書き込み自体は防げないが、他人のデータを読み取られることは確実に防げる）。
+  それ以外のパスは念のためすべて拒否している。
+  - 次回、HISTORY画面の実装とあわせて**匿名認証（Firebase Anonymous Authentication）**
+    の追加を検討する。画面には出ない・ユーザーには意識させない仕組みで、これにより
+    「読み取りだけでなく書き込みも、匿名認証のUIDに紐づけて制限する」方向に見直す予定
+    （2026年9月時点の方針、ユーザーからの指示）。
 
 ## ゲームロジック（決定事項）
 

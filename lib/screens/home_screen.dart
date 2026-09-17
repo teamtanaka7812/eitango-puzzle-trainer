@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../widgets/sheep_guide.dart';
 import 'coming_soon_screen.dart';
 import 'level_select_screen.dart';
+import 'settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -74,6 +75,15 @@ class HomeScreen extends StatelessWidget {
                 right: 16,
                 bottom: 16,
                 child: SheepGuide(),
+              ),
+              Positioned(
+                right: 8,
+                top: 8,
+                child: IconButton(
+                  icon: const Icon(Icons.settings, color: Color(0xFF78909C)),
+                  tooltip: '設定',
+                  onPressed: () => Navigator.of(context).pushNamed(SettingsScreen.routeName),
+                ),
               ),
             ],
           ),
