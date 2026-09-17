@@ -3,19 +3,25 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 import 'firebase_options.dart';
+import 'screens/history_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/level_select_screen.dart';
 import 'screens/participant_id_screen.dart';
 import 'screens/settings_screen.dart';
+import 'services/auth_service.dart';
 import 'services/participant_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Firebase接続は現時点でWeb版のみ対応（DefaultFirebaseOptionsを参照）。
   // 他プラットフォーム向けビルドでは初期化自体をスキップし、コンパイル・起動が
-  // 壊れないようにする（学習データ送信機能自体は次回実装予定）。
+  // 壊れないようにする。
   if (kIsWeb) {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    // 匿名認証（画面には出さず、裏側で自動的にサインインする）。学習記録の
+    // 書き込み・読み取りを「本人の記録だけ」に絞り込むための識別子として使う
+    // （AuthService、firestore.rules参照）。
+    await AuthService.ensureSignedIn();
   }
   runApp(const WordPuzzleTrainerApp());
 }
@@ -37,6 +43,7 @@ class WordPuzzleTrainerApp extends StatelessWidget {
       routes: {
         LevelSelectScreen.routeName: (context) => const LevelSelectScreen(),
         SettingsScreen.routeName: (context) => const SettingsScreen(),
+        HistoryScreen.routeName: (context) => const HistoryScreen(),
       },
     );
   }

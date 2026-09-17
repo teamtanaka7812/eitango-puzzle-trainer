@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../models/puzzle_word.dart';
+import '../services/learning_record_service.dart';
+import '../services/local_history_service.dart';
 import '../widgets/puzzle_piece_shape.dart';
 
 /// 解答欄のスロット数。単語の正解ピース数（2〜3）によらず常にこの数だけ表示する。
@@ -424,6 +426,12 @@ class _GameScreenState extends State<GameScreen> {
       final option = _options[placed];
       return !option.isDecoy && option.correctSlotIndex == i;
     }).every((ok) => ok);
+
+    // 学習記録の保存は、結果を待たずに裏側で行う（通信状況・端末保存の
+    // 遅延に関わらず、正誤判定・画面遷移といったゲーム本体の動作を
+    // 止めたり遅らせたりしないため）。
+    LocalHistoryService.recordAttempt(level: widget.puzzle.level, isCorrect: isCorrect);
+    LearningRecordService.recordAttempt(puzzle: widget.puzzle, isCorrect: isCorrect);
 
     widget.onAnswer(isCorrect);
   }

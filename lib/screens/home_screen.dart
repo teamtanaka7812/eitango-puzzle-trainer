@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/sheep_guide.dart';
 import 'coming_soon_screen.dart';
+import 'history_screen.dart';
 import 'level_select_screen.dart';
 import 'settings_screen.dart';
 
@@ -20,6 +21,8 @@ class HomeScreen extends StatelessWidget {
   void _onMenuTap(BuildContext context, String label) {
     if (label == 'START') {
       Navigator.of(context).pushNamed(LevelSelectScreen.routeName);
+    } else if (label == 'HISTORY') {
+      Navigator.of(context).pushNamed(HistoryScreen.routeName);
     } else {
       Navigator.of(context).push(
         MaterialPageRoute(builder: (_) => ComingSoonScreen(title: label)),

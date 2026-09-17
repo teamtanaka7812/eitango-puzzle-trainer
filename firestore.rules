@@ -2,25 +2,31 @@ rules_version = '2';
 
 // アンケート・学習データ収集用のFirestoreセキュリティルール。
 //
-// このアプリはログイン機能（Firebase Authenticationなど）を持たないため、
-// 「本当にこの参加者ID本人からの書き込みか」をサーバー側で検証する手段がない。
-// そのため、なりすまし書き込み自体は防げない前提のうえで、次の最低限の方針にする。
+// Firebase Anonymous Authentication（画面には出ない、裏側だけの仕組み。
+// AuthService参照）で発行されるUIDを、本人確認の代わりに使う。
+// 各記録（`participants/{参加者ID}/attempts/{記録ID}`）には、書き込んだ
+// 本人の匿名認証UIDを`ownerUid`フィールドとして必ず含める
+// （LearningRecordService参照）。
 //
-// - 書き込み（作成）は許可する：参加者が自分の学習記録を送信できる必要があるため。
-// - 読み取り・更新・削除はクライアントから一切禁止する：これにより、少なくとも
-//   「他人の学習記録を読み取られる」ことは確実に防げる。データの確認は
-//   Firebaseコンソール側で行う想定。
+// - 書き込み（作成）：送信しようとしているデータのownerUidが、リクエスト元
+//   本人の匿名認証UIDと一致する場合のみ許可する（他人になりすまして
+//   書き込むことはできない）。
+// - 読み取り：既存の記録のownerUidが、リクエスト元本人の匿名認証UIDと
+//   一致する場合のみ許可する（＝自分の記録だけ読み取れる。他人の記録は
+//   読み取れない）。
+// - 更新・削除は許可しない（記録は一度書き込んだら変更しない前提のため）。
 //
-// 次回、HISTORY画面と匿名認証（Firebase Anonymous Authentication）を追加する際は、
-// 読み取りだけでなく書き込みも匿名認証のUIDに紐づけて制限する方向に見直す予定
-// （2026年時点の方針）。
+// 2026年時点の方針（変更履歴）：当初はログイン機能を一切持たず、書き込みのみ
+// 許可・読み取りは全面禁止としていたが、匿名認証の導入にあわせて、書き込み・
+// 読み取りの両方をownerUidに紐づけて制限する方式に変更した。
 service cloud.firestore {
   match /databases/{database}/documents {
-    // participants/{participantId}/attempts/{attemptId}
-    // 参加者ごとに、1問答えるたびの記録をサブコレクションとして保存する構造。
     match /participants/{participantId}/attempts/{attemptId} {
-      allow create: if true;
-      allow read, update, delete: if false;
+      allow create: if request.auth != null
+                    && request.resource.data.ownerUid == request.auth.uid;
+      allow read: if request.auth != null
+                  && resource.data.ownerUid == request.auth.uid;
+      allow update, delete: if false;
     }
 
     // 上記以外のパスは、念のためすべて拒否する（デフォルト拒否）。

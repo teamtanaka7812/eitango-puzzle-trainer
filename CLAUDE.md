@@ -72,27 +72,48 @@
   接続情報は`lib/firebase_options.dart`に直書きしている（この開発環境にFlutterFire
   CLIが入っていないため、`flutterfire configure`の自動生成ではなく手作業で用意した）。
   現時点ではWeb版のみ対応（`main.dart`で`kIsWeb`のときだけ`Firebase.initializeApp()`
-  する）。**この段階（2026年9月時点）では、実際の学習データはまだFirestoreに送信して
-  いない**。次回、HISTORY画面の実装とあわせて書き込み処理を追加する予定。
+  する）。
 - アプリを初めて開いたとき、参加者ID（アンケートで割り振られた番号など）の入力を求める
   （`lib/screens/participant_id_screen.dart`）。入力されたIDは端末内
   （`shared_preferences`、`lib/services/participant_service.dart`）に保存し、次回以降は
   この画面を出さずそのままホーム画面へ進む（起動時の分岐は`main.dart`の
   `_StartupGate`が担う）。ホーム画面右上の歯車アイコンから、参加者IDの確認・変更が
   できる簡易設定画面（`lib/screens/settings_screen.dart`）を開ける。
-- Firestoreのデータ構造は`participants/{参加者ID}/attempts/{記録ID}`
-  （参加者ごとのサブコレクションに、1問答えるたびの記録を1件ずつ保存する想定）。
+- **匿名認証**（Firebase Anonymous Authentication、`lib/services/auth_service.dart`）を
+  アプリ起動時に裏側で自動実行する（画面には一切出ない）。発行されたUID
+  （`AuthService.currentUid`）は、ログイン機能なしで「本人の記録だけ」を区別するための
+  識別子として使う。ブラウザに認証状態が保存されるため、2回目以降の起動では同じUIDが
+  再利用される（毎回新しいUIDが発行されるわけではない）。
+  - **Firebaseコンソール側で「匿名」サインインプロバイダを有効化する必要がある**
+    （Authentication → ログイン方法 → 匿名 → 有効にして保存）。無効のままだと
+    `signInAnonymously()`が`ADMIN_ONLY_OPERATION`エラーで失敗する（`AuthService`は
+    この失敗を握りつぶすので、アプリ自体は起動するが学習記録は送信されなくなる）。
+- 「Answer!」で正誤判定が行われるたびに、`participants/{参加者ID}/attempts/{記録ID}`に
+  1件記録を書き込む（`lib/services/learning_record_service.dart`）。内容：
+  `word`（単語）、`level`、`isCorrect`、`answeredAt`（`FieldValue.serverTimestamp()`）、
+  `ownerUid`（匿名認証UID）。**この書き込みは「できれば行う」程度の扱い**：
+  `game_screen.dart`の`_onAnswerPressed()`から`await`せずに呼び出し、内部の例外も
+  すべて握りつぶす。通信状況やFirestore側の不調に関わらず、正誤判定・画面遷移という
+  ゲーム本体の動作を止めたり遅らせたりしないことを優先している。
 - **セキュリティルール**（`firestore.rules`、Firebaseコンソールの
-  Firestore Database → ルール タブに貼り付けて反映済み）：ログイン機能
-  （Firebase Authenticationなど）は実装していないため、「本当にその参加者ID本人からの
-  書き込みか」をサーバー側で検証する手段がない。そのため、書き込み（作成）のみ許可し、
-  読み取り・更新・削除はクライアントから一切禁止する方針にした
-  （なりすまし書き込み自体は防げないが、他人のデータを読み取られることは確実に防げる）。
-  それ以外のパスは念のためすべて拒否している。
-  - 次回、HISTORY画面の実装とあわせて**匿名認証（Firebase Anonymous Authentication）**
-    の追加を検討する。画面には出ない・ユーザーには意識させない仕組みで、これにより
-    「読み取りだけでなく書き込みも、匿名認証のUIDに紐づけて制限する」方向に見直す予定
-    （2026年9月時点の方針、ユーザーからの指示）。
+  Firestore Database → ルール タブに貼り付けて反映済み）：送信・保存されているデータの
+  `ownerUid`が、リクエスト元本人の匿名認証UIDと一致する場合のみ、書き込み（作成）・
+  読み取りを許可する。更新・削除は常に不可（記録は書いたら変更しない前提）。
+  それ以外のパスは念のためすべて拒否している。2026年9月に、REST API経由で
+  「本人の書き込み／読み取りは成功」「他人になりすました書き込みは403」
+  「他人の記録の読み取りは403」「未認証での読み取りは403」の4パターンを実際に
+  確認済み。
+  - なお、ログイン機能を持たないため「本当にその参加者ID本人からの書き込みか」を
+    完全には検証できない（誰かが他人の参加者IDと自分のownerUidを組み合わせて
+    書き込むこと自体は技術的に可能）。アンケート・研究用途の簡易的な仕組みとして
+    割り切っている。
+- **HISTORY画面**（`lib/screens/history_screen.dart`、ホーム画面の「HISTORY」から
+  遷移）は、**端末内（`shared_preferences`）の集計値を主なデータ源とする**
+  （`lib/services/local_history_service.dart`）。Firestoreには送信するが読み取りには
+  使わない。理由：このアプリは「ネットワークが不安定でもゲーム自体は問題なく遊べる」
+  設計を重視しており、HISTORY画面もオフラインで正しく表示できるようにするため
+  （2026年9月時点の決定、ユーザーからの指示）。レベルごとの解答数・正解数のみを
+  カウンターとして保持し（1件ずつの解答履歴は保存しない）、正誤判定のたびに加算する。
 
 ## ゲームロジック（決定事項）
 
@@ -112,9 +133,14 @@
 
 ## 画面構成
 
-- ホーム画面：START / HISTORY / WORD BOOK / ENCYCLOPEDIA ＋ 案内役の羊キャラクター
+- ホーム画面：START / HISTORY / WORD BOOK / ENCYCLOPEDIA ＋ 案内役の羊キャラクター。
+  右上の歯車アイコンから設定画面（参加者IDの確認・変更）へ
 - レベル選択画面：Level 1 / Level 2 / Level 3
 - ゲーム画面：パズル操作、「?」（ヒント）／「Answer!」／「Menu」ボタン
+- HISTORY画面（`lib/screens/history_screen.dart`）：解いた問題数・正解数・全体正答率、
+  レベルごとの内訳（解答数・正解数・正答率）を表示。設計書「3.6 その他の画面」は
+  見出しのみで具体的な記載がなかったため、上記の内容を最低限として実装した
+  （2026年9月時点）
 - 詳しい画面設計は設計書の「3. 画面設計」を参照
 
 ## チャットAI（方針）
@@ -234,6 +260,15 @@
 - 開発環境本体（Flutter SDK / JDK / Android SDK）は `C:\Users\t-tanaka\dev\` 配下に個別インストール済み
   （`flutter`, `jdk-17.0.19+10`, `android-sdk`）。Android Studio（GUI）は未導入で、
   コマンドラインツール（`sdkmanager`）のみで運用している。
+- **ブラウザ操作ツールでのテキスト入力に関する既知の制約**（2026年9月確認）：
+  Claude Codeのブラウザ操作ツールで`TextField`にクリック＋キー入力すると、裏側の
+  隠しinput要素には正しく文字が入る（`document.activeElement.value`で確認できる）が、
+  Flutter側の描画（キャンバス上の表示）には反映されないことがある。ドラッグ操作や
+  ボタンクリックは問題なく動作する。この制約に当たった場合は、無理に自動確認を
+  続けず、代わりに（a）Flutterの`flutter_test`（`enterText`は正しく動作する）で
+  該当ロジックを検証する、（b）Firestoreなどネットワーク越しの処理はブラウザの
+  JavaScript実行機能から直接REST APIを叩いて検証する、（c）ユーザー本人に手動確認を
+  依頼する、のいずれかで代替すること。
 
 ## Gitブランチ運用（決定事項）
 
