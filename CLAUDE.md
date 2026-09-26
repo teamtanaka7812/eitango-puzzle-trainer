@@ -95,6 +95,26 @@
   `game_screen.dart`の`_onAnswerPressed()`から`await`せずに呼び出し、内部の例外も
   すべて握りつぶす。通信状況やFirestore側の不調に関わらず、正誤判定・画面遷移という
   ゲーム本体の動作を止めたり遅らせたりしないことを優先している。
+  - 2026年9月、試用者の取り組み方をより詳しく分析できるよう、以下の3項目を追加した
+    （ユーザーからの指示）。**Firestoreに送る記録にのみ含め、端末内
+    （`shared_preferences`）の保存方式は変更していない**（HISTORY画面用の集計値のみ
+    という従来の設計を維持する、というユーザーの判断）。
+    - `startedAt`：その問題の画面が表示され始めた日時。`GameScreen`は新しい問題に
+      進む・再挑戦するたびに`LevelPlayScreen`側で新しいインスタンスとして作り直される
+      （`key`にインデックス・挑戦回数を含めている）ため、`GameScreen.initState()`が
+      呼ばれた時点を「開始時刻」として扱う（`_startedAt`、端末の時計。過去の一時点を
+      記録するため`FieldValue.serverTimestamp()`ではなく`Timestamp.fromDate()`を使う）。
+    - `durationSeconds`：`startedAt`から、「Answer!」を押して正誤判定されるまでの
+      経過時間（秒）。
+    - `dragCount`：その問題を解いている間に、ピースをドラッグしてどこかに離した回数。
+      解答欄への設置・盤面内での置き直し・トレイへの取り出しのいずれであっても
+      1回として数える（`Draggable.onDragEnd`は結果によらず必ず1回呼ばれるため、
+      これをトレイ側・解答欄側どちらのピースの`Draggable`にも付けてカウントしている。
+      `_SlotTarget`には`onDragCompleted`コールバックを追加し、`_GameScreenState`の
+      `_dragCount`に集約している）。
+    - 2026年9月、実機でLevel 1を1問解いて確認済み（`startedAt`〜`answeredAt`の差が
+      `durationSeconds`とほぼ一致し、`dragCount`も操作回数と一致する整数値であることを、
+      Firebaseコンソールで確認した）。
 - **セキュリティルール**（`firestore.rules`、Firebaseコンソールの
   Firestore Database → ルール タブに貼り付けて反映済み）：送信・保存されているデータの
   `ownerUid`が、リクエスト元本人の匿名認証UIDと一致する場合のみ、書き込み（作成）・

@@ -104,9 +104,25 @@ class _GameScreenState extends State<GameScreen> {
   /// 空のままで、その間は[kDefaultSlotOverlap]を仮の重なり幅として使う。
   final Map<String, PieceHorizontalMargins> _margins = {};
 
+  /// この問題の画面が表示され始めた日時（研究データ用、2026年9月追加）。
+  /// [GameScreen]は新しい問題に進む・再挑戦するたびに`LevelPlayScreen`側で
+  /// 新しいインスタンスとして作り直される（`key`にインデックス・挑戦回数を
+  /// 含めている）ため、`initState()`の時点を「その問題の開始時刻」として
+  /// 扱う。[LearningRecordService.recordAttempt]の`startedAt`・
+  /// `durationSeconds`の算出に使う。
+  late final DateTime _startedAt;
+
+  /// この問題を解いている間に、ピースをドラッグしてどこかに離した回数
+  /// （研究データ用、2026年9月追加）。解答欄への設置・盤面内での置き直し・
+  /// トレイへの取り出しのいずれでも、ドラッグ操作1回につき1加算する
+  /// （[Draggable.onDragEnd]は結果によらず必ず1回呼ばれるため、これを使う）。
+  /// 画面には表示しないため、加算のたびに[setState]は呼ばない。
+  int _dragCount = 0;
+
   @override
   void initState() {
     super.initState();
+    _startedAt = DateTime.now();
     _options = _buildOptions();
     _tray = List.generate(_options.length, (i) => i);
     _slots = List<int?>.filled(kSlotCount, null);
@@ -431,7 +447,14 @@ class _GameScreenState extends State<GameScreen> {
     // 遅延に関わらず、正誤判定・画面遷移といったゲーム本体の動作を
     // 止めたり遅らせたりしないため）。
     LocalHistoryService.recordAttempt(level: widget.puzzle.level, isCorrect: isCorrect);
-    LearningRecordService.recordAttempt(puzzle: widget.puzzle, isCorrect: isCorrect);
+    LearningRecordService.recordAttempt(
+      puzzle: widget.puzzle,
+      isCorrect: isCorrect,
+      startedAt: _startedAt,
+      durationSeconds:
+          DateTime.now().difference(_startedAt).inMilliseconds / 1000,
+      dragCount: _dragCount,
+    );
 
     widget.onAnswer(isCorrect);
   }
@@ -541,6 +564,7 @@ class _GameScreenState extends State<GameScreen> {
                                     hitWidth: _ownHitWidth(i),
                                     onAccept: _placeInSlot,
                                     onReturnToTray: _returnToTray,
+                                    onDragCompleted: () => _dragCount++,
                                   ),
                                 ),
                             ],
@@ -591,6 +615,7 @@ class _GameScreenState extends State<GameScreen> {
                                       top: positions[optionIndex].dy,
                                       child: Draggable<int>(
                                         data: optionIndex,
+                                        onDragEnd: (_) => _dragCount++,
                                         feedback: Material(
                                           color: Colors.transparent,
                                           child: PuzzlePieceShape(
@@ -736,6 +761,7 @@ class _SlotTarget extends StatefulWidget {
     required this.hitWidth,
     required this.onAccept,
     required this.onReturnToTray,
+    required this.onDragCompleted,
   });
 
   final int slotIndex;
@@ -764,6 +790,11 @@ class _SlotTarget extends StatefulWidget {
 
   final void Function(int optionIndex, int slotIndex) onAccept;
   final void Function(int optionIndex) onReturnToTray;
+
+  /// このスロットのピースを1回ドラッグして離すたびに呼ぶ（研究データ用の
+  /// 操作回数カウント、[_GameScreenState._dragCount]参照）。結果（解答欄への
+  /// 設置・盤面内での置き直し・トレイへの取り出し）によらず呼ぶ。
+  final VoidCallback onDragCompleted;
 
   @override
   State<_SlotTarget> createState() => _SlotTargetState();
@@ -818,7 +849,10 @@ class _SlotTargetState extends State<_SlotTarget> {
                 child: Draggable<int>(
                   data: index,
                   onDragStarted: () => setState(() => _isDragging = true),
-                  onDragEnd: (_) => setState(() => _isDragging = false),
+                  onDragEnd: (_) {
+                    setState(() => _isDragging = false);
+                    widget.onDragCompleted();
+                  },
                   onDraggableCanceled: (_, _) =>
                       setState(() => _isDragging = false),
                   feedback: Material(
