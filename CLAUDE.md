@@ -63,6 +63,41 @@
   - 以前は`illegal`・`development`・`uncomfortable`がLevel 3にも重複して存在し、
     Level 1側のIDには`_l1`を付けて区別していたが、この拡張に伴いLevel 3側の重複は
     意図的に削除した（2026年時点の決定）。現在はLevel 1側（`_l1`付きID）にのみ存在する。
+- **3ピース→2ピース統合**（2026年9月、ユーザーからの指示）：3ピース
+  （接頭辞＋語幹＋接尾辞）の単語のうち、以下2つの問題を抱えていた13問について、
+  ピースを2つに統合した（正解の単語自体は変更していない。ピースの区切り方のみ変更）。
+  - **複数正解問題**：2ピースの組み合わせだけで、それ自体が実在する別の英単語に
+    見えてしまう（例：`unbelievable` = un+believe+able のうち、believe+ableだけで
+    「believable」という完成した単語に見える）。
+  - **綴り変化問題**：3ピースをそのまま連結した文字列が、正しい綴りと一致しない
+    （例：believe+ableを連結すると"believeable"になり、正しい"unbelievable"と
+    不一致）。
+  - 対象13語とその新しいピース分割：`unfortunately`(unfortunate+ly)、
+    `reappearance`(reappear+ance)、`independently`(independent+ly)、
+    `reconsideration`(reconsider+ation)、`unbelievable`(un+believable)、
+    `uncomfortable`(un+comfortable)、`disagreement`(disagree+ment)、
+    `undependable`(un+dependable)、`adventure`(ad+venture)、`accurate`(ac+curate)、
+    `unacceptable`(un+acceptable)、`exception`(except+ion)、`defensively`
+    (defensive+ly)。統合後のピースの綴りは、連結すると`word`と完全一致することを
+    確認済み（単純な文字列結合ではなく、正しい英単語の綴りをそのまま使っている。
+    例：believe+ableではなく"believable"）。
+  - この13問は、ピースの区切り方が変わったことに伴い、正解・おとりとも画像
+    （`q_pi`/`image`）を`01.png`〜`06.png`のランダム割り当て（49問追加時と同じ、
+    必ずかみ合う方式）に作り直した。以前の28枚セット（`02008green.png`等）による
+    手作業の組み合わせ保証は、区切り方が変わった時点で前提が崩れるため。
+  - おとりピースは「正解＋3〜4個」に統一した。統合前に5〜6個あった6問
+    （`unfortunately`・`independently`・`reconsideration`・`unbelievable`・
+    `uncomfortable`・`undependable`）は、正解の判定に影響しない範囲でおとりを
+    3〜4個に絞り込んだ（ユーザーの指示により、どれを残すかはClaude Codeの裁量）。
+  - **今後、新しい単語をデータに追加する際の注意点**：3ピース（接頭辞＋語幹＋接尾辞）
+    の単語を追加するときは、(1) 2ピースだけの組み合わせが別の実在単語に見えないか、
+    (2) 3ピースをそのまま連結した文字列が正しい綴りと一致するか（`unbelievable`の
+    ような綴り変化・二重母音の省略などに注意）、の2点を確認すること。問題があれば、
+    上記のように2ピースへの統合を検討する。
+  - この統合作業に伴い、`test/uncomfortable_word_test.dart`（3ピース単語の回帰
+    テスト）が使っていた`uncomfortable`も2ピースになったため、同じく3ピースの
+    ままの単語`advocate`に差し替えた。`test/level_play_screen_test.dart`の
+    Level 1単語リスト（ハードコード）も新しいピース分割に合わせて更新した。
 
 ## 参加者ID・データ収集（決定事項）
 

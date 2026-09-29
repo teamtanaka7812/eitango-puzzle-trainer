@@ -4,19 +4,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:word_puzzle_trainer/screens/level_play_screen.dart';
 
 // Level 1 は assets/data/words.json の順で、以下の19問（59問への拡張後、2026年時点）。
+// 2026年9月、13単語（このうち8つがLevel1）を3ピース→2ピースに統合したため、
+// 該当する単語のピース内訳を更新した（正解の単語・出題順は変わらない）。
 const _level1Words = <List<String>>[
   ['il', 'legal'],
   ['develop', 'ment'],
-  ['un', 'fortunate', 'ly'],
-  ['re', 'appear', 'ance'],
-  ['in', 'dependent', 'ly'],
-  ['re', 'consider', 'ation'],
-  ['un', 'believe', 'able'],
-  ['un', 'comfort', 'able'],
-  ['dis', 'agree', 'ment'],
-  ['un', 'depend', 'able'],
+  ['unfortunate', 'ly'],
+  ['reappear', 'ance'],
+  ['independent', 'ly'],
+  ['reconsider', 'ation'],
+  ['un', 'believable'],
+  ['un', 'comfortable'],
+  ['disagree', 'ment'],
+  ['un', 'dependable'],
   ['ad', 'mire'],
-  ['ad', 'vent', 'ure'],
+  ['ad', 'venture'],
   ['ad', 'dress'],
   ['min', 'ute'],
   ['ad', 'just'],

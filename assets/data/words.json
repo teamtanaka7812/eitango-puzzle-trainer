@@ -72,8 +72,7 @@
     "word": "unfortunately",
     "level": 1,
     "parts": [
-      "un",
-      "fortunate",
+      "unfortunate",
       "ly"
     ],
     "meaningJa": "不運にも",
@@ -81,36 +80,28 @@
     "exampleJa": "残念ながら、悪天候のためイベントは中止になった。",
     "choices": [
       {
-        "text": "ion",
-        "image": "01.png"
-      },
-      {
-        "text": "fortunate",
+        "text": "unfortunate",
         "image": "05.png"
       },
       {
-        "text": "dis",
+        "text": "il",
         "image": "02.png"
+      },
+      {
+        "text": "dis",
+        "image": "06.png"
+      },
+      {
+        "text": "ly",
+        "image": "01.png"
       },
       {
         "text": "in",
         "image": "03.png"
       },
       {
-        "text": "happy",
-        "image": "01.png"
-      },
-      {
-        "text": "ly",
+        "text": "ion",
         "image": "04.png"
-      },
-      {
-        "text": "un",
-        "image": "06.png"
-      },
-      {
-        "text": "il",
-        "image": "05.png"
       }
     ]
   },
@@ -119,8 +110,7 @@
     "word": "reappearance",
     "level": 1,
     "parts": [
-      "re",
-      "appear",
+      "reappear",
       "ance"
     ],
     "meaningJa": "再出現、再登場",
@@ -128,32 +118,28 @@
     "exampleJa": "その俳優が突然再び現れたことに、観客は驚いた。",
     "choices": [
       {
+        "text": "ly",
+        "image": "05.png"
+      },
+      {
         "text": "pre",
-        "image": "02008green.png"
-      },
-      {
-        "text": "re",
-        "image": "02012blue.png"
-      },
-      {
-        "text": "un",
-        "image": "02013red.png"
-      },
-      {
-        "text": "ion",
-        "image": "02006blue.png"
-      },
-      {
-        "text": "appear",
-        "image": "02002yellow.png"
+        "image": "04.png"
       },
       {
         "text": "ance",
+        "image": "03.png"
+      },
+      {
+        "text": "ion",
         "image": "01.png"
       },
       {
-        "text": "ly",
-        "image": "02001red.png"
+        "text": "un",
+        "image": "02.png"
+      },
+      {
+        "text": "reappear",
+        "image": "06.png"
       }
     ]
   },
@@ -162,8 +148,7 @@
     "word": "independently",
     "level": 1,
     "parts": [
-      "in",
-      "dependent",
+      "independent",
       "ly"
     ],
     "meaningJa": "独立して",
@@ -171,40 +156,28 @@
     "exampleJa": "彼女は誰の助けも借りずに、独力でその問題を解決した。",
     "choices": [
       {
-        "text": "ly",
-        "image": "02008green.png"
-      },
-      {
-        "text": "un",
-        "image": "02012blue.png"
-      },
-      {
-        "text": "im",
-        "image": "02013red.png"
-      },
-      {
-        "text": "dependent",
-        "image": "02006blue.png"
-      },
-      {
-        "text": "depend",
-        "image": "02002yellow.png"
-      },
-      {
-        "text": "dis",
-        "image": "02009orange.png"
-      },
-      {
-        "text": "in",
-        "image": "02001red.png"
-      },
-      {
         "text": "ful",
-        "image": "02010orange.png"
+        "image": "05.png"
       },
       {
         "text": "less",
-        "image": "02011green.png"
+        "image": "01.png"
+      },
+      {
+        "text": "depend",
+        "image": "03.png"
+      },
+      {
+        "text": "ly",
+        "image": "02.png"
+      },
+      {
+        "text": "dis",
+        "image": "06.png"
+      },
+      {
+        "text": "independent",
+        "image": "04.png"
       }
     ]
   },
@@ -213,8 +186,7 @@
     "word": "reconsideration",
     "level": 1,
     "parts": [
-      "re",
-      "consider",
+      "reconsider",
       "ation"
     ],
     "meaningJa": "再考",
@@ -222,36 +194,28 @@
     "exampleJa": "全員の意見を聞いたあと、マネージャーは計画の再検討に同意した。",
     "choices": [
       {
-        "text": "in",
-        "image": "02008green.png"
-      },
-      {
-        "text": "re",
-        "image": "02012blue.png"
-      },
-      {
         "text": "pre",
-        "image": "02013red.png"
+        "image": "03.png"
       },
       {
-        "text": "think",
-        "image": "02006blue.png"
-      },
-      {
-        "text": "consider",
-        "image": "02002yellow.png"
+        "text": "in",
+        "image": "04.png"
       },
       {
         "text": "tion",
-        "image": "02009orange.png"
-      },
-      {
-        "text": "ation",
-        "image": "02001red.png"
+        "image": "05.png"
       },
       {
         "text": "ion",
-        "image": "02010orange.png"
+        "image": "06.png"
+      },
+      {
+        "text": "reconsider",
+        "image": "02.png"
+      },
+      {
+        "text": "ation",
+        "image": "01.png"
       }
     ]
   },
@@ -261,44 +225,35 @@
     "level": 1,
     "parts": [
       "un",
-      "believe",
-      "able"
+      "believable"
     ],
     "meaningJa": "信じられない",
     "exampleEn": "The magician's final trick was truly unbelievable.",
     "exampleJa": "そのマジシャンの最後のトリックは、本当に信じられないものだった。",
     "choices": [
       {
-        "text": "in",
-        "image": "02008green.png"
-      },
-      {
-        "text": "un",
-        "image": "02012blue.png"
-      },
-      {
         "text": "dis",
-        "image": "02013red.png"
-      },
-      {
-        "text": "rely",
-        "image": "02006blue.png"
-      },
-      {
-        "text": "believe",
-        "image": "02002yellow.png"
+        "image": "01.png"
       },
       {
         "text": "ful",
-        "image": "02009orange.png"
+        "image": "04.png"
+      },
+      {
+        "text": "in",
+        "image": "05.png"
+      },
+      {
+        "text": "un",
+        "image": "06.png"
       },
       {
         "text": "less",
-        "image": "02001red.png"
+        "image": "03.png"
       },
       {
-        "text": "able",
-        "image": "02010orange.png"
+        "text": "believable",
+        "image": "02.png"
       }
     ]
   },
@@ -308,8 +263,7 @@
     "level": 1,
     "parts": [
       "un",
-      "comfort",
-      "able"
+      "comfortable"
     ],
     "meaningJa": "不快な、心地よくない",
     "exampleEn": "I felt uncomfortable speaking in front of such a large audience.",
@@ -317,35 +271,27 @@
     "choices": [
       {
         "text": "in",
-        "image": "02008green.png"
-      },
-      {
-        "text": "un",
-        "image": "02012blue.png"
-      },
-      {
-        "text": "il",
-        "image": "02013red.png"
+        "image": "02.png"
       },
       {
         "text": "convenient",
-        "image": "02006blue.png"
+        "image": "05.png"
       },
       {
-        "text": "comfort",
-        "image": "02002yellow.png"
+        "text": "un",
+        "image": "04.png"
       },
       {
-        "text": "able",
-        "image": "02009orange.png"
+        "text": "il",
+        "image": "06.png"
       },
       {
-        "text": "tion",
-        "image": "02001red.png"
+        "text": "comfortable",
+        "image": "03.png"
       },
       {
         "text": "less",
-        "image": "02010orange.png"
+        "image": "01.png"
       }
     ]
   },
@@ -354,8 +300,7 @@
     "word": "disagreement",
     "level": 1,
     "parts": [
-      "dis",
-      "agree",
+      "disagree",
       "ment"
     ],
     "meaningJa": "不一致、意見の相違",
@@ -363,32 +308,28 @@
     "exampleJa": "予算をめぐる意見の相違が、プロジェクトを遅らせた。",
     "choices": [
       {
-        "text": "il",
-        "image": "04.png"
+        "text": "ee",
+        "image": "02.png"
       },
       {
         "text": "ful",
-        "image": "02.png"
-      },
-      {
-        "text": "in",
-        "image": "03.png"
-      },
-      {
-        "text": "agree",
-        "image": "01.png"
-      },
-      {
-        "text": "ee",
         "image": "05.png"
       },
       {
-        "text": "ment",
-        "image": "02.png"
+        "text": "il",
+        "image": "03.png"
       },
       {
-        "text": "dis",
+        "text": "ment",
         "image": "06.png"
+      },
+      {
+        "text": "in",
+        "image": "01.png"
+      },
+      {
+        "text": "disagree",
+        "image": "04.png"
       }
     ]
   },
@@ -398,8 +339,7 @@
     "level": 1,
     "parts": [
       "un",
-      "depend",
-      "able"
+      "dependable"
     ],
     "meaningJa": "頼りにならない",
     "exampleEn": "He's talented, but unfortunately quite undependable under pressure.",
@@ -407,35 +347,27 @@
     "choices": [
       {
         "text": "dis",
-        "image": "02008green.png"
+        "image": "06.png"
       },
       {
-        "text": "un",
-        "image": "02012blue.png"
+        "text": "dependable",
+        "image": "02.png"
       },
       {
         "text": "mis",
-        "image": "02013red.png"
-      },
-      {
-        "text": "rely",
-        "image": "02006blue.png"
-      },
-      {
-        "text": "depend",
-        "image": "02002yellow.png"
-      },
-      {
-        "text": "able",
-        "image": "02009orange.png"
-      },
-      {
-        "text": "ment",
-        "image": "02001red.png"
+        "image": "03.png"
       },
       {
         "text": "less",
-        "image": "02010orange.png"
+        "image": "04.png"
+      },
+      {
+        "text": "ment",
+        "image": "05.png"
+      },
+      {
+        "text": "un",
+        "image": "01.png"
       }
     ]
   },
@@ -483,19 +415,22 @@
     "level": 1,
     "parts": [
       "ad",
-      "vent",
-      "ure"
+      "venture"
     ],
     "meaningJa": "冒険",
     "exampleEn": "They went on an exciting adventure through the jungle.",
     "exampleJa": "彼らはジャングルでわくわくする冒険に出かけた。",
     "choices": [
       {
-        "text": "as",
+        "text": "or",
         "image": "05.png"
       },
       {
-        "text": "vent",
+        "text": "ad",
+        "image": "01.png"
+      },
+      {
+        "text": "as",
         "image": "06.png"
       },
       {
@@ -503,15 +438,7 @@
         "image": "04.png"
       },
       {
-        "text": "ad",
-        "image": "01.png"
-      },
-      {
-        "text": "or",
-        "image": "03.png"
-      },
-      {
-        "text": "ure",
+        "text": "venture",
         "image": "02.png"
       }
     ]
@@ -1246,8 +1173,7 @@
     "level": 2,
     "parts": [
       "ac",
-      "cur",
-      "ate"
+      "curate"
     ],
     "meaningJa": "正確な、精密な",
     "exampleEn": "The data must be accurate before we submit the report.",
@@ -1255,11 +1181,11 @@
     "choices": [
       {
         "text": "ac",
-        "image": "02.png"
+        "image": "03.png"
       },
       {
-        "text": "cur",
-        "image": "05.png"
+        "text": "curate",
+        "image": "02.png"
       },
       {
         "text": "se",
@@ -1267,15 +1193,11 @@
       },
       {
         "text": "tract",
-        "image": "04.png"
-      },
-      {
-        "text": "ate",
         "image": "01.png"
       },
       {
         "text": "monit",
-        "image": "03.png"
+        "image": "04.png"
       }
     ]
   },
@@ -1970,36 +1892,31 @@
     "level": 3,
     "parts": [
       "un",
-      "accept",
-      "able"
+      "acceptable"
     ],
     "meaningJa": "受け入れられない",
     "exampleEn": "His behavior at the meeting was completely unacceptable.",
     "exampleJa": "会議での彼の振る舞いは、まったく受け入れられないものだった。",
     "choices": [
       {
-        "text": "able",
+        "text": "acceptable",
+        "image": "06.png"
+      },
+      {
+        "text": "un",
+        "image": "04.png"
+      },
+      {
+        "text": "fensive",
         "image": "02.png"
+      },
+      {
+        "text": "believe",
+        "image": "05.png"
       },
       {
         "text": "opt",
         "image": "03.png"
-      },
-      {
-        "text": "un",
-        "image": "05.png"
-      },
-      {
-        "text": "fensive",
-        "image": "01.png"
-      },
-      {
-        "text": "accept",
-        "image": "06.png"
-      },
-      {
-        "text": "believe",
-        "image": "04.png"
       }
     ]
   },
@@ -2008,8 +1925,7 @@
     "word": "exception",
     "level": 3,
     "parts": [
-      "ex",
-      "cept",
+      "except",
       "ion"
     ],
     "meaningJa": "例外",
@@ -2017,12 +1933,16 @@
     "exampleJa": "一人を除いて、全員がそのテストに合格した。",
     "choices": [
       {
-        "text": "un",
+        "text": "ion",
         "image": "05.png"
       },
       {
-        "text": "ion",
-        "image": "04.png"
+        "text": "except",
+        "image": "02.png"
+      },
+      {
+        "text": "un",
+        "image": "03.png"
       },
       {
         "text": "ure",
@@ -2030,15 +1950,7 @@
       },
       {
         "text": "con",
-        "image": "02.png"
-      },
-      {
-        "text": "cept",
         "image": "06.png"
-      },
-      {
-        "text": "ex",
-        "image": "03.png"
       }
     ]
   },
@@ -2277,8 +2189,7 @@
     "word": "defensively",
     "level": 3,
     "parts": [
-      "de",
-      "fensive",
+      "defensive",
       "ly"
     ],
     "meaningJa": "守備的に、擁護的に",
@@ -2286,28 +2197,24 @@
     "exampleJa": "彼はその質問に守りの姿勢で答えた。",
     "choices": [
       {
-        "text": "ly",
-        "image": "05.png"
-      },
-      {
-        "text": "de",
-        "image": "03.png"
-      },
-      {
-        "text": "fensive",
+        "text": "mire",
         "image": "06.png"
       },
       {
+        "text": "defensive",
+        "image": "03.png"
+      },
+      {
         "text": "ceive",
-        "image": "01.png"
+        "image": "05.png"
+      },
+      {
+        "text": "ly",
+        "image": "04.png"
       },
       {
         "text": "ual",
-        "image": "02.png"
-      },
-      {
-        "text": "mire",
-        "image": "04.png"
+        "image": "01.png"
       }
     ]
   }

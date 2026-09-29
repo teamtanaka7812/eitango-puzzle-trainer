@@ -21,34 +21,37 @@ Future<void> _dragToTarget(
 }
 
 void main() {
-  testWidgets('uncomfortable（Level1の3ピース単語）が実データ通り3ピースで表示され、正しく解ける', (tester) async {
+  testWidgets('advocate（3ピース単語）が実データ通り3ピースで表示され、正しく解ける', (tester) async {
     final byLevel = await WordRepository.loadByLevel();
-    final level1 = byLevel[1]!;
-    final uncomfortable = level1.firstWhere((w) => w.id == 'uncomfortable_l1');
+    final level3 = byLevel[3]!;
+    final advocate = level3.firstWhere((w) => w.id == 'advocate');
 
-    // design書5.3の通り、un + comfort + able の3ピースであること。
-    expect(uncomfortable.parts.length, 3);
-    expect(uncomfortable.parts.map((p) => p.text).toList(), ['un', 'comfort', 'able']);
+    // ad + voc + ate の3ピースであること。
+    // （2026年9月、13単語を3ピース→2ピースに統合した際、それまでこの回帰
+    // テストが使っていた「uncomfortable」も2ピースになったため、引き続き
+    // 3ピースのままの単語に差し替えた。テストの目的（3枠の解答欄が正しく
+    // 表示され、3ピースともドラッグで正しく配置できること）は変わらない。）
+    expect(advocate.parts.length, 3);
+    expect(advocate.parts.map((p) => p.text).toList(), ['ad', 'voc', 'ate']);
 
     bool? result;
     await tester.pumpWidget(
       MaterialApp(
-        home: GameScreen(puzzle: uncomfortable, onAnswer: (value) => result = value),
+        home: GameScreen(puzzle: advocate, onAnswer: (value) => result = value),
       ),
     );
 
     // 3ピースとも選択肢に表示されていること（2ピースのまま欠けたりしていないか）。
-    expect(find.text('un'), findsOneWidget);
-    expect(find.text('comfort'), findsOneWidget);
-    expect(find.text('able'), findsOneWidget);
+    expect(find.text('ad'), findsOneWidget);
+    expect(find.text('voc'), findsOneWidget);
+    expect(find.text('ate'), findsOneWidget);
     expect(find.byKey(const ValueKey('slot_0')), findsOneWidget);
     expect(find.byKey(const ValueKey('slot_1')), findsOneWidget);
     expect(find.byKey(const ValueKey('slot_2')), findsOneWidget);
 
-    await _dragToTarget(tester, from: find.text('un'), to: find.byKey(const ValueKey('slot_0')));
-    await _dragToTarget(
-        tester, from: find.text('comfort'), to: find.byKey(const ValueKey('slot_1')));
-    await _dragToTarget(tester, from: find.text('able'), to: find.byKey(const ValueKey('slot_2')));
+    await _dragToTarget(tester, from: find.text('ad'), to: find.byKey(const ValueKey('slot_0')));
+    await _dragToTarget(tester, from: find.text('voc'), to: find.byKey(const ValueKey('slot_1')));
+    await _dragToTarget(tester, from: find.text('ate'), to: find.byKey(const ValueKey('slot_2')));
 
     await tester.tap(find.text('Answer!'));
     await tester.pumpAndSettle();
