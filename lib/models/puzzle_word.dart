@@ -17,7 +17,7 @@ class ChoicePiece {
 
   final String text;
 
-  /// 完全なアセットパス（例: assets/puzzle_pieces_v2/01.png）。
+  /// 完全なアセットパス（例: assets/puzzle_pieces_v3/stem_g_1.png）。
   final String assetPath;
 }
 
@@ -31,7 +31,7 @@ class PuzzleWord {
     required this.meaning,
     required this.exampleEn,
     required this.exampleJa,
-    this.presetChoices,
+    required this.presetChoices,
   });
 
   final String id;
@@ -42,18 +42,13 @@ class PuzzleWord {
   final String exampleEn;
   final String exampleJa;
 
-  /// あらかじめ人手で用意された選択肢一式（テキスト・画像とも固定）。
-  /// nullの場合は、これまで通りおとり・画像をランダムに生成する
-  /// （[GameScreen]側の`_buildOptions()`を参照）。
-  final List<ChoicePiece>? presetChoices;
+  /// この単語の選択肢一式（正解ピース・おとりピース。テキスト・画像とも固定）。
+  /// 全参加者が同じ刺激を見るよう、実行時に抽選せずデータ側で決めてある。
+  /// 画像名には役割と形の番号が含まれる（`pre_1.png`・`stem_g_1.png`・
+  /// `suf_1.png`など）。おとりにも役割を均等に割り当て、形から正解が
+  /// 分からないようにしてある。
+  final List<ChoicePiece> presetChoices;
 }
-
-/// 設計書「5.4 接頭辞・接尾辞一覧」に登場する接頭辞・接尾辞（ハイフンなし）。
-/// 出題時、正解に含まれないものをここからランダムに選んで「おとりピース」として使う。
-const List<String> kAffixPool = [
-  'un', 're', 'pre', 'dis', 'mis', 'in', 'im', 'il', 'ir',
-  'ful', 'less', 'able', 'ible', 'ment', 'ion', 'al', 'ly', 'ee',
-];
 
 /// assets/data/words.json を読み込み、レベルごとの単語リストに変換する。
 class WordRepository {
@@ -71,16 +66,13 @@ class WordRepository {
       final parts = <WordPiecePart>[
         for (final text in map['parts'] as List) WordPiecePart(text: text as String),
       ];
-      final rawChoices = map['choices'] as List<dynamic>?;
-      final presetChoices = rawChoices == null
-          ? null
-          : <ChoicePiece>[
-              for (final c in rawChoices)
-                ChoicePiece(
-                  text: (c as Map<String, dynamic>)['text'] as String,
-                  assetPath: 'assets/puzzle_pieces_v2/${c['image']}',
-                ),
-            ];
+      final presetChoices = <ChoicePiece>[
+        for (final c in map['choices'] as List<dynamic>)
+          ChoicePiece(
+            text: (c as Map<String, dynamic>)['text'] as String,
+            assetPath: 'assets/puzzle_pieces_v3/${c['image']}',
+          ),
+      ];
       final puzzleWord = PuzzleWord(
         id: map['id'] as String,
         word: map['word'] as String,

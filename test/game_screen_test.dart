@@ -1,35 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:word_puzzle_trainer/models/puzzle_word.dart';
 import 'package:word_puzzle_trainer/screens/game_screen.dart';
 
-const _twoPiecePuzzle = PuzzleWord(
-  id: 'test-unhappy',
-  word: 'unhappy',
-  level: 1,
-  parts: [
-    WordPiecePart(text: 'un'),
-    WordPiecePart(text: 'happy'),
-  ],
-  meaning: '不幸な',
-  exampleEn: 'example sentence',
-  exampleJa: '例文',
-);
-
-const _threePiecePuzzle = PuzzleWord(
-  id: 'test-combination',
-  word: 'combination',
-  level: 1,
-  parts: [
-    WordPiecePart(text: 'com'),
-    WordPiecePart(text: 'bina'),
-    WordPiecePart(text: 'tion'),
-  ],
-  meaning: '結合',
-  exampleEn: 'example sentence',
-  exampleJa: '例文',
-);
+import 'support/test_puzzles.dart';
 
 Future<void> _dragToTarget(
   WidgetTester tester, {
@@ -64,7 +38,7 @@ void main() {
 
   testWidgets('2ピースの単語でも全ピースとボタンが表示される', (tester) async {
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (_) {})),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
 
     expect(find.text('un'), findsOneWidget);
@@ -75,7 +49,7 @@ void main() {
 
   testWidgets('3ピースの単語でも全ピースが表示される', (tester) async {
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _threePiecePuzzle, onAnswer: (_) {})),
+      wrap(GameScreen(puzzle: threePiecePuzzle, onAnswer: (_) {})),
     );
 
     expect(find.text('com'), findsOneWidget);
@@ -85,7 +59,7 @@ void main() {
 
   testWidgets('解答欄は単語のピース数によらず常に3枠（slot_0〜slot_2）表示される', (tester) async {
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (_) {})),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
 
     expect(find.byKey(const ValueKey('slot_0')), findsOneWidget);
@@ -93,21 +67,22 @@ void main() {
     expect(find.byKey(const ValueKey('slot_2')), findsOneWidget);
   });
 
-  testWidgets('選択肢には正解ピースに加えて3〜4個のおとりピースが混ざる', (tester) async {
+  testWidgets('選択肢には、単語データに用意された正解ピースとおとりピースが全て並ぶ', (tester) async {
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (_) {})),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
 
-    final draggableCount = find.byType(Draggable<int>).evaluate().length;
-    // 正解2ピース + おとり3〜4個 = 5〜6個。
-    expect(draggableCount, greaterThanOrEqualTo(5));
-    expect(draggableCount, lessThanOrEqualTo(6));
+    // おとりはデータ側で固定されている（実行時に抽選しない）。
+    expect(find.byType(Draggable<int>).evaluate().length, twoPiecePuzzle.presetChoices.length);
+    for (final choice in twoPiecePuzzle.presetChoices) {
+      expect(find.text(choice.text), findsOneWidget);
+    }
   });
 
   testWidgets('2ピースの単語を正しく並べてAnswer!を押すとonAnswer(true)が呼ばれる', (tester) async {
     bool? result;
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (value) => result = value)),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);
@@ -122,7 +97,7 @@ void main() {
   testWidgets('2ピースの単語で、余った3枠目に何か置いてしまうとonAnswer(false)が呼ばれる', (tester) async {
     bool? result;
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (value) => result = value)),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);
@@ -146,7 +121,7 @@ void main() {
   testWidgets('3ピースの単語を間違った位置に置いてAnswer!を押すとonAnswer(false)が呼ばれる', (tester) async {
     bool? result;
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _threePiecePuzzle, onAnswer: (value) => result = value)),
+      wrap(GameScreen(puzzle: threePiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     // わざと com をスロット2（tionの位置）に置く。
@@ -161,7 +136,7 @@ void main() {
   testWidgets('何も置かずにAnswer!を押すとonAnswer(false)が呼ばれる', (tester) async {
     bool? result;
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (value) => result = value)),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await tester.tap(find.text('Answer!'));
@@ -172,7 +147,7 @@ void main() {
 
   testWidgets('配置済みピースをタップするとトレイに戻る', (tester) async {
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (_) {})),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
 
     await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);
@@ -187,7 +162,7 @@ void main() {
   testWidgets('配置済みピースをドラッグしてトレイに戻すこともできる', (tester) async {
     bool? result;
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (value) => result = value)),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);
@@ -209,7 +184,7 @@ void main() {
   testWidgets('解答欄の外側であれば、選択肢エリア以外にドロップしても選択肢に戻る', (tester) async {
     bool? result;
     await tester.pumpWidget(
-      wrap(GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (value) => result = value)),
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);

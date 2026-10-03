@@ -5,37 +5,12 @@ import 'package:flutter/material.dart';
 import '../models/puzzle_word.dart';
 import '../services/learning_record_service.dart';
 import '../services/local_history_service.dart';
+import '../widgets/piece_row_layout.dart';
 import '../widgets/puzzle_piece_shape.dart';
 
 /// 解答欄のスロット数。単語の正解ピース数（2〜3）によらず常にこの数だけ表示する。
 /// 使わない末尾のスロットは空欄のままにする。
 const int kSlotCount = 3;
-
-/// 1問あたりに混ぜる「おとりピース」の最小・最大個数（この範囲でランダムに決める）。
-const int kMinDecoyCount = 3;
-const int kMaxDecoyCount = 4;
-
-/// ピースの絵柄（凹凸がはみ出す分の余白）と、解答欄の実際の枠との差分。
-const double kSlotMargin = (kPieceSlotWidth - kPieceBoxWidth) / 2;
-
-/// 隣り合うピースの実測余白（[_GameScreenState._overlapBetween]参照）を
-/// 打ち消して「絵柄同士がちょうど接する」重なり幅を求めたうえで、そこから
-/// さらにこのぶんだけ重ねる。0だと隙間なく接するだけで、パズルのピース同士が
-/// 実際にかぶさり合っているようには見えないため、絵柄が一部重なって見える
-/// よう追加で寄せる量。
-const double kExtraOverlap = 20;
-
-/// 解答欄のピース同士を重ねる量（画像の余白情報がまだ読み込めていないときの
-/// 仮の値）。実物画像は縦横比がバラバラで、`BoxFit.contain`で92×92の枠に
-/// 収めたときにできる左右の余白は、横長の画像でほぼ0px、縦長の画像で最大
-/// 15px超と画像ごとに大きく異なる（実測済み）。そのため重なり量は固定値では
-/// なく、隣り合う2枚それぞれの実際の余白＋[kExtraOverlap]から都度計算する
-/// （[_GameScreenState._overlapBetween]）。この定数は、その余白情報の
-/// 読み込みが完了するまでの間だけ使う暫定値。
-const double kDefaultSlotOverlap = 20 + kExtraOverlap;
-
-/// 上記の都度計算によるオーバーラップが取り得る最大値（安全装置）。
-const double kMaxSlotOverlap = kPieceBoxWidth * 0.6;
 
 /// 選択肢に並ぶ1ピース分。正解ピースか、おとりピースかを区別する。
 class _PieceOption {
@@ -43,9 +18,12 @@ class _PieceOption {
     required this.text,
     required this.assetPath,
     required this.correctSlotIndex,
-  });
+  }) : fit = PieceFit.of(assetPath, text);
 
   final String text;
+
+  /// 文字の長さに合わせて横に伸ばした、このピースの表示寸法。
+  final PieceFit fit;
 
   /// このピースの見た目に使う画像（完全なアセットパス）。
   final String assetPath;
@@ -99,10 +77,12 @@ class _GameScreenState extends State<GameScreen> {
   List<Offset>? _scatterFractions;
   final GlobalKey _trayAreaKey = GlobalKey();
 
-  /// 各ピース画像の左右の余白（[loadPieceHorizontalMargins]の結果）。
-  /// 解答欄のピース同士をどれだけ重ねるかの計算に使う。読み込みが終わるまでは
-  /// 空のままで、その間は[kDefaultSlotOverlap]を仮の重なり幅として使う。
-  final Map<String, PieceHorizontalMargins> _margins = {};
+  /// 解答欄の外枠の寸法 (問題に登場する全ピースの形から1度だけ求める)。
+  late final RowMetrics _rowMetrics;
+
+  /// 選択肢エリアで1ピースが占める最大の大きさ (全ピースの最大の幅・高さ)。
+  /// 文字が長いほどピースは横に伸びるので、問題ごとに決まる。
+  late final Size _trayCell;
 
   /// この問題の画面が表示され始めた日時（研究データ用、2026年9月追加）。
   /// [GameScreen]は新しい問題に進む・再挑戦するたびに`LevelPlayScreen`側で
@@ -124,136 +104,18 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
     _startedAt = DateTime.now();
     _options = _buildOptions();
+    _rowMetrics = RowMetrics.of(_options.map((o) => o.fit));
+    _trayCell = maxPieceSize(_options.map((o) => o.fit));
     _tray = List.generate(_options.length, (i) => i);
     _slots = List<int?>.filled(kSlotCount, null);
-    _loadMargins();
   }
 
-  Future<void> _loadMargins() async {
-    final assetPaths = _options.map((o) => o.assetPath).toSet();
-    final entries = await Future.wait(
-      assetPaths.map(
-        (path) async => MapEntry(path, await loadPieceHorizontalMargins(path)),
-      ),
-    );
-    if (!mounted) return;
-    setState(() => _margins.addEntries(entries));
-  }
-
-  /// スロット[leftSlot]・[rightSlot]（左右に隣接する2枠）に置かれた絵柄同士が
-  /// ちょうど接する（重ならない）重なり幅。それぞれの実測余白（右余白＋左余白）
-  /// を打ち消す値。どちらかの余白がまだ読み込めていない・スロットが空の場合は
-  /// [kDefaultSlotOverlap] - [kExtraOverlap]（＝見た目調整前の暫定値）を使う。
-  ///
-  /// この「接する」位置は、[_SlotTarget]（ドラッグの受け皿）自体の配置に使う。
-  /// スロット同士のドラッグ受付範囲（[kPieceSlotWidth]＝絵柄の枠より一回り
-  /// 大きい）が過剰に重なると、隣のスロットのつもりで置いたピースが手前の
-  /// スロットに取られてしまう不具合が起きるため、当たり判定はここで計算する
-  /// 値（＝絵柄が重ならない範囲）を超えて詰めない。
-  double _touchOverlapBetween(int leftSlot, int rightSlot) {
-    final leftOptionIndex = _slots[leftSlot];
-    final rightOptionIndex = _slots[rightSlot];
-    if (leftOptionIndex == null || rightOptionIndex == null) {
-      return kDefaultSlotOverlap - kExtraOverlap;
-    }
-
-    final leftMargins = _margins[_options[leftOptionIndex].assetPath];
-    final rightMargins = _margins[_options[rightOptionIndex].assetPath];
-    if (leftMargins == null || rightMargins == null) {
-      return kDefaultSlotOverlap - kExtraOverlap;
-    }
-
-    return (leftMargins.right + rightMargins.left).clamp(0, kMaxSlotOverlap);
-  }
-
-  /// スロット[slotIndex]自身の当たり判定の幅（[_SlotTarget.hitWidth]に渡す値）。
-  /// スロットのウィジェット原点（[_hitLefts]の位置）から見て、自分の絵柄が
-  /// 隣（右）の絵柄とちょうど接する境界までを自分の当たり判定とする。この境界は
-  /// [_touchOverlapBetween]と同じ「絵柄の右マージン」から求まる値で、隣のスロット
-  /// の位置（[_hitLefts]の間隔）そのものとは異なる。間隔の方を使うと、絵柄自体は
-  /// まだ自分の範囲内にあるのに当たり判定だけ先に隣へ渡ってしまい、（重なりの
-  /// 手前に描かれる）自分の絵柄の後半をクリックしても隣のピースが選ばれてしまう
-  /// 不具合が起きる（2026年時点で発見・修正。実機ログで判明した）。
-  /// 右マージンが未読み込みの場合は[_touchOverlapBetween]と同じ暫定値を使う。
-  /// 隣（右）のスロットが空欄のときは譲る相手がいないため、丸ごと（[kPieceSlotWidth]）
-  /// を自分の当たり判定にする。
-  double _ownHitWidth(int slotIndex) {
-    if (slotIndex >= kSlotCount - 1 || _slots[slotIndex + 1] == null) {
-      return kPieceSlotWidth;
-    }
-    final optionIndex = _slots[slotIndex];
-    if (optionIndex == null) return kPieceSlotWidth;
-
-    final margins = _margins[_options[optionIndex].assetPath];
-    final marginRight =
-        margins?.right ?? (kDefaultSlotOverlap - kExtraOverlap) / 2;
-    return kSlotMargin + kPieceBoxWidth - marginRight;
-  }
-
-  /// [_touchOverlapBetween]に[kExtraOverlap]を足した、絵柄を実際に見た目上
-  /// 重ねる幅。[_SlotTarget]内の絵柄・文字の表示位置（当たり判定には影響しない
-  /// 見た目だけのズラし、[_GameScreenState.build]の`visualShift`参照）に使う。
-  ///
-  /// 手前（左）のピースに覆われるのは常に奥（右）のピースなので、追加で
-  /// 重ねてよい幅は、右ピース自身の文字が隠れない範囲（文字の中心位置から
-  /// 実際の描画幅の半分を引いた、絵柄の左端までの余裕）を超えない。
-  /// `un`・`re`のような短い接頭辞は[kExtraOverlap]までそのまま重ねられるが、
-  /// `fortunate`・`comfort`のような長い語幹・接尾辞は、その分だけ重なりを
-  /// 弱めて文字を隠さないようにする。
-  double _visualOverlapBetween(int leftSlot, int rightSlot) {
-    final touch = _touchOverlapBetween(leftSlot, rightSlot);
-
-    final rightOptionIndex = _slots[rightSlot];
-    if (rightOptionIndex == null) {
-      return (touch + kExtraOverlap).clamp(0, kMaxSlotOverlap);
-    }
-
-    final rightOption = _options[rightOptionIndex];
-    final rightMargins = _margins[rightOption.assetPath];
-    if (rightMargins == null) {
-      return (touch + kExtraOverlap).clamp(0, kMaxSlotOverlap);
-    }
-
-    final textHalfWidth = measurePieceLabelWidth(rightOption.text) / 2;
-    final distanceToTextEdge =
-        rightMargins.textCenterX - rightMargins.left - textHalfWidth;
-    final safeExtra = distanceToTextEdge.clamp(0, kExtraOverlap);
-
-    return (touch + safeExtra).clamp(0, kMaxSlotOverlap);
-  }
-
-  /// 解答欄の各スロット（ドラッグの受け皿）のx座標（左端からの距離）を、
-  /// 隣接ペアごとの「絵柄が接する」重なり幅を積み上げて計算する。
-  List<double> _hitLefts() {
-    final lefts = <double>[0];
-    for (var i = 0; i < kSlotCount - 1; i++) {
-      lefts.add(lefts[i] + kPieceBoxWidth - _touchOverlapBetween(i, i + 1));
-    }
-    return lefts;
-  }
-
-  /// 各スロットの絵柄を、実際にどれだけ見た目上重なって見せるかを踏まえた
-  /// x座標。[_hitLefts]と同じ考え方だが、[_visualOverlapBetween]（接する幅＋
-  /// [kExtraOverlap]）を使う分だけ間隔が詰まる。
-  List<double> _visualLefts() {
-    final lefts = <double>[0];
-    for (var i = 0; i < kSlotCount - 1; i++) {
-      lefts.add(lefts[i] + kPieceBoxWidth - _visualOverlapBetween(i, i + 1));
-    }
-    return lefts;
-  }
-
+  /// 単語データに用意された選択肢（正解ピース・おとりピース。テキスト・画像とも
+  /// 固定）をそのまま使う。全参加者が同じ刺激（形・色・文字）を見るよう、
+  /// おとりや画像は実行時に抽選せずデータ側で決めてある。表示順だけは
+  /// シャッフルする（正誤の並びが常に同じにならないようにするため）。
   List<_PieceOption> _buildOptions() {
-    final presetChoices = widget.puzzle.presetChoices;
-    if (presetChoices != null) {
-      return _buildOptionsFromPreset(presetChoices);
-    }
-    return _buildOptionsProcedurally();
-  }
-
-  /// あらかじめ人手で用意された選択肢（テキスト・画像とも固定）をそのまま使う。
-  /// 表示順だけはシャッフルする（正誤の並びが常に同じにならないようにするため）。
-  List<_PieceOption> _buildOptionsFromPreset(List<ChoicePiece> choices) {
+    final choices = widget.puzzle.presetChoices;
     final random = Random.secure();
     final partTexts = widget.puzzle.parts.map((p) => p.text).toList();
     final order = List.generate(choices.length, (i) => i)..shuffle(random);
@@ -271,69 +133,18 @@ class _GameScreenState extends State<GameScreen> {
     ];
   }
 
-  /// 正解ピースに加え、おとり・使用画像をランダムに生成する（従来の方式）。
-  List<_PieceOption> _buildOptionsProcedurally() {
-    final parts = widget.puzzle.parts;
-    final correctTexts = parts.map((p) => p.text).toSet();
-    // Random()（種指定なし）は、環境によっては短時間に連続生成すると
-    // 似た乱数列になりやすい弱いシード方式に頼ることがある。
-    // ここでは正誤に関わる抽選（おとり選び・表示順・画像選び）を全て
-    // 1つのRandom.secure()（暗号論的に安全な乱数源）に統一し、
-    // 文字色などの見た目が正誤のヒントにならないようにする。
-    final random = Random.secure();
-
-    final decoyPool =
-        kAffixPool.where((affix) => !correctTexts.contains(affix)).toList()
-          ..shuffle(random);
-    final decoyCount =
-        kMinDecoyCount + random.nextInt(kMaxDecoyCount - kMinDecoyCount + 1);
-    final decoyTexts = decoyPool.take(decoyCount);
-
-    final texts = <String>[for (final p in parts) p.text, ...decoyTexts];
-    final correctSlotIndices = <int?>[
-      for (var i = 0; i < parts.length; i++) i,
-      for (var _ in decoyTexts) null,
-    ];
-
-    final order = List.generate(texts.length, (i) => i)..shuffle(random);
-
-    // 使う画像は、テキストの割り当てとは別に独立してシャッフルする
-    // （画像から正解を推測できないようにするため）。kBasicPieceAssetsは
-    // 全て同じ凹凸パターンの色違い（6色）なので、どれを選んでも必ずかみ合う。
-    // 1問に必要な数が6を超える場合は色が重複するが、ピースの文字が異なる
-    // ので区別はできる（6色ぶんをまとめて1周とし、周ごとにシャッフルし直す
-    // ことで、同じ色が偏って連続しないようにする）。
-    final cycles = (texts.length / kBasicPieceAssets.length).ceil();
-    final assets = <String>[
-      for (var i = 0; i < cycles; i++)
-        ...(List<String>.from(kBasicPieceAssets)..shuffle(random)),
-    ].take(texts.length).toList();
-
-    return [
-      for (var displayIndex = 0; displayIndex < order.length; displayIndex++)
-        _PieceOption(
-          text: texts[order[displayIndex]],
-          correctSlotIndex: correctSlotIndices[order[displayIndex]],
-          assetPath: assets[displayIndex],
-        ),
-    ];
-  }
-
   /// 選択肢エリアの横幅から、ピース同士が重ならないマス目の列数・行数を決める。
-  /// 以前は列数を`sqrt(選択肢数)`から決め、行の高さは表示エリアの高さを行数で
-  /// 割った値をそのまま使っていたため、選択肢が多い・画面が縦に狭いスマホ
-  /// サイズの画面では、行の高さがピース1個分の当たり判定サイズ
-  /// （[kPieceSlotWidth]×[kPieceSlotHeight]）を下回ることがあった。ピースは
-  /// 画像読み込み前後を問わずドラッグを取りこぼさないよう、見た目より一回り
-  /// 大きい透明な当たり判定を常に持っている（`puzzle_piece_shape.dart`）ため、
-  /// マスが詰まると隣の行のピースの透明な当たり判定が下の行のピースの絵柄に
-  /// 覆いかぶさり、直感的にクリックしたピースとは別のピースがドラッグされて
-  /// しまう不具合があった（2026年時点で発見・修正）。列数は横幅から
-  /// [kPieceSlotWidth]で割り切れる数までしか作らず、行の高さは常に
-  /// [kPieceSlotHeight]以上を確保する（縦に収まりきらない分は、選択肢エリア
-  /// 全体を縦スクロール可能にすることで表示する。[_trayContentHeight]参照）。
+  /// 1マスの大きさは、この問題で最も大きい（＝文字が最も長い）ピースに合わせる
+  /// （[_trayCell]）。ピースは画像読み込み前後を問わずドラッグを取りこぼさない
+  /// よう、出っ張りまで含む透明な当たり判定を常に持っている
+  /// （`puzzle_piece_shape.dart`）ため、マスが詰まると隣のピースの当たり判定が
+  /// 絵柄に覆いかぶさり、クリックしたピースとは別のピースがドラッグされて
+  /// しまう（2026年時点で発見・修正）。そのため列数は横幅を[_trayCell]の幅で
+  /// 割り切れる数までしか作らず、行の高さは常に[_trayCell]の高さ以上を確保する
+  /// （縦に収まりきらない分は、選択肢エリア全体を縦スクロール可能にして表示する。
+  /// [_trayContentHeight]参照）。
   int _trayColumnCount(double areaWidth) {
-    return max(1, (areaWidth / kPieceSlotWidth).floor());
+    return max(1, (areaWidth / _trayCell.width).floor());
   }
 
   /// [_trayColumnCount]の列数で選択肢[count]個を並べたときに必要な行数。
@@ -342,11 +153,11 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   /// 選択肢エリアの実際の描画高さ。選択肢を並べるのに必要な高さ（行数×
-  /// [kPieceSlotHeight]）が表示エリアの高さより大きい場合は、その必要な高さを
+  /// [_trayCell]の高さ）が表示エリアの高さより大きい場合は、その必要な高さを
   /// 使う（＝縦スクロールで全ピースに届くようにする）。
   double _trayContentHeight(Size area, int count) {
     final rows = _trayRowCount(area.width, count);
-    return max(area.height, rows * kPieceSlotHeight);
+    return max(area.height, rows * _trayCell.height);
   }
 
   /// 選択肢エリアを大まかなマス目に分け、各ピースを別々のマスの中でランダムにずらして
@@ -362,10 +173,10 @@ class _GameScreenState extends State<GameScreen> {
     final contentHeight = _trayContentHeight(area, count);
     final cellWidth = area.width / cols;
     final cellHeight = contentHeight / rows;
-    final jitterX = max(0.0, cellWidth - kPieceSlotWidth);
-    final jitterY = max(0.0, cellHeight - kPieceSlotHeight);
-    final maxX = max(1.0, area.width - kPieceSlotWidth);
-    final maxY = max(1.0, contentHeight - kPieceSlotHeight);
+    final jitterX = max(0.0, cellWidth - _trayCell.width);
+    final jitterY = max(0.0, cellHeight - _trayCell.height);
+    final maxX = max(1.0, area.width - _trayCell.width);
+    final maxY = max(1.0, contentHeight - _trayCell.height);
 
     final cells = List.generate(cols * rows, (i) => i)..shuffle(random);
 
@@ -413,8 +224,8 @@ class _GameScreenState extends State<GameScreen> {
       final box = _trayAreaKey.currentContext?.findRenderObject();
       if (box is RenderBox && box.hasSize && _scatterFractions != null) {
         final local = box.globalToLocal(globalDropOffset);
-        final maxX = max(1.0, box.size.width - kPieceSlotWidth);
-        final maxY = max(1.0, box.size.height - kPieceSlotHeight);
+        final maxX = max(1.0, box.size.width - _trayCell.width);
+        final maxY = max(1.0, box.size.height - _trayCell.height);
         _scatterFractions![optionIndex] = Offset(
           (local.dx / maxX).clamp(0.0, 1.0),
           (local.dy / maxY).clamp(0.0, 1.0),
@@ -469,6 +280,100 @@ class _GameScreenState extends State<GameScreen> {
     Navigator.of(context).popUntil((route) => route.isFirst);
   }
 
+  /// 空欄のスロットが連続する区間 (背景の枠を描く単位)。
+  List<_EmptyRun> _emptyRuns(RowLayout layout) {
+    final runs = <_EmptyRun>[];
+    var i = 0;
+    while (i < kSlotCount) {
+      if (_slots[i] != null) {
+        i++;
+        continue;
+      }
+      final start = i;
+      while (i < kSlotCount && _slots[i] == null) {
+        i++;
+      }
+      final first = layout.slots[start];
+      final last = layout.slots[i - 1];
+      runs.add(_EmptyRun(
+        left: first.bodyLeft,
+        width: last.bodyLeft + last.bodyWidth - first.bodyLeft,
+        startsAtRowEdge: start == 0,
+        endsAtRowEdge: i == kSlotCount,
+      ));
+    }
+    return runs;
+  }
+
+  /// 解答欄（常に[kSlotCount]枠）。
+  ///
+  /// 隣り合うピースは、本体（四角い部分）の左右の端をぴったり突き合わせて並べる。
+  /// 出っ張りと凹みはこれでかみ合うので、重なり幅を調整する必要はない。文字の
+  /// 長いピースは本体が横に伸びる（[PieceFit.extra]）ぶん、右隣以降が押し出される。
+  /// ドラッグの受け皿（当たり判定）も本体の矩形そのもので、スロット同士は
+  /// 重ならない（出っ張りの部分は隣のスロットの範囲に入る）。
+  ///
+  /// 3枠とも長いピースが入ると画面幅を超えることがある。その場合は
+  /// 全体を縮小して収める（[FittedBox]。当たり判定も一緒に縮小される）。
+  Widget _buildAnswerRow() {
+    final fits = [
+      for (final i in _slots) i == null ? null : _options[i].fit,
+    ];
+    final layout = layoutRow(fits, _rowMetrics);
+    return FittedBox(
+      fit: BoxFit.scaleDown,
+      child: SizedBox(
+        width: layout.width,
+        height: _rowMetrics.height,
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            // 背景：空欄のスロットの区画だけに枠を描く（ピースが半透明なので、
+            // ピースの下にも枠を描くと線が透けて見える）。空欄が連続する区間は
+            // 1つの枠にまとめる。
+            for (final run in _emptyRuns(layout))
+              Positioned(
+                left: run.left,
+                top: _rowMetrics.topPad,
+                child: _SlotRowBackground(
+                  width: run.width,
+                  height: kEmptySlotBodyHeight,
+                  roundLeft: run.startsAtRowEdge,
+                  roundRight: run.endsAtRowEdge,
+                ),
+              ),
+            // 継ぎ目で出っ張りを持つ方が手前になる順に描画する。
+            for (final i in layout.paintOrder)
+              Positioned(
+                key: ValueKey('slot_position_$i'),
+                left: layout.slots[i].bodyLeft,
+                top: 0,
+                child: _SlotTarget(
+                  key: ValueKey('slot_$i'),
+                  slotIndex: i,
+                  placedIndex: _slots[i],
+                  placedOption: _slots[i] != null ? _options[_slots[i]!] : null,
+                  width: layout.slots[i].bodyWidth,
+                  height: _rowMetrics.height,
+                  emptyTop: _rowMetrics.topPad,
+                  // ピース画像の左上の、スロット(本体の左端・行の上端)から見た位置。
+                  pieceOffset: _slots[i] == null
+                      ? Offset.zero
+                      : Offset(
+                          -_options[_slots[i]!].fit.geometry.bodyLeftPx,
+                          layout.slots[i].pieceTop!,
+                        ),
+                  onAccept: _placeInSlot,
+                  onReturnToTray: _returnToTray,
+                  onDragCompleted: () => _dragCount++,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // 解答欄（上部の3枠）の外側であれば、画面のどこにドロップしても選択肢に戻る。
@@ -515,63 +420,7 @@ class _GameScreenState extends State<GameScreen> {
                     ],
                     const SizedBox(height: 24),
                     // 上部：完成形スロット（常に kSlotCount 枠）
-                    Builder(
-                      builder: (context) {
-                        // ドラッグの受け皿（当たり判定）は「絵柄が接する」間隔のまま配置する
-                        // （hitLefts）。見た目上さらに重ねる分（kExtraOverlap）は、受け皿の
-                        // 位置には反映せず、中の絵柄・文字だけをTransform.translateで
-                        // ズラして見せる（transformHitTests: falseで当たり判定には影響させない）。
-                        // これにより、見た目は重なって見えつつ、隣のスロットのつもりで置いた
-                        // ピースが手前のスロットに取られる誤動作を防ぐ。
-                        final hitLefts = _hitLefts();
-                        final visualLefts = _visualLefts();
-                        final rowWidth = hitLefts.last + kPieceSlotWidth;
-                        final backgroundWidth =
-                            visualLefts.last + kPieceBoxWidth;
-                        return SizedBox(
-                          height: kPieceSlotHeight,
-                          width: rowWidth,
-                          child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              // 背景：外枠線を1枚だけ描く。ピースはこの上に重ねて表示する。
-                              Positioned(
-                                left: kSlotMargin,
-                                top: kSlotMargin,
-                                child: _SlotRowBackground(
-                                  width: backgroundWidth,
-                                ),
-                              ),
-                              // 手前・奥の関係が常に同じになるよう、左のピースが常に手前
-                              // （上）に来る順で描画する（Stackは後に描画したものが手前に
-                              // なるため、番号の大きい方＝右のピースから先に描画する）。
-                              for (var i = kSlotCount - 1; i >= 0; i--)
-                                Positioned(
-                                  left: hitLefts[i],
-                                  top: 0,
-                                  child: _SlotTarget(
-                                    key: ValueKey('slot_$i'),
-                                    slotIndex: i,
-                                    placedIndex: _slots[i],
-                                    placedOption: _slots[i] != null
-                                        ? _options[_slots[i]!]
-                                        : null,
-                                    visualShift: visualLefts[i] - hitLefts[i],
-                                    // 隣（右）のスロットとの当たり判定の重なりを防ぐため、
-                                    // このスロットの当たり判定の幅は、自分の絵柄が隣の
-                                    // 絵柄とちょうど接する境界までに制限する（絵柄自体は
-                                    // 従来通りkPieceSlotWidthの幅で重ねて表示する）。
-                                    hitWidth: _ownHitWidth(i),
-                                    onAccept: _placeInSlot,
-                                    onReturnToTray: _returnToTray,
-                                    onDragCompleted: () => _dragCount++,
-                                  ),
-                                ),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
+                    _buildAnswerRow(),
                     const SizedBox(height: 8),
                     // 中央：選択肢（正解ピース＋おとりピース）を、あいているスペースに散らして配置。
                     Expanded(
@@ -585,10 +434,10 @@ class _GameScreenState extends State<GameScreen> {
                             area,
                             _options.length,
                           );
-                          final maxX = max(0.0, area.width - kPieceSlotWidth);
+                          final maxX = max(0.0, area.width - _trayCell.width);
                           final maxY = max(
                             0.0,
-                            contentHeight - kPieceSlotHeight,
+                            contentHeight - _trayCell.height,
                           );
                           final positions = [
                             for (final f in fractions)
@@ -713,30 +562,60 @@ class _GameScreenState extends State<GameScreen> {
   }
 }
 
-/// 解答欄ぶんの背景（外枠線のみ）を1枚だけ描く。ピースはこの背景の上に
-/// 少しずつ重ねて表示するので、ピース自体には枠を持たせない。ピース同士が
-/// 重なって表示されるようになったため、以前あった内側の仕切り線は
-/// （重なり位置と合わなくなるため）廃止した。
+/// 空欄のスロットが連続する区間。
+class _EmptyRun {
+  const _EmptyRun({
+    required this.left,
+    required this.width,
+    required this.startsAtRowEdge,
+    required this.endsAtRowEdge,
+  });
+
+  final double left;
+  final double width;
+  final bool startsAtRowEdge;
+  final bool endsAtRowEdge;
+}
+
+/// 空欄のスロット区間の背景（枠線つき）。ピースと接する側は角を丸めず、
+/// 解答欄の左右の端にあたる側だけ丸める。
 class _SlotRowBackground extends StatelessWidget {
-  const _SlotRowBackground({required this.width});
+  const _SlotRowBackground({
+    required this.width,
+    required this.height,
+    required this.roundLeft,
+    required this.roundRight,
+  });
 
   final double width;
+  final double height;
+  final bool roundLeft;
+  final bool roundRight;
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      size: Size(width, kPieceBoxHeight),
-      painter: _SlotRowBackgroundPainter(),
+      size: Size(width, height),
+      painter: _SlotRowBackgroundPainter(roundLeft: roundLeft, roundRight: roundRight),
     );
   }
 }
 
 class _SlotRowBackgroundPainter extends CustomPainter {
+  _SlotRowBackgroundPainter({required this.roundLeft, required this.roundRight});
+
+  final bool roundLeft;
+  final bool roundRight;
+
   @override
   void paint(Canvas canvas, Size size) {
-    final rrect = RRect.fromRectAndRadius(
+    const radius = Radius.circular(8);
+    final rrect = RRect.fromRectAndCorners(
       Rect.fromLTWH(0, 0, size.width, size.height),
-      const Radius.circular(8),
+      topLeft: roundLeft ? radius : Radius.zero,
+      bottomLeft: roundLeft ? radius : Radius.zero,
+      topRight: roundRight ? radius : Radius.zero,
+      bottomRight: roundRight ? radius : Radius.zero,
     );
     canvas.drawRRect(rrect, Paint()..color = const Color(0xFFECEFF1));
 
@@ -748,7 +627,8 @@ class _SlotRowBackgroundPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _SlotRowBackgroundPainter oldDelegate) => false;
+  bool shouldRepaint(covariant _SlotRowBackgroundPainter old) =>
+      old.roundLeft != roundLeft || old.roundRight != roundRight;
 }
 
 class _SlotTarget extends StatefulWidget {
@@ -757,8 +637,10 @@ class _SlotTarget extends StatefulWidget {
     required this.slotIndex,
     required this.placedIndex,
     required this.placedOption,
-    required this.visualShift,
-    required this.hitWidth,
+    required this.width,
+    required this.height,
+    required this.emptyTop,
+    required this.pieceOffset,
     required this.onAccept,
     required this.onReturnToTray,
     required this.onDragCompleted,
@@ -768,25 +650,23 @@ class _SlotTarget extends StatefulWidget {
   final int? placedIndex;
   final _PieceOption? placedOption;
 
-  /// 絵柄・文字を、当たり判定の位置から見た目だけどれだけ左右にズラして
-  /// 見せるか（px）。隣のピースと実際にかぶさって見えるようにするための
-  /// 調整で、ドラッグの開始・ドロップ判定の位置には影響しない。
-  final double visualShift;
-
-  /// このスロットの当たり判定（クリック・ドラッグ開始を受け付ける範囲）の幅。
-  /// 絵柄自体は常に[kPieceSlotWidth]の幅で（隣のスロットと重なって見えるように）
-  /// 描画するが、当たり判定は自分の絵柄が隣（右）の絵柄とちょうど接する境界
-  /// （[_GameScreenState._ownHitWidth]参照）までに制限する。
+  /// このスロットの当たり判定（クリック・ドラッグ開始・ドロップを受け付ける範囲）。
+  /// 幅はピースの本体の幅そのもので、隣のスロットとは重ならない。高さは
+  /// 上下の出っ張りまで含む解答欄の高さいっぱい。
   ///
-  /// これを絵柄と同じ[kPieceSlotWidth]のままにすると、手前に描画される左側の
-  /// スロットの当たり判定が右隣のスロットの表示領域まで食い込み、右隣のピースを
-  /// クリックしたつもりでも左側のピースがドラッグされてしまう不具合が起きる。
-  /// 逆に、隣のスロットのウィジェット位置（間隔）をそのまま使って詰めすぎると、
-  /// 今度は自分自身の絵柄の後半（まだ隣の絵柄と重なっていない範囲）まで
-  /// 当たり判定から外れてしまい、自分の絵柄をクリックしたつもりでも隣のピースが
-  /// 選ばれてしまう（どちらも2026年時点で発見・修正。実機ログでクリック座標と
-  /// 実際にドラッグが始まったピースを突き合わせて特定した）。
-  final double hitWidth;
+  /// 以前は隣のピースと絵柄を重ねて見せていたため、当たり判定を絵柄の重なりに
+  /// 合わせて細かく調整する必要があった（隣のピースを掴もうとして手前のピースを
+  /// 掴んでしまう不具合が繰り返し起きた）。本体どうしを突き合わせる方式にして、
+  /// 当たり判定は単純に「自分の本体の矩形」だけで済む。
+  final double width;
+  final double height;
+
+  /// 空欄のとき、ドロップ候補をハイライトする枠の上端（解答欄の上端から）。
+  final double emptyTop;
+
+  /// ピース画像の左上の位置（このスロットの左上から見た座標）。左の出っ張りの
+  /// ぶん x は負になり、画像の一部が左隣のスロットの範囲に入ることがある。
+  final Offset pieceOffset;
 
   final void Function(int optionIndex, int slotIndex) onAccept;
   final void Function(int optionIndex) onReturnToTray;
@@ -824,70 +704,69 @@ class _SlotTargetState extends State<_SlotTarget> {
             text: option.text,
             assetPath: option.assetPath,
           );
-          return Stack(
-            clipBehavior: Clip.none,
-            children: [
-              // 見た目専用レイヤー：隣のスロットと重なって見える部分も含め、
-              // 常に絵柄いっぱい（kPieceSlotWidth）で描画する。当たり判定は
-              // 持たせない（IgnorePointer）ので、隣のスロットへのクリックを
-              // 奪わない。自分自身のドラッグ中は、以前と同じく薄く表示する。
-              IgnorePointer(
-                child: Opacity(
-                  opacity: _isDragging ? 0.3 : 1.0,
-                  child: Transform.translate(
-                    offset: Offset(widget.visualShift, 0),
-                    child: piece,
+          return SizedBox(
+            width: widget.width,
+            height: widget.height,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                // 見た目専用レイヤー：出っ張りの部分は隣のスロットの範囲に
+                // はみ出して描画される。当たり判定は持たせない（IgnorePointer）。
+                // 自分自身のドラッグ中は、以前と同じく薄く表示する。
+                Positioned(
+                  left: widget.pieceOffset.dx,
+                  top: widget.pieceOffset.dy,
+                  child: IgnorePointer(
+                    child: Opacity(
+                      opacity: _isDragging ? 0.3 : 1.0,
+                      child: piece,
+                    ),
                   ),
                 ),
-              ),
-              // 当たり判定専用レイヤー：次のスロットが始まる位置（hitWidth）
-              // までに制限する。絵柄はレイヤー1が描画するので、ここでは
-              // 透明な領域のみを用意する。
-              SizedBox(
-                width: widget.hitWidth,
-                height: kPieceSlotHeight,
-                child: Draggable<int>(
-                  data: index,
-                  onDragStarted: () => setState(() => _isDragging = true),
-                  onDragEnd: (_) {
-                    setState(() => _isDragging = false);
-                    widget.onDragCompleted();
-                  },
-                  onDraggableCanceled: (_, _) =>
-                      setState(() => _isDragging = false),
-                  feedback: Material(
-                    color: Colors.transparent,
-                    child: draggingFeedback,
-                  ),
-                  childWhenDragging: const SizedBox.shrink(),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.opaque,
-                    onTap: () => widget.onReturnToTray(index),
-                    child: const SizedBox.expand(),
+                // 当たり判定専用レイヤー：本体の矩形ぶん。
+                Positioned.fill(
+                  child: Draggable<int>(
+                    data: index,
+                    onDragStarted: () => setState(() => _isDragging = true),
+                    onDragEnd: (_) {
+                      setState(() => _isDragging = false);
+                      widget.onDragCompleted();
+                    },
+                    onDraggableCanceled: (_, _) =>
+                        setState(() => _isDragging = false),
+                    feedback: Material(
+                      color: Colors.transparent,
+                      child: draggingFeedback,
+                    ),
+                    childWhenDragging: const SizedBox.shrink(),
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.opaque,
+                      onTap: () => widget.onReturnToTray(index),
+                      child: const SizedBox.expand(),
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         }
 
         // 空欄のときは背景（外枠線のみ）がそのまま見える。
         // ドラッグ中だけ、その区画に軽くハイライトを重ねる。
-        if (!isHovering) {
-          return const SizedBox(
-            width: kPieceSlotWidth,
-            height: kPieceSlotHeight,
-          );
-        }
         return SizedBox(
-          width: kPieceSlotWidth,
-          height: kPieceSlotHeight,
-          child: Padding(
-            padding: const EdgeInsets.all(kSlotMargin),
-            child: Container(
-              color: const Color(0xFFFFE0B2).withValues(alpha: 0.6),
-            ),
-          ),
+          width: widget.width,
+          height: widget.height,
+          child: isHovering
+              ? Padding(
+                  padding: EdgeInsets.only(
+                    top: widget.emptyTop,
+                    bottom: widget.height - widget.emptyTop - kEmptySlotBodyHeight,
+                  ),
+                  child: Container(
+                    color: const Color(0xFFFFE0B2).withValues(alpha: 0.6),
+                  ),
+                )
+              : null,
         );
       },
     );

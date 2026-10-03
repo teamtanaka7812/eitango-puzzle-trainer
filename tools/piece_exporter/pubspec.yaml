@@ -1,0 +1,17 @@
+name: piece_exporter
+description: >
+  puzzle_pieces の SVG 原本から、アプリ用の PNG と形状メタデータ
+  (assets/puzzle_pieces_v3/) を書き出す開発用ツール。アプリ本体には含まれない。
+publish_to: none
+
+environment:
+  sdk: ^3.9.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_svg: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:word_puzzle_trainer/models/puzzle_word.dart';
 import 'package:word_puzzle_trainer/screens/game_screen.dart';
 
-const _twoPiecePuzzle = PuzzleWord(
-  id: 'test-unhappy',
-  word: 'unhappy',
-  level: 1,
-  parts: [
-    WordPiecePart(text: 'un'),
-    WordPiecePart(text: 'happy'),
-  ],
-  meaning: '不幸な',
-  exampleEn: 'example sentence',
-  exampleJa: '例文',
-);
+import 'support/test_puzzles.dart';
 
 Offset _globalTopLeftOf(WidgetTester tester, String pieceText) {
   final finder = find.ancestor(of: find.text(pieceText), matching: find.byType(Draggable<int>));
@@ -58,7 +46,7 @@ void main() {
   testWidgets('選択肢エリア内でピースをドラッグすると、ドロップした場所にそのまま留まる',
       (tester) async {
     await tester.pumpWidget(
-      MaterialApp(home: GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (_) {})),
+      MaterialApp(home: GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
     await tester.pumpAndSettle();
 

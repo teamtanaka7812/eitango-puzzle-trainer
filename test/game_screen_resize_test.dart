@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:word_puzzle_trainer/models/puzzle_word.dart';
 import 'package:word_puzzle_trainer/screens/game_screen.dart';
 import 'package:word_puzzle_trainer/widgets/puzzle_piece_shape.dart';
 
-const _twoPiecePuzzle = PuzzleWord(
-  id: 'test-unhappy',
-  word: 'unhappy',
-  level: 1,
-  parts: [
-    WordPiecePart(text: 'un'),
-    WordPiecePart(text: 'happy'),
-  ],
-  meaning: '不幸な',
-  exampleEn: 'example sentence',
-  exampleJa: '例文',
-);
+import 'support/test_puzzles.dart';
 
 /// 選択肢エリア（piece_tray_area）に対する、指定ピースの相対位置（0.0〜1.0）を求める。
 Offset _relativePositionOf(WidgetTester tester, String pieceText) {
@@ -31,9 +19,23 @@ Offset _relativePositionOf(WidgetTester tester, String pieceText) {
   final pieceBox = tester.renderObject<RenderBox>(pieceFinder);
   final pieceTopLeft = pieceBox.localToGlobal(Offset.zero);
 
+  // 配置の範囲は、エリアの大きさから「1ピースが占める最大の大きさ」を引いたもの。
+  // 最大の大きさは、トレイに並んだ全ピースの実際の大きさのうち最大の幅・高さ。
+  var cellW = 0.0, cellH = 0.0;
+  for (final element in find
+      .descendant(
+        of: find.byKey(const ValueKey('piece_tray_area')),
+        matching: find.byType(PuzzlePieceShape),
+      )
+      .evaluate()) {
+    final size = (element.renderObject! as RenderBox).size;
+    cellW = cellW > size.width ? cellW : size.width;
+    cellH = cellH > size.height ? cellH : size.height;
+  }
+
   final relative = pieceTopLeft - areaTopLeft;
-  final maxX = areaSize.width - kPieceSlotWidth;
-  final maxY = areaSize.height - kPieceSlotHeight;
+  final maxX = areaSize.width - cellW;
+  final maxY = areaSize.height - cellH;
   return Offset(relative.dx / maxX, relative.dy / maxY);
 }
 
@@ -46,7 +48,7 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
 
     await tester.pumpWidget(
-      MaterialApp(home: GameScreen(puzzle: _twoPiecePuzzle, onAnswer: (_) {})),
+      MaterialApp(home: GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
     await tester.pumpAndSettle();
 

@@ -9,6 +9,8 @@ Future<void> _dragToTarget(
   required Finder from,
   required Finder to,
 }) async {
+  await tester.ensureVisible(from);
+  await tester.pumpAndSettle();
   final start = tester.getCenter(from);
   final end = tester.getCenter(to);
 

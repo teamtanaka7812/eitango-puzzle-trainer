@@ -36,6 +36,10 @@ Future<void> _dragPieceToSlot(
   final pieceFinder = find.text(pieceText);
   final slotFinder = find.byKey(ValueKey('slot_$slotIndex'));
 
+  // 画面の狭いテスト環境では、選択肢エリアを縦にスクロールしないと届かない
+  // ピースがある。
+  await tester.ensureVisible(pieceFinder);
+  await tester.pumpAndSettle();
   final start = tester.getCenter(pieceFinder);
   final end = tester.getCenter(slotFinder);
 
