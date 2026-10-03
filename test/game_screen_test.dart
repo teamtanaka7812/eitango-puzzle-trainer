@@ -57,14 +57,22 @@ void main() {
     expect(find.text('tion'), findsOneWidget);
   });
 
-  testWidgets('解答欄は単語のピース数によらず常に3枠（slot_0〜slot_2）表示される', (tester) async {
+  testWidgets('解答欄の枠数は正解のピース数と同じ（2ピースなら2枠、3ピースなら3枠）', (tester) async {
     await tester.pumpWidget(
       wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (_) {})),
     );
+    expect(find.byKey(const ValueKey('slot_0')), findsOneWidget);
+    expect(find.byKey(const ValueKey('slot_1')), findsOneWidget);
+    expect(find.byKey(const ValueKey('slot_2')), findsNothing);
 
+    // 実アプリは問題ごとにGameScreenを作り直す（キーが異なる）ので、同じようにする。
+    await tester.pumpWidget(
+      wrap(GameScreen(key: const ValueKey('three'), puzzle: threePiecePuzzle, onAnswer: (_) {})),
+    );
     expect(find.byKey(const ValueKey('slot_0')), findsOneWidget);
     expect(find.byKey(const ValueKey('slot_1')), findsOneWidget);
     expect(find.byKey(const ValueKey('slot_2')), findsOneWidget);
+    expect(find.byKey(const ValueKey('slot_3')), findsNothing);
   });
 
   testWidgets('選択肢には、単語データに用意された正解ピースとおとりピースが全て並ぶ', (tester) async {
@@ -94,23 +102,16 @@ void main() {
     expect(result, isTrue);
   });
 
-  testWidgets('2ピースの単語で、余った3枠目に何か置いてしまうとonAnswer(false)が呼ばれる', (tester) async {
+  testWidgets('2ピースの単語で、おとりピースを置いてAnswer!を押すとonAnswer(false)が呼ばれる', (tester) async {
     bool? result;
     await tester.pumpWidget(
       wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);
-    await _dragPieceToSlot(tester, pieceText: 'happy', slotIndex: 1);
 
-    // おとりピース（トレイに残っている、un/happy以外のどれか）を、余っているslot_2に置いてしまう。
-    final decoyFinder = find
-        .descendant(
-          of: find.byKey(const ValueKey('piece_tray_area')),
-          matching: find.byType(Draggable<int>),
-        )
-        .first;
-    await _dragToTarget(tester, from: decoyFinder, to: find.byKey(const ValueKey('slot_2')));
+    // おとりピース（dis）をslot_1に置く。
+    await _dragPieceToSlot(tester, pieceText: 'dis', slotIndex: 1);
 
     await tester.tap(find.text('Answer!'));
     await tester.pumpAndSettle();

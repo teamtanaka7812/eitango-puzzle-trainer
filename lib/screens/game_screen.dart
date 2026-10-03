@@ -8,9 +8,9 @@ import '../services/local_history_service.dart';
 import '../widgets/piece_row_layout.dart';
 import '../widgets/puzzle_piece_shape.dart';
 
-/// 解答欄のスロット数。単語の正解ピース数（2〜3）によらず常にこの数だけ表示する。
-/// 使わない末尾のスロットは空欄のままにする。
-const int kSlotCount = 3;
+/// ドラッグ中のピースが近づいた解答欄の枠をハイライトする色（塗り・縁取り）。
+const Color kDropHighlightColor = Color(0xFFFFA726);
+const Color kDropHighlightBorderColor = Color(0xFFE65100);
 
 /// 選択肢に並ぶ1ピース分。正解ピースか、おとりピースかを区別する。
 class _PieceOption {
@@ -107,7 +107,8 @@ class _GameScreenState extends State<GameScreen> {
     _rowMetrics = RowMetrics.of(_options.map((o) => o.fit));
     _trayCell = maxPieceSize(_options.map((o) => o.fit));
     _tray = List.generate(_options.length, (i) => i);
-    _slots = List<int?>.filled(kSlotCount, null);
+    // 解答欄の枠数は、その問題の正解ピース数（2または3）に合わせる。
+    _slots = List<int?>.filled(widget.puzzle.parts.length, null);
   }
 
   /// 単語データに用意された選択肢（正解ピース・おとりピース。テキスト・画像とも
@@ -242,13 +243,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _onAnswerPressed() {
-    final partsLength = widget.puzzle.parts.length;
-    final isCorrect = List.generate(kSlotCount, (i) {
+    final isCorrect = List.generate(_slots.length, (i) {
       final placed = _slots[i];
-      if (i >= partsLength) {
-        // 使わない末尾スロットは、空のままであることが正解。
-        return placed == null;
-      }
       if (placed == null) return false;
       final option = _options[placed];
       return !option.isDecoy && option.correctSlotIndex == i;
@@ -284,13 +280,13 @@ class _GameScreenState extends State<GameScreen> {
   List<_EmptyRun> _emptyRuns(RowLayout layout) {
     final runs = <_EmptyRun>[];
     var i = 0;
-    while (i < kSlotCount) {
+    while (i < _slots.length) {
       if (_slots[i] != null) {
         i++;
         continue;
       }
       final start = i;
-      while (i < kSlotCount && _slots[i] == null) {
+      while (i < _slots.length && _slots[i] == null) {
         i++;
       }
       final first = layout.slots[start];
@@ -299,13 +295,17 @@ class _GameScreenState extends State<GameScreen> {
         left: first.bodyLeft,
         width: last.bodyLeft + last.bodyWidth - first.bodyLeft,
         startsAtRowEdge: start == 0,
-        endsAtRowEdge: i == kSlotCount,
+        endsAtRowEdge: i == _slots.length,
+        // 空欄が連続しているときは、枠の数が分かるように枠の境目に仕切り線を引く。
+        dividers: [
+          for (var k = start + 1; k < i; k++) layout.slots[k].bodyLeft - first.bodyLeft,
+        ],
       ));
     }
     return runs;
   }
 
-  /// 解答欄（常に[kSlotCount]枠）。
+  /// 解答欄（枠数は正解ピース数と同じ、2または3枠）。
   ///
   /// 隣り合うピースは、本体（四角い部分）の左右の端をぴったり突き合わせて並べる。
   /// 出っ張りと凹みはこれでかみ合うので、重なり幅を調整する必要はない。文字の
@@ -340,6 +340,7 @@ class _GameScreenState extends State<GameScreen> {
                   height: kEmptySlotBodyHeight,
                   roundLeft: run.startsAtRowEdge,
                   roundRight: run.endsAtRowEdge,
+                  dividers: run.dividers,
                 ),
               ),
             // 継ぎ目で出っ張りを持つ方が手前になる順に描画する。
@@ -419,7 +420,7 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     ],
                     const SizedBox(height: 24),
-                    // 上部：完成形スロット（常に kSlotCount 枠）
+                    // 上部：完成形スロット（正解ピース数と同じ枠数）
                     _buildAnswerRow(),
                     const SizedBox(height: 8),
                     // 中央：選択肢（正解ピース＋おとりピース）を、あいているスペースに散らして配置。
@@ -569,12 +570,16 @@ class _EmptyRun {
     required this.width,
     required this.startsAtRowEdge,
     required this.endsAtRowEdge,
+    required this.dividers,
   });
 
   final double left;
   final double width;
   final bool startsAtRowEdge;
   final bool endsAtRowEdge;
+
+  /// 区間の左端から、枠の境目までの距離。
+  final List<double> dividers;
 }
 
 /// 空欄のスロット区間の背景（枠線つき）。ピースと接する側は角を丸めず、
@@ -585,27 +590,38 @@ class _SlotRowBackground extends StatelessWidget {
     required this.height,
     required this.roundLeft,
     required this.roundRight,
+    required this.dividers,
   });
 
   final double width;
   final double height;
   final bool roundLeft;
   final bool roundRight;
+  final List<double> dividers;
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
       size: Size(width, height),
-      painter: _SlotRowBackgroundPainter(roundLeft: roundLeft, roundRight: roundRight),
+      painter: _SlotRowBackgroundPainter(
+        roundLeft: roundLeft,
+        roundRight: roundRight,
+        dividers: dividers,
+      ),
     );
   }
 }
 
 class _SlotRowBackgroundPainter extends CustomPainter {
-  _SlotRowBackgroundPainter({required this.roundLeft, required this.roundRight});
+  _SlotRowBackgroundPainter({
+    required this.roundLeft,
+    required this.roundRight,
+    required this.dividers,
+  });
 
   final bool roundLeft;
   final bool roundRight;
+  final List<double> dividers;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -624,11 +640,17 @@ class _SlotRowBackgroundPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2;
     canvas.drawRRect(rrect, linePaint);
+    for (final x in dividers) {
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), linePaint);
+    }
   }
 
   @override
   bool shouldRepaint(covariant _SlotRowBackgroundPainter old) =>
-      old.roundLeft != roundLeft || old.roundRight != roundRight;
+      old.roundLeft != roundLeft ||
+      old.roundRight != roundRight ||
+      old.dividers.length != dividers.length ||
+      old.dividers.indexed.any((e) => e.$2 != dividers[e.$1]);
 }
 
 class _SlotTarget extends StatefulWidget {
@@ -762,8 +784,23 @@ class _SlotTargetState extends State<_SlotTarget> {
                     top: widget.emptyTop,
                     bottom: widget.height - widget.emptyTop - kEmptySlotBodyHeight,
                   ),
+                  // 「ここに置けます」の表示。灰色の枠・クリーム色の背景・ピースの色
+                  // （赤・緑・黄・水色）のどれとも見分けがつくよう、濃いオレンジの
+                  // 塗りと太い縁取りにしている。
                   child: Container(
-                    color: const Color(0xFFFFE0B2).withValues(alpha: 0.6),
+                    decoration: BoxDecoration(
+                      color: kDropHighlightColor.withValues(alpha: 0.85),
+                      border: Border.all(color: kDropHighlightBorderColor, width: 3),
+                      // ドラッグ中のピースは枠より大きく、真上に来ると枠が隠れるので、
+                      // 外側にも光がはみ出して見えるようにする。
+                      boxShadow: [
+                        BoxShadow(
+                          color: kDropHighlightColor.withValues(alpha: 0.9),
+                          blurRadius: 10,
+                          spreadRadius: 4,
+                        ),
+                      ],
+                    ),
                   ),
                 )
               : null,

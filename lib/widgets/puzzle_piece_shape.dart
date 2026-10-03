@@ -167,7 +167,7 @@ class PuzzlePieceShape extends StatelessWidget {
               // （透明な背景部分まで塗りつぶさないようにするため）。
               imageWidget = ColorFiltered(
                 colorFilter: const ColorFilter.mode(
-                  Color(0x59FF7043),
+                  Color(0xA6FF6D00),
                   BlendMode.srcATop,
                 ),
                 child: imageWidget,
