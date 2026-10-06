@@ -153,7 +153,18 @@ class PuzzlePieceShape extends StatelessWidget {
         builder: (context, snapshot) {
           final asset = snapshot.data;
           Widget? imageWidget;
+          Widget? effectsWidget;
           if (asset != null) {
+            // 輪郭線・影は本体の外側だけに描く別レイヤー。ハイライトの色付けは
+            // 本体にだけ掛け、輪郭・影には掛けない。
+            effectsWidget = CustomPaint(
+              size: Size(fit.width, fit.height),
+              painter: _PieceEffectsPainter(
+                image: asset.image,
+                geometry: fit.geometry,
+                extra: fit.extra,
+              ),
+            );
             imageWidget = CustomPaint(
               size: Size(fit.width, fit.height),
               painter: _PieceImagePainter(
@@ -182,6 +193,7 @@ class PuzzlePieceShape extends StatelessWidget {
               // （読み込み前は透明な当たり判定のみになってしまい、ドラッグの
               // 掴み始めが空振りする不具合があったため）。
               const Positioned.fill(child: ColoredBox(color: Colors.transparent)),
+              if (effectsWidget != null) Positioned.fill(child: effectsWidget),
               if (imageWidget != null) Positioned.fill(child: imageWidget),
               Positioned(
                 left: center.dx - fit.textSpan / 2,
@@ -204,6 +216,33 @@ class PuzzlePieceShape extends StatelessWidget {
   }
 }
 
+/// ピース画像を、[extra] px だけ [offset] ずらして(論理 px)、[paint] で描く。
+void _drawPieceBody(
+  Canvas canvas,
+  ui.Image image,
+  PieceGeometry g,
+  double extra,
+  Paint paint, {
+  Offset offset = Offset.zero,
+}) {
+  canvas.save();
+  canvas.translate(offset.dx, offset.dy);
+  canvas.scale(PieceGeometry.scale);
+  if (extra <= 0.01 || !g.stretchable) {
+    canvas.drawImage(image, Offset.zero, paint);
+  } else {
+    // 伸ばせる列(stretchLeft〜stretchRight)だけを横に引き伸ばし、左右の
+    // 出っ張り・凹み・縁は元の大きさのまま描く。
+    canvas.drawImageNine(
+      image,
+      Rect.fromLTRB(g.stretchLeft.toDouble(), 0, g.stretchRight.toDouble(), g.height.toDouble()),
+      Rect.fromLTWH(0, 0, g.width + extra / PieceGeometry.scale, g.height.toDouble()),
+      paint,
+    );
+  }
+  canvas.restore();
+}
+
 /// ピース画像を、[extra] px だけ本体を横に引き伸ばして描く。
 class _PieceImagePainter extends CustomPainter {
   _PieceImagePainter({
@@ -218,27 +257,100 @@ class _PieceImagePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final g = geometry;
     final paint = Paint()..filterQuality = FilterQuality.medium;
-    canvas.save();
-    canvas.scale(PieceGeometry.scale);
-    if (extra <= 0.01 || !g.stretchable) {
-      canvas.drawImage(image, Offset.zero, paint);
-    } else {
-      // 伸ばせる列(stretchLeft〜stretchRight)だけを横に引き伸ばし、左右の
-      // 出っ張り・凹み・縁は元の大きさのまま描く。
-      canvas.drawImageNine(
-        image,
-        Rect.fromLTRB(g.stretchLeft.toDouble(), 0, g.stretchRight.toDouble(), g.height.toDouble()),
-        Rect.fromLTWH(0, 0, g.width + extra / PieceGeometry.scale, g.height.toDouble()),
-        paint,
-      );
-    }
-    canvas.restore();
+    _drawPieceBody(canvas, image, geometry, extra, paint);
   }
 
   @override
   bool shouldRepaint(covariant _PieceImagePainter old) =>
+      old.image != image || old.geometry != geometry || old.extra != extra;
+}
+
+/// 輪郭線の色・太さ (論理 px) と、影の濃さ・ずらし・ぼかし。背景が同系色でも
+/// ピースの形が分かるようにするための、控えめな値。
+const Color _kOutlineColor = Color(0xFF37474F);
+const double _kOutlineOpacity = 0.55;
+const double _kOutlineWidth = 1.0;
+const double _kShadowOpacity = 0.28;
+const Offset _kShadowOffset = Offset(0, 1.5);
+const double _kShadowSigma = 1.6;
+
+/// ピース本体の「外側だけ」に、薄い輪郭線と控えめな影を描く。
+///
+/// 本体は半透明(約85%)なので、本体の下に輪郭や影を敷くと透けて本体の色が
+/// 変わってしまう。そこで、本体の形(不透明に近い部分)を型として抜き取り、
+/// 型の外側にだけ描く。本体の透明度・色・大きさ(レイアウト)には影響しない。
+class _PieceEffectsPainter extends CustomPainter {
+  _PieceEffectsPainter({
+    required this.image,
+    required this.geometry,
+    required this.extra,
+  });
+
+  final ui.Image image;
+  final PieceGeometry geometry;
+  final double extra;
+
+  /// 画像の透明度が約 100/255 を超える所だけを、不透明な単色にする。
+  /// 縁のにじみ(透明度 60 前後以下)は型に含めない。
+  static ColorFilter _silhouette(Color color) {
+    final r = (color.r * 255).roundToDouble();
+    final g = (color.g * 255).roundToDouble();
+    final b = (color.b * 255).roundToDouble();
+    return ColorFilter.matrix(<double>[
+      0, 0, 0, 0, r, //
+      0, 0, 0, 0, g,
+      0, 0, 0, 0, b,
+      0, 0, 0, 10, -1000,
+    ]);
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final bounds = Rect.fromLTWH(-8, -8, size.width + 16, size.height + 16);
+    final mask = Paint()
+      ..filterQuality = FilterQuality.medium
+      ..colorFilter = _silhouette(Colors.black);
+    final cut = Paint()
+      ..filterQuality = FilterQuality.medium
+      ..colorFilter = _silhouette(Colors.black)
+      ..blendMode = BlendMode.dstOut;
+
+    // 影: 型をずらしてぼかし、型そのものの内側を抜く。
+    canvas.saveLayer(bounds, Paint()..color = Colors.black.withValues(alpha: _kShadowOpacity));
+    canvas.saveLayer(
+      bounds,
+      Paint()..imageFilter = ui.ImageFilter.blur(sigmaX: _kShadowSigma, sigmaY: _kShadowSigma),
+    );
+    _drawPieceBody(canvas, image, geometry, extra, mask, offset: _kShadowOffset);
+    canvas.restore();
+    _drawPieceBody(canvas, image, geometry, extra, cut);
+    canvas.restore();
+
+    // 輪郭線: 型を全方向に少しずつずらして重ね(=太らせて)、型の内側を抜く。
+    // 不透明な単色で重ねてから、レイヤー全体を一度に半透明にする(重なりで濃くならない)。
+    canvas.saveLayer(bounds, Paint()..color = Colors.black.withValues(alpha: _kOutlineOpacity));
+    final ring = Paint()
+      ..filterQuality = FilterQuality.medium
+      ..colorFilter = _silhouette(_kOutlineColor);
+    const steps = 12;
+    for (var i = 0; i < steps; i++) {
+      final a = 2 * pi * i / steps;
+      _drawPieceBody(
+        canvas,
+        image,
+        geometry,
+        extra,
+        ring,
+        offset: Offset(cos(a), sin(a)) * _kOutlineWidth,
+      );
+    }
+    _drawPieceBody(canvas, image, geometry, extra, cut);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant _PieceEffectsPainter old) =>
       old.image != image || old.geometry != geometry || old.extra != extra;
 }
 
