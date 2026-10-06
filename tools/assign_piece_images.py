@@ -66,14 +66,45 @@ def load_annotations():
         return {q['q_answer']: q for q in json.load(f)}
 
 
-def natural_roles(annotations, words):
-    """テキスト -> 本来使われる役割の集合 (注釈と旧 10 問の構造から作る語彙表)。"""
+# 注釈に無いが、英語の語構成の常識から役割が確かな文字 (手作業で補完)。
+MANUAL_ROLES = {
+    STEM: ('law invent depend dependent convenient comfort believe fortunate').split(),
+    PRE: ['in', 'mis'],
+    SUF: ['ful', 'less', 'tion', 'ee'],
+}
+
+# おとりの入れ替え (tools/reselect_decoys.py) が、手持ちの文字だけで条件を満たせない
+# ときに使う、予備の候補。役割が確かな一般的な接頭辞・接尾辞・語幹だけを入れる。
+EXTRA_ROLES = {
+    PRE: ('ab be co col com contra counter en em fore im in inter ir mis non out over '
+          'post pro sub super trans under up').split(),
+    SUF: ('al ant ary dom ed en er est ful hood ic ing ish ism ist ity ive less ness ous '
+          'ship some sion tion ty ward y ee ent ize ify ory ence age ess ar ial').split(),
+    STEM: ('form port press duct spect struct scribe mit pose ject vert ply clude cede fer '
+           'gress tain vis dict graph mand pel pend sist solve sume sent val mov tort cord '
+           'dur flect fund gen grat lect loc man mem mort nat ped plic pop sect sequ spir '
+           'stit tact temp term test tin tribut turb vid viv volv act aud cred play help '
+           'call work fair kind time part side hand land light read dead rain star').split(),
+}
+
+
+def natural_roles(annotations, words, include_extra=True):
+    """テキスト -> 本来使われる役割の集合 (注釈と旧 10 問の構造から作る語彙表)。
+
+    include_extra=False のときは、予備の候補 (EXTRA_ROLES) を含めない。"""
     vocab = {}
 
     def add(text, role):
         if text:
             vocab.setdefault(text, set()).add(role)
 
+    for role, texts in MANUAL_ROLES.items():
+        for text in texts:
+            add(text, role)
+    if include_extra:
+        for role, texts in EXTRA_ROLES.items():
+            for text in texts:
+                add(text, role)
     for q in annotations.values():
         add(q['q_Prefixes'], PRE)
         add(q['q_Stem'], STEM)

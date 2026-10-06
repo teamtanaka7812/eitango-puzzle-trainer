@@ -20,12 +20,12 @@
         "image": "pre_1.png"
       },
       {
-        "text": "dis",
-        "image": "stem_y_1.png"
+        "text": "ation",
+        "image": "suf_1.png"
       },
       {
         "text": "law",
-        "image": "suf_1.png"
+        "image": "stem_g_1.png"
       },
       {
         "text": "legal",
@@ -54,8 +54,8 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "ion",
-        "image": "suf_3.png"
+        "text": "dis",
+        "image": "pre_3.png"
       },
       {
         "text": "ment",
@@ -63,7 +63,7 @@
       },
       {
         "text": "ful",
-        "image": "pre_3.png"
+        "image": "suf_3.png"
       }
     ]
   },
@@ -84,7 +84,7 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "il",
+        "text": "ob",
         "image": "pre_1.png"
       },
       {
@@ -96,8 +96,8 @@
         "image": "suf_1.png"
       },
       {
-        "text": "in",
-        "image": "stem_g_1.png"
+        "text": "fend",
+        "image": "stem_y_1.png"
       },
       {
         "text": "ion",
@@ -130,7 +130,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "ion",
+        "text": "fen",
         "image": "stem_y_3.png"
       },
       {
@@ -156,8 +156,8 @@
     "exampleJa": "彼女は誰の助けも借りずに、独力でその問題を解決した。",
     "choices": [
       {
-        "text": "ful",
-        "image": "stem_y_1.png"
+        "text": "oc",
+        "image": "pre_1.png"
       },
       {
         "text": "less",
@@ -165,7 +165,7 @@
       },
       {
         "text": "depend",
-        "image": "pre_1.png"
+        "image": "stem_g_1.png"
       },
       {
         "text": "ly",
@@ -203,11 +203,11 @@
       },
       {
         "text": "tion",
-        "image": "stem_y_3.png"
+        "image": "suf_3.png"
       },
       {
-        "text": "ion",
-        "image": "suf_3.png"
+        "text": "tract",
+        "image": "stem_g_3.png"
       },
       {
         "text": "reconsider",
@@ -240,7 +240,7 @@
         "image": "suf_1.png"
       },
       {
-        "text": "in",
+        "text": "develop",
         "image": "stem_g_1.png"
       },
       {
@@ -248,7 +248,7 @@
         "image": "pre_1.png"
       },
       {
-        "text": "less",
+        "text": "ual",
         "image": "suf_1.png"
       },
       {
@@ -270,7 +270,7 @@
     "exampleJa": "あれほど大勢の聴衆の前で話すのは、居心地が悪かった。",
     "choices": [
       {
-        "text": "in",
+        "text": "tal",
         "image": "suf_3.png"
       },
       {
@@ -290,7 +290,7 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "less",
+        "text": "city",
         "image": "suf_3.png"
       }
     ]
@@ -308,12 +308,12 @@
     "exampleJa": "予算をめぐる意見の相違が、プロジェクトを遅らせた。",
     "choices": [
       {
-        "text": "ee",
-        "image": "pre_1.png"
+        "text": "serve",
+        "image": "stem_y_1.png"
       },
       {
         "text": "ful",
-        "image": "stem_g_1.png"
+        "image": "suf_1.png"
       },
       {
         "text": "il",
@@ -325,7 +325,7 @@
       },
       {
         "text": "in",
-        "image": "suf_1.png"
+        "image": "pre_1.png"
       },
       {
         "text": "disagree",
@@ -346,8 +346,8 @@
     "exampleJa": "彼は才能があるが、残念ながらプレッシャーのかかる場面ではあまり頼りにならない。",
     "choices": [
       {
-        "text": "dis",
-        "image": "pre_3.png"
+        "text": "apt",
+        "image": "stem_y_3.png"
       },
       {
         "text": "dependable",
@@ -355,10 +355,10 @@
       },
       {
         "text": "mis",
-        "image": "stem_y_3.png"
+        "image": "pre_3.png"
       },
       {
-        "text": "less",
+        "text": "ute",
         "image": "suf_3.png"
       },
       {
@@ -384,16 +384,16 @@
     "exampleJa": "彼女が人助けに尽くす姿を、私は心から尊敬している。",
     "choices": [
       {
-        "text": "dis",
+        "text": "as",
         "image": "pre_1.png"
       },
       {
-        "text": "re",
-        "image": "stem_y_1.png"
+        "text": "tal",
+        "image": "suf_1.png"
       },
       {
         "text": "comfort",
-        "image": "suf_1.png"
+        "image": "stem_y_1.png"
       },
       {
         "text": "ad",
@@ -434,8 +434,8 @@
         "image": "pre_3.png"
       },
       {
-        "text": "se",
-        "image": "stem_y_3.png"
+        "text": "voc",
+        "image": "stem_g_3.png"
       },
       {
         "text": "venture",
@@ -464,7 +464,7 @@
         "image": "stem_y_1.png"
       },
       {
-        "text": "il",
+        "text": "oc",
         "image": "pre_1.png"
       },
       {
@@ -472,7 +472,7 @@
         "image": "stem_y_1.png"
       },
       {
-        "text": "mire",
+        "text": "tion",
         "image": "suf_1.png"
       },
       {
@@ -494,7 +494,7 @@
     "exampleJa": "ガラスにはほとんど見えないほどの小さなひびが入っていた。",
     "choices": [
       {
-        "text": "ad",
+        "text": "con",
         "image": "pre_3.png"
       },
       {
@@ -506,12 +506,12 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "dependent",
-        "image": "suf_3.png"
+        "text": "oc",
+        "image": "pre_3.png"
       },
       {
-        "text": "punct",
-        "image": "pre_3.png"
+        "text": "tion",
+        "image": "suf_3.png"
       },
       {
         "text": "ute",
@@ -540,7 +540,7 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "serve",
+        "text": "mis",
         "image": "pre_1.png"
       },
       {
@@ -548,11 +548,11 @@
         "image": "pre_1.png"
       },
       {
-        "text": "punct",
+        "text": "city",
         "image": "suf_1.png"
       },
       {
-        "text": "sign",
+        "text": "ation",
         "image": "suf_1.png"
       }
     ]
@@ -578,20 +578,20 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "cept",
-        "image": "suf_3.png"
+        "text": "ob",
+        "image": "pre_3.png"
       },
       {
-        "text": "dress",
-        "image": "stem_y_3.png"
+        "text": "rity",
+        "image": "suf_3.png"
       },
       {
         "text": "tract",
-        "image": "suf_3.png"
+        "image": "stem_y_3.png"
       },
       {
-        "text": "ar",
-        "image": "pre_3.png"
+        "text": "ance",
+        "image": "suf_3.png"
       }
     ]
   },
@@ -608,8 +608,8 @@
     "exampleJa": "彼は新しい事業に多額の資本を投資した。",
     "choices": [
       {
-        "text": "ceive",
-        "image": "stem_y_1.png"
+        "text": "con",
+        "image": "pre_1.png"
       },
       {
         "text": "ious",
@@ -621,7 +621,7 @@
       },
       {
         "text": "opt",
-        "image": "pre_1.png"
+        "image": "stem_g_1.png"
       },
       {
         "text": "se",
@@ -646,7 +646,7 @@
     "exampleJa": "囚人たちはトンネルを通って脱出しようとした。",
     "choices": [
       {
-        "text": "dis",
+        "text": "of",
         "image": "pre_3.png"
       },
       {
@@ -684,7 +684,7 @@
     "exampleJa": "失敗を受け入れるのは難しいが、それは成長の一部だ。",
     "choices": [
       {
-        "text": "oc",
+        "text": "fen",
         "image": "stem_g_1.png"
       },
       {
@@ -692,12 +692,12 @@
         "image": "pre_1.png"
       },
       {
-        "text": "per",
-        "image": "pre_1.png"
+        "text": "ful",
+        "image": "suf_1.png"
       },
       {
         "text": "of",
-        "image": "suf_1.png"
+        "image": "pre_1.png"
       },
       {
         "text": "ual",
@@ -723,10 +723,10 @@
     "choices": [
       {
         "text": "tend",
-        "image": "suf_3.png"
+        "image": "stem_g_3.png"
       },
       {
-        "text": "de",
+        "text": "tal",
         "image": "suf_3.png"
       },
       {
@@ -742,8 +742,8 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "min",
-        "image": "stem_g_3.png"
+        "text": "se",
+        "image": "suf_3.png"
       }
     ]
   },
@@ -776,11 +776,11 @@
         "image": "stem_y_1.png"
       },
       {
-        "text": "de",
+        "text": "ob",
         "image": "pre_1.png"
       },
       {
-        "text": "se",
+        "text": "ance",
         "image": "suf_1.png"
       }
     ]
@@ -802,8 +802,8 @@
         "image": "pre_3.png"
       },
       {
-        "text": "dis",
-        "image": "pre_3.png"
+        "text": "ual",
+        "image": "suf_3.png"
       },
       {
         "text": "apt",
@@ -815,10 +815,10 @@
       },
       {
         "text": "ac",
-        "image": "suf_3.png"
+        "image": "pre_3.png"
       },
       {
-        "text": "voc",
+        "text": "rity",
         "image": "suf_3.png"
       }
     ]
@@ -848,12 +848,12 @@
         "image": "suf_1.png"
       },
       {
-        "text": "ceive",
-        "image": "stem_g_1.png"
+        "text": "ex",
+        "image": "pre_1.png"
       },
       {
         "text": "fen",
-        "image": "pre_1.png"
+        "image": "stem_g_1.png"
       },
       {
         "text": "per",
@@ -894,8 +894,8 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "per",
-        "image": "stem_g_3.png"
+        "text": "capi",
+        "image": "stem_y_3.png"
       }
     ]
   },
@@ -916,7 +916,7 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "serve",
+        "text": "pre",
         "image": "pre_1.png"
       },
       {
@@ -924,7 +924,7 @@
         "image": "pre_1.png"
       },
       {
-        "text": "min",
+        "text": "ure",
         "image": "suf_1.png"
       },
       {
@@ -955,7 +955,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "pre",
+        "text": "ice",
         "image": "suf_3.png"
       },
       {
@@ -997,8 +997,8 @@
         "image": "pre_1.png"
       },
       {
-        "text": "chieve",
-        "image": "stem_g_1.png"
+        "text": "oc",
+        "image": "pre_1.png"
       },
       {
         "text": "just",
@@ -1006,7 +1006,7 @@
       },
       {
         "text": "fend",
-        "image": "pre_1.png"
+        "image": "stem_g_1.png"
       },
       {
         "text": "ice",
@@ -1048,8 +1048,8 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "cur",
-        "image": "stem_g_3.png"
+        "text": "monit",
+        "image": "stem_y_3.png"
       }
     ]
   },
@@ -1070,16 +1070,16 @@
         "image": "pre_1.png"
       },
       {
-        "text": "tal",
-        "image": "suf_1.png"
-      },
-      {
-        "text": "cur",
+        "text": "ob",
         "image": "pre_1.png"
       },
       {
-        "text": "ceive",
-        "image": "stem_y_1.png"
+        "text": "cur",
+        "image": "stem_g_1.png"
+      },
+      {
+        "text": "ster",
+        "image": "suf_1.png"
       },
       {
         "text": "appoint",
@@ -1104,8 +1104,8 @@
     "exampleJa": "病気のため、私は会議に出席できなかった。",
     "choices": [
       {
-        "text": "per",
-        "image": "pre_3.png"
+        "text": "ious",
+        "image": "suf_3.png"
       },
       {
         "text": "tal",
@@ -1121,7 +1121,7 @@
       },
       {
         "text": "of",
-        "image": "suf_3.png"
+        "image": "pre_3.png"
       },
       {
         "text": "at",
@@ -1150,11 +1150,11 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "ance",
-        "image": "suf_1.png"
+        "text": "monit",
+        "image": "stem_g_1.png"
       },
       {
-        "text": "ion",
+        "text": "less",
         "image": "suf_1.png"
       },
       {
@@ -1162,8 +1162,8 @@
         "image": "pre_1.png"
       },
       {
-        "text": "con",
-        "image": "stem_g_1.png"
+        "text": "tion",
+        "image": "suf_1.png"
       }
     ]
   },
@@ -1189,15 +1189,15 @@
       },
       {
         "text": "se",
+        "image": "suf_3.png"
+      },
+      {
+        "text": "of",
         "image": "pre_3.png"
       },
       {
-        "text": "tract",
-        "image": "stem_g_3.png"
-      },
-      {
         "text": "monit",
-        "image": "suf_3.png"
+        "image": "stem_g_3.png"
       }
     ]
   },
@@ -1218,7 +1218,7 @@
         "image": "pre_1.png"
       },
       {
-        "text": "ceive",
+        "text": "ment",
         "image": "suf_1.png"
       },
       {
@@ -1252,12 +1252,12 @@
     "exampleJa": "出かける前に、ドアがしっかり閉まっていることを確認してください。",
     "choices": [
       {
-        "text": "capi",
+        "text": "city",
         "image": "suf_3.png"
       },
       {
-        "text": "ex",
-        "image": "pre_3.png"
+        "text": "less",
+        "image": "suf_3.png"
       },
       {
         "text": "se",
@@ -1269,7 +1269,7 @@
       },
       {
         "text": "ob",
-        "image": "suf_3.png"
+        "image": "pre_3.png"
       },
       {
         "text": "cure",
@@ -1302,16 +1302,16 @@
         "image": "suf_1.png"
       },
       {
-        "text": "re",
+        "text": "de",
         "image": "pre_1.png"
       },
       {
         "text": "min",
-        "image": "suf_1.png"
+        "image": "stem_y_1.png"
       },
       {
-        "text": "fend",
-        "image": "stem_y_1.png"
+        "text": "rity",
+        "image": "suf_1.png"
       }
     ]
   },
@@ -1336,8 +1336,8 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "cape",
-        "image": "stem_y_3.png"
+        "text": "at",
+        "image": "pre_3.png"
       },
       {
         "text": "as",
@@ -1345,10 +1345,10 @@
       },
       {
         "text": "dependent",
-        "image": "pre_3.png"
+        "image": "stem_g_3.png"
       },
       {
-        "text": "cure",
+        "text": "ure",
         "image": "suf_3.png"
       }
     ]
@@ -1374,11 +1374,11 @@
         "image": "stem_y_1.png"
       },
       {
-        "text": "per",
+        "text": "convenient",
         "image": "stem_g_1.png"
       },
       {
-        "text": "ad",
+        "text": "ful",
         "image": "suf_1.png"
       },
       {
@@ -1409,11 +1409,11 @@
       },
       {
         "text": "fen",
-        "image": "suf_3.png"
+        "image": "stem_y_3.png"
       },
       {
-        "text": "punct",
-        "image": "stem_y_3.png"
+        "text": "at",
+        "image": "pre_3.png"
       },
       {
         "text": "as",
@@ -1424,8 +1424,8 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "es",
-        "image": "pre_3.png"
+        "text": "tion",
+        "image": "suf_3.png"
       }
     ]
   },
@@ -1442,12 +1442,12 @@
     "exampleJa": "彼はマネージャーの職を辞任した。",
     "choices": [
       {
-        "text": "accept",
-        "image": "suf_1.png"
+        "text": "at",
+        "image": "pre_1.png"
       },
       {
-        "text": "se",
-        "image": "pre_1.png"
+        "text": "just",
+        "image": "stem_y_1.png"
       },
       {
         "text": "re",
@@ -1458,8 +1458,8 @@
         "image": "suf_1.png"
       },
       {
-        "text": "ceive",
-        "image": "stem_y_1.png"
+        "text": "ious",
+        "image": "suf_1.png"
       },
       {
         "text": "sign",
@@ -1481,18 +1481,18 @@
     "choices": [
       {
         "text": "depend",
+        "image": "stem_g_3.png"
+      },
+      {
+        "text": "of",
         "image": "pre_3.png"
       },
       {
-        "text": "cap",
-        "image": "stem_y_3.png"
-      },
-      {
-        "text": "tend",
+        "text": "ion",
         "image": "suf_3.png"
       },
       {
-        "text": "cape",
+        "text": "ure",
         "image": "suf_3.png"
       },
       {
@@ -1518,7 +1518,7 @@
     "exampleJa": "私はそのレストランの席を予約した。",
     "choices": [
       {
-        "text": "tract",
+        "text": "mis",
         "image": "pre_1.png"
       },
       {
@@ -1565,15 +1565,15 @@
       },
       {
         "text": "opt",
+        "image": "stem_g_3.png"
+      },
+      {
+        "text": "ac",
         "image": "pre_3.png"
       },
       {
-        "text": "just",
+        "text": "tal",
         "image": "suf_3.png"
-      },
-      {
-        "text": "tract",
-        "image": "stem_g_3.png"
       },
       {
         "text": "pre",
@@ -1598,7 +1598,7 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "rest",
+        "text": "ation",
         "image": "suf_1.png"
       },
       {
@@ -1607,11 +1607,11 @@
       },
       {
         "text": "cept",
-        "image": "suf_1.png"
+        "image": "stem_y_1.png"
       },
       {
-        "text": "vent",
-        "image": "stem_g_1.png"
+        "text": "able",
+        "image": "suf_1.png"
       },
       {
         "text": "de",
@@ -1644,7 +1644,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "apt",
+        "text": "tal",
         "image": "suf_3.png"
       },
       {
@@ -1674,7 +1674,7 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "capa",
+        "text": "ious",
         "image": "suf_1.png"
       },
       {
@@ -1708,16 +1708,16 @@
     "exampleJa": "民主主義においては、少数派の権利を守ることが重要だ。",
     "choices": [
       {
-        "text": "cure",
-        "image": "suf_3.png"
+        "text": "in",
+        "image": "pre_3.png"
       },
       {
-        "text": "vent",
+        "text": "ac",
         "image": "pre_3.png"
       },
       {
         "text": "comfort",
-        "image": "pre_3.png"
+        "image": "stem_g_3.png"
       },
       {
         "text": "rity",
@@ -1728,8 +1728,8 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "punct",
-        "image": "stem_y_3.png"
+        "text": "ance",
+        "image": "suf_3.png"
       }
     ]
   },
@@ -1766,7 +1766,7 @@
         "image": "suf_1.png"
       },
       {
-        "text": "serve",
+        "text": "monit",
         "image": "stem_g_1.png"
       }
     ]
@@ -1798,15 +1798,15 @@
       },
       {
         "text": "mino",
-        "image": "suf_3.png"
-      },
-      {
-        "text": "appoint",
         "image": "stem_y_3.png"
       },
       {
-        "text": "at",
+        "text": "ob",
         "image": "pre_3.png"
+      },
+      {
+        "text": "less",
+        "image": "suf_3.png"
       }
     ]
   },
@@ -1869,11 +1869,11 @@
         "image": "pre_3.png"
       },
       {
-        "text": "con",
+        "text": "ual",
         "image": "suf_3.png"
       },
       {
-        "text": "il",
+        "text": "rity",
         "image": "suf_3.png"
       },
       {
@@ -1907,16 +1907,16 @@
         "image": "pre_1.png"
       },
       {
-        "text": "fensive",
-        "image": "stem_g_1.png"
-      },
-      {
-        "text": "believe",
+        "text": "es",
         "image": "pre_1.png"
       },
       {
-        "text": "opt",
+        "text": "ual",
         "image": "suf_1.png"
+      },
+      {
+        "text": "opt",
+        "image": "stem_g_1.png"
       }
     ]
   },
@@ -1941,7 +1941,7 @@
         "image": "stem_y_3.png"
       },
       {
-        "text": "un",
+        "text": "of",
         "image": "pre_3.png"
       },
       {
@@ -1949,7 +1949,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "con",
+        "text": "comfortable",
         "image": "stem_g_3.png"
       }
     ]
@@ -1971,11 +1971,11 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "rest",
+        "text": "at",
         "image": "pre_1.png"
       },
       {
-        "text": "ment",
+        "text": "ate",
         "image": "suf_1.png"
       },
       {
@@ -2005,8 +2005,8 @@
     "exampleJa": "彼女は彼の態度の変化に気づいた。",
     "choices": [
       {
-        "text": "rest",
-        "image": "suf_3.png"
+        "text": "ex",
+        "image": "pre_3.png"
       },
       {
         "text": "apt",
@@ -2021,11 +2021,11 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "opt",
-        "image": "pre_3.png"
+        "text": "ute",
+        "image": "suf_3.png"
       },
       {
-        "text": "se",
+        "text": "ation",
         "image": "suf_3.png"
       }
     ]
@@ -2063,7 +2063,7 @@
         "image": "pre_1.png"
       },
       {
-        "text": "min",
+        "text": "ee",
         "image": "suf_1.png"
       }
     ]
@@ -2097,7 +2097,7 @@
         "image": "pre_3.png"
       },
       {
-        "text": "fortunate",
+        "text": "ster",
         "image": "suf_3.png"
       },
       {
@@ -2137,11 +2137,11 @@
       },
       {
         "text": "in",
-        "image": "suf_1.png"
+        "image": "pre_1.png"
       },
       {
-        "text": "ob",
-        "image": "pre_1.png"
+        "text": "ious",
+        "image": "suf_1.png"
       }
     ]
   },
@@ -2179,7 +2179,7 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "as",
+        "text": "ob",
         "image": "pre_3.png"
       }
     ]
@@ -2198,15 +2198,15 @@
     "choices": [
       {
         "text": "mire",
-        "image": "pre_1.png"
+        "image": "stem_y_1.png"
       },
       {
         "text": "defensive",
         "image": "stem_y_1.png"
       },
       {
-        "text": "ceive",
-        "image": "stem_g_1.png"
+        "text": "of",
+        "image": "pre_1.png"
       },
       {
         "text": "ly",
