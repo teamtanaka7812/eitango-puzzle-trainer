@@ -290,11 +290,44 @@
     などの形から、正解を絞り込めない（以前は正解とおとりで形の種類が違い、形が
     答えを漏らしていた）。同じ条件の割り当てが複数あるときは、おとり自身が本来使われる
     役割（例：`ly`は後置）に近い方を選ぶ。
-  - **新しい単語を追加するとき**：`words.json`に`parts`と`choices`（`image`は仮でよい）
-    を追加し、その単語の構造（`new_words_49.json`の注釈か`STRUCTURE_OVERRIDES`）を
-    用意してスクリプトを再実行する。再実行すると全単語の画像が決定論的に
-    再生成される（既存の単語は同じ結果になる）。
+  - **おとりの文字は、割り当てる形の役割と同じ役割の文字を選ぶ**（2026年10月）：
+    形の役割は上記の均等割り当てで決まるので、おとりの文字も、その役割で本来使われる
+    もの（前置の形には`dis`・`ob`、後置の形には`ly`・`tal`など）を選ぶ。以前は
+    接頭辞の文字が後置の形に載るなどの食い違いがあり、「接尾辞のピースに接頭辞が
+    ある」という指摘が出た。文字の役割は`assign_piece_images.py`の`natural_roles`
+    （注釈＋`MANUAL_ROLES`＋予備の`EXTRA_ROLES`）で調べる。
+  - **答えが2つある問題の防止**（2026年10月）：選択肢（正解＋おとり）を並べ替えて、
+    正解以外の実在語（例：`observe`の問題で`minister`）が作れてはいけない。検査する
+    組み合わせは、k枠の解答欄ならk枚の全順列、3ピースの問題は2枚だけ置いた状態も含む。
+    正解と同じ綴りになる別の分割も禁止。「実在語」の基準（`tools/decoy_check.py`の
+    冒頭に固定）は、辞書（`english_words`のweb2+gcide）にある語でzipf頻度1.5以上、
+    辞書に無くても頻度3.0以上（活用形など）、さらに`admin`・`ara`・`arse`・`addis`・
+    `distal`は必ず避ける（小学生向けのため）。非語に近い語（区分C）は対象外。
+  - **新しい単語を追加するとき**（手順）：
+    1. `words.json`に`parts`と`choices`（`image`は仮でよい）を追加し、その単語の構造
+       （`new_words_49.json`の注釈か`STRUCTURE_OVERRIDES`）を用意する。
+    2. 3ピースの単語は、2ピースだけの組み合わせが別の実在語に見えないか、連結した綴りが
+       正しいかも確認する（上記「今後、新しい単語を追加する際の注意点」）。
+    3. **実在語の衝突を調べる**：`pip install english-words wordfreq`（検査用データを作る
+       ときだけ必要）のうえ、リポジトリ直下で`python tools/decoy_check.py`。衝突が出たら
+       `python tools/reselect_decoys.py`でおとりを選び直す（役割の一致・均等割り当ても
+       同時に満たす。条件を満たす候補が無い問題は変更せずに報告されるので、手で
+       おとりを選び直す）。`--dry-run`で提案だけ確認できる。
+    4. `python tools/assign_piece_images.py`で画像を再生成する（`reselect_decoys.py`は
+       最後にこれも実行する）。全単語の画像が決定論的に再生成される。
+    5. `python tools/decoy_check.py --write-test-data`で検査用データ
+       （`test/data/decoy_check_data.json`）を作り直す。衝突が残っていると`forbidden`
+       に載ってテストが失敗する。
+    6. `flutter test`（`test/decoy_collision_test.dart`が、検査用データと突き合わせる）。
+       検査用データは`test/`配下にあり、アプリには同梱されない。テストはPythonも辞書も
+       使わない。
+  - **ピースの輪郭線と影**（2026年10月）：背景が完成して同系色になってもピースの
+    形が分かるよう、本体の外側だけに薄い輪郭線（1px・濃さ約55%）と控えめな影を描く
+    （`puzzle_piece_shape.dart`の`_PieceEffectsPainter`）。本体の透明度（約85%）と
+    色は変えない（本体の下に敷くと透けて色が変わるため、本体の形を型として抜いて
+    外側だけに描く）。ハイライトの色付けは本体だけに掛かる。
 - テスト：`test/word_data_test.dart`（全問題の画像・役割・おとりの偏りの検査）、
+  `test/decoy_collision_test.dart`（おとりを含む組み合わせが別の実在語にならないこと）、
   `test/piece_layout_test.dart`（本体の突き合わせ・伸び・角の高さ・描画順）、
   `test/all_words_solvable_test.dart`（全59問を実際にドラッグ操作で解く）。画面を
   使うテストの共通の問題データは`test/support/test_puzzles.dart`。
