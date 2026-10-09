@@ -192,7 +192,11 @@ class _GameScreenState extends State<GameScreen> {
     ];
   }
 
+  /// 「あと○つ」のメッセージは、ピースを動かしたら古くなるので消す。
+  void _dismissEmptySlotMessage() => ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
   void _placeInSlot(int optionIndex, int slotIndex) {
+    _dismissEmptySlotMessage();
     setState(() {
       _tray.remove(optionIndex);
       for (var j = 0; j < _slots.length; j++) {
@@ -207,6 +211,7 @@ class _GameScreenState extends State<GameScreen> {
   /// スロットに置かれたピースをタップして選択肢に戻す場合など、ドロップ位置の
   /// 情報がないときに使う（今の散らし位置はそのまま維持する）。
   void _returnToTray(int optionIndex) {
+    _dismissEmptySlotMessage();
     setState(() {
       for (var j = 0; j < _slots.length; j++) {
         if (_slots[j] == optionIndex) _slots[j] = null;
@@ -221,6 +226,7 @@ class _GameScreenState extends State<GameScreen> {
   /// ドロップした実際の場所を、選択肢エリアに対する割合に変換して保存するので、
   /// 次の描画でもその場所にそのまま留まる。
   void _returnToTrayAt(int optionIndex, Offset globalDropOffset) {
+    _dismissEmptySlotMessage();
     setState(() {
       final box = _trayAreaKey.currentContext?.findRenderObject();
       if (box is RenderBox && box.hasSize && _scatterFractions != null) {
@@ -243,6 +249,22 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _onAnswerPressed() {
+    // 解答欄に空きがあるときは、メッセージを出すだけで、判定・記録・結果画面への
+    // 遷移は行わない（不正解にも数えない）。開始時刻・ドラッグ回数はそのまま続く。
+    final emptyCount = _slots.where((s) => s == null).length;
+    if (emptyCount > 0) {
+      // 画面下の「Answer!」ボタンに重ならないよう、浮かせて(floating)ボタン行より上に
+      // 出す。重なると、メッセージが消えるまで「Answer!」が押せなくなる。
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(
+          content: Text('あと$emptyCountつ、ピースを置いてください'),
+          behavior: SnackBarBehavior.floating,
+          margin: const EdgeInsets.fromLTRB(24, 0, 24, 110),
+        ));
+      return;
+    }
+
     final isCorrect = List.generate(_slots.length, (i) {
       final placed = _slots[i];
       if (placed == null) return false;

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
+import '../data_version.dart';
 import '../models/puzzle_word.dart';
 import 'auth_service.dart';
 import 'participant_service.dart';
@@ -26,6 +27,7 @@ class LearningRecordService {
   /// - [dragCount] : その問題を解いている間に、ピースをドラッグして
   ///   どこかに離した回数（結果が解答欄への設置・置き直し・トレイへの
   ///   取り出しのいずれであっても、ドラッグ操作1回につき1）。
+  /// - `dataVersion` : 問題データ・出題仕様の版（[kDataVersion]）。無い記録は旧版。
   static Future<void> recordAttempt({
     required PuzzleWord puzzle,
     required bool isCorrect,
@@ -52,6 +54,7 @@ class LearningRecordService {
         'startedAt': Timestamp.fromDate(startedAt),
         'durationSeconds': durationSeconds,
         'dragCount': dragCount,
+        'dataVersion': kDataVersion,
       });
     } catch (_) {
       // 通信できない・権限エラーなど、理由を問わず黙って諦める

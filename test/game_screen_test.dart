@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:word_puzzle_trainer/screens/game_screen.dart';
+import 'package:word_puzzle_trainer/services/local_history_service.dart';
 
 import 'support/test_puzzles.dart';
 
@@ -125,8 +127,10 @@ void main() {
       wrap(GameScreen(puzzle: threePiecePuzzle, onAnswer: (value) => result = value)),
     );
 
-    // わざと com をスロット2（tionの位置）に置く。
+    // 全枠を埋め、わざと com をスロット2（tionの位置）に置く。
     await _dragPieceToSlot(tester, pieceText: 'com', slotIndex: 2);
+    await _dragPieceToSlot(tester, pieceText: 'pro', slotIndex: 0);
+    await _dragPieceToSlot(tester, pieceText: 'bina', slotIndex: 1);
 
     await tester.tap(find.text('Answer!'));
     await tester.pumpAndSettle();
@@ -134,16 +138,63 @@ void main() {
     expect(result, isFalse);
   });
 
-  testWidgets('何も置かずにAnswer!を押すとonAnswer(false)が呼ばれる', (tester) async {
+  testWidgets('何も置かずにAnswer!を押すと、メッセージが出てonAnswerは呼ばれない', (tester) async {
     bool? result;
     await tester.pumpWidget(
       wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
     );
 
     await tester.tap(find.text('Answer!'));
-    await tester.pumpAndSettle();
+    await tester.pump();
 
-    expect(result, isFalse);
+    expect(result, isNull);
+    expect(find.text('あと2つ、ピースを置いてください'), findsOneWidget);
+  });
+
+  testWidgets('3ピースの単語で一部だけ置いてAnswer!を押すと、残りの数が出てonAnswerは呼ばれない', (tester) async {
+    bool? result;
+    await tester.pumpWidget(
+      wrap(GameScreen(puzzle: threePiecePuzzle, onAnswer: (value) => result = value)),
+    );
+
+    await _dragPieceToSlot(tester, pieceText: 'com', slotIndex: 0);
+    await tester.tap(find.text('Answer!'));
+    await tester.pump();
+    expect(result, isNull);
+    expect(find.text('あと2つ、ピースを置いてください'), findsOneWidget);
+
+    await _dragPieceToSlot(tester, pieceText: 'bina', slotIndex: 1);
+    await tester.tap(find.text('Answer!'));
+    await tester.pump();
+    expect(result, isNull);
+    expect(find.text('あと1つ、ピースを置いてください'), findsOneWidget);
+  });
+
+  testWidgets('空きがあるときのAnswer!は、端末内の履歴（解答数）に数えない', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    bool? result;
+    await tester.pumpWidget(
+      wrap(GameScreen(puzzle: twoPiecePuzzle, onAnswer: (value) => result = value)),
+    );
+
+    await _dragPieceToSlot(tester, pieceText: 'un', slotIndex: 0);
+    await tester.tap(find.text('Answer!'));
+    await tester.pump();
+    // 記録は結果を待たずに裏側で行われるので、書き込みがあれば反映される時間を置く。
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 100)));
+
+    expect(result, isNull);
+    final blocked = await tester.runAsync(LocalHistoryService.loadStats);
+    expect(blocked!.totalAnswered, 0);
+
+    // 全枠を埋めて押せば、通常どおり1件数えられる。
+    await _dragPieceToSlot(tester, pieceText: 'happy', slotIndex: 1);
+    await tester.tap(find.text('Answer!'));
+    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 100)));
+    expect(result, isTrue);
+    final answered = await tester.runAsync(LocalHistoryService.loadStats);
+    expect(answered!.totalAnswered, 1);
   });
 
   testWidgets('配置済みピースをタップするとトレイに戻る', (tester) async {
@@ -176,10 +227,11 @@ void main() {
       to: find.byKey(const ValueKey('piece_tray_area')),
     );
 
-    // slot_1が空になったはずなので、Answer!はfalseになる。
+    // slot_1が空になったはずなので、Answer!は判定されず、残りの数が出る。
     await tester.tap(find.text('Answer!'));
-    await tester.pumpAndSettle();
-    expect(result, isFalse);
+    await tester.pump();
+    expect(result, isNull);
+    expect(find.text('あと1つ、ピースを置いてください'), findsOneWidget);
   });
 
   testWidgets('解答欄の外側であれば、選択肢エリア以外にドロップしても選択肢に戻る', (tester) async {
@@ -199,7 +251,8 @@ void main() {
     );
 
     await tester.tap(find.text('Answer!'));
-    await tester.pumpAndSettle();
-    expect(result, isFalse);
+    await tester.pump();
+    expect(result, isNull);
+    expect(find.text('あと1つ、ピースを置いてください'), findsOneWidget);
   });
 }
