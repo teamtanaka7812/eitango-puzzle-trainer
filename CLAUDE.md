@@ -55,8 +55,15 @@
   画像セットは変更しない」としていたが、これを撤回した。変更したのは画像・描画方式
   のみで、単語・正解・判定ロジックは変えていない）。旧画像セット（`02008green.png`
   等の28枚）は廃止し、`assets/puzzle_pieces_v2/`ごと削除した。
-- 出題数は2026年時点で合計**59問**（Level 1: 19問、Level 2: 27問、Level 3: 13問）。
-  上記の先頭10問はそのまま維持し、そこに49問を新規追加した
+- 出題数は2026年10月時点で合計**56問**（Level 1: 19問、Level 2: 26問、Level 3: 11問。
+  2ピース44問・3ピース12問）。`words.json`には59エントリがあり、うち3つ
+  （`accurate`・`offense`・`defense`）は英語面の確認の結果、出題から外した
+  （`"retired": true`）。外した問題は`WordRepository`が読み込まず、`tools/`の
+  検査・割り当て・おとり選びも飛ばす。データ自体は残してあるので、並び順
+  （＝「問題NN」の番号と、画像の形の番号）は変わらない。外した問題にしか無い
+  ピース（`fen`・`curate`）は、他の問題のおとりに使わない（`word_data_test`が検査）。
+  学習記録は綴り（`word`）で問題を指すので、外した問題の過去の記録もそのまま残る。
+  当初は59問で、上記の先頭10問はそのまま維持し、そこに49問を新規追加した
   （Level 1 +9、Level 2 +27、Level 3 +13）。追加元データは
   `assets/data/new_words_49.json`に残している（ピースの役割＝前置/語幹/後置の
   注釈`q_Prefixes`/`q_Stem`/`q_Suffix`を持つため、画像の割り当てにも使う）。
@@ -91,6 +98,19 @@
     （`unfortunately`・`independently`・`reconsideration`・`unbelievable`・
     `uncomfortable`・`undependable`）は、正解の判定に影響しない範囲でおとりを
     3〜4個に絞り込んだ（ユーザーの指示により、どれを残すかはClaude Codeの裁量）。
+  - **2026年10月の見直し**（英語面の確認の結果）：解答欄の枠数を正解ピース数に合わせ、
+    空きがあるときは「Answer!」を判定しない仕様にしたため、「2ピースだけで別の
+    実在語に見える」問題は起きなくなった。そこで、上記13語のうち10語を元の3ピースに
+    戻した：`unfortunately`(un+fortunate+ly)、`reappearance`(re+appear+ance)、
+    `independently`(in+dependent+ly)、`reconsideration`(re+consider+ation)、
+    `uncomfortable`(un+comfort+able)、`disagreement`(dis+agree+ment)、
+    `undependable`(un+depend+able)、`unacceptable`(un+accept+able)、
+    `adventure`(ad+vent+ure)、`exception`(ex+cept+ion)。次の語はそのまま：
+    `unbelievable`は2ピース（un+believable。believe+ableを連結すると綴りが
+    合わないため）、`defensively`は2ピース（defensive+ly。deは接頭辞ではなく
+    defensive+lyと捉えるのが自然との確認）。あわせて`prejudice`はpre+judice
+    （2ピース）にした。`demonstrate`(de+monstr+ate)・`advocate`(ad+voc+ate)は3ピースのまま。
+    解答欄の幅は、最長の`independently`（3ピース）でも約303px（Roboto実測）で収まる。
   - **今後、新しい単語をデータに追加する際の注意点**：3ピース（接頭辞＋語幹＋接尾辞）
     の単語を追加するときは、(1) 2ピースだけの組み合わせが別の実在単語に見えないか、
     (2) 3ピースをそのまま連結した文字列が正しい綴りと一致するか（`unbelievable`の
@@ -125,10 +145,18 @@
     （Authentication → ログイン方法 → 匿名 → 有効にして保存）。無効のままだと
     `signInAnonymously()`が`ADMIN_ONLY_OPERATION`エラーで失敗する（`AuthService`は
     この失敗を握りつぶすので、アプリ自体は起動するが学習記録は送信されなくなる）。
-- 「Answer!」で正誤判定が行われるたびに、`participants/{参加者ID}/attempts/{記録ID}`に
+- **データの版**（2026年10月）：学習記録（`attempts`）に`dataVersion`を付ける
+  （値は`lib/data_version.dart`の`kDataVersion`、現在は`"2026-10"`）。問題データや
+  出題の仕様（空き判定、問題の構成、ピース数など）を変えたときに、この値を更新する。
+  この項目が無い記録は、この仕組みを入れる前の旧版。`"2026-10"`は、「Answer!」の
+  空き判定が入り、かつ8語＋adventure・exceptionが3ピースに戻り、accurate・offense・
+  defenseが外れた版。端末内の履歴（`LocalHistoryService`）は集計値のみなので、
+  版の印は付けない。Firestoreのセキュリティルールは項目を制限していないので、
+  項目を足してもルールの変更は不要（`ownerUid`の一致だけを見る）。
+- 「Answer!」で、解答欄が埋まった状態で正誤判定が行われるたびに、`participants/{参加者ID}/attempts/{記録ID}`に
   1件記録を書き込む（`lib/services/learning_record_service.dart`）。内容：
   `word`（単語）、`level`、`isCorrect`、`answeredAt`（`FieldValue.serverTimestamp()`）、
-  `ownerUid`（匿名認証UID）。**この書き込みは「できれば行う」程度の扱い**：
+  `ownerUid`（匿名認証UID）、`dataVersion`（下記「データの版」）。**この書き込みは「できれば行う」程度の扱い**：
   `game_screen.dart`の`_onAnswerPressed()`から`await`せずに呼び出し、内部の例外も
   すべて握りつぶす。通信状況やFirestore側の不調に関わらず、正誤判定・画面遷移という
   ゲーム本体の動作を止めたり遅らせたりしないことを優先している。
@@ -181,6 +209,11 @@
 - 正解時：「Correct!」＋「Good job!」等の励ましメッセージ、単語の意味・例文を表示
 - 不正解時：「Incorrect!」＋「Keep going!」等の前向きなメッセージ、単語の意味・例文を表示
 - 問題に1問正解するごとに背景の風景パズルが少しずつ完成し、全問正解で背景が完成する演出を入れる
+- **「Answer!」を押したとき、解答欄に空きがあれば**（2026年10月）、「あと○つ、ピースを
+  置いてください」のメッセージ（`SnackBar`、ボタン行に重ならない位置）を出すだけで、
+  判定・端末内の集計（`LocalHistoryService`）・Firestoreへの記録・結果画面への遷移は
+  行わない（不正解にも数えない）。開始時刻・ドラッグ回数はそのまま続く
+  （`game_screen.dart`の`_onAnswerPressed()`の先頭）。ピースを動かすとメッセージは消える。
 - 解答欄（スロット）の枠数は、**その単語の正解ピース数と同じ**（2ピースなら2枠、
   3ピースなら3枠。`parts.length`、2026年10月の方針変更）。以前は初期開発時の決定で
   常に3枠固定にしていた（余った枠に何か置いたら不正解扱い）が、これを撤回した。
@@ -298,7 +331,8 @@
     （注釈＋`MANUAL_ROLES`＋予備の`EXTRA_ROLES`）で調べる。
   - **答えが2つある問題の防止**（2026年10月）：選択肢（正解＋おとり）を並べ替えて、
     正解以外の実在語（例：`observe`の問題で`minister`）が作れてはいけない。検査する
-    組み合わせは、k枠の解答欄ならk枚の全順列、3ピースの問題は2枚だけ置いた状態も含む。
+    組み合わせは、k枠の解答欄ならk枚の全順列。解答欄に空きがあるときは判定されない
+    ので、3ピースの問題で2枚だけ置いた状態は検査しない（2026年10月に外した）。
     正解と同じ綴りになる別の分割も禁止。「実在語」の基準（`tools/decoy_check.py`の
     冒頭に固定）は、辞書（`english_words`のweb2+gcide）にある語でzipf頻度1.5以上、
     辞書に無くても頻度3.0以上（活用形など）、さらに`admin`・`ara`・`arse`・`addis`・
@@ -306,8 +340,10 @@
   - **新しい単語を追加するとき**（手順）：
     1. `words.json`に`parts`と`choices`（`image`は仮でよい）を追加し、その単語の構造
        （`new_words_49.json`の注釈か`STRUCTURE_OVERRIDES`）を用意する。
-    2. 3ピースの単語は、2ピースだけの組み合わせが別の実在語に見えないか、連結した綴りが
-       正しいかも確認する（上記「今後、新しい単語を追加する際の注意点」）。
+    2. 3ピースの単語は、連結した綴りが正しいか（`unbelievable`のような綴り変化・
+       二重母音の省略）を確認する（上記「今後、新しい単語を追加する際の注意点」）。
+       2ピースだけの組み合わせが別の実在語に見えても、空き判定により提出できないので
+       問題ない。出題から外す問題は`"retired": true`を付ける（並びは詰めない）。
     3. **実在語の衝突を調べる**：`pip install english-words wordfreq`（検査用データを作る
        ときだけ必要）のうえ、リポジトリ直下で`python tools/decoy_check.py`。衝突が出たら
        `python tools/reselect_decoys.py`でおとりを選び直す（役割の一致・均等割り当ても
@@ -329,7 +365,7 @@
 - テスト：`test/word_data_test.dart`（全問題の画像・役割・おとりの偏りの検査）、
   `test/decoy_collision_test.dart`（おとりを含む組み合わせが別の実在語にならないこと）、
   `test/piece_layout_test.dart`（本体の突き合わせ・伸び・角の高さ・描画順）、
-  `test/all_words_solvable_test.dart`（全59問を実際にドラッグ操作で解く）。画面を
+  `test/all_words_solvable_test.dart`（出題される全56問を実際にドラッグ操作で解く）。画面を
   使うテストの共通の問題データは`test/support/test_puzzles.dart`。
 - 画面の見た目の確認：開発用ブラウザ（Browserツール）ではCanvasKitの描画が見られない
   ことがある。`flutter_test`で`matchesGoldenFile`（`--update-goldens`）を使うと
@@ -374,6 +410,11 @@
 - 開発環境本体（Flutter SDK / JDK / Android SDK）は `C:\Users\t-tanaka\dev\` 配下に個別インストール済み
   （`flutter`, `jdk-17.0.19+10`, `android-sdk`）。Android Studio（GUI）は未導入で、
   コマンドラインツール（`sdkmanager`）のみで運用している。
+- **画面の確認用サーバー**（2026年10月）：`flutter run -d web-server`の開発モードは、
+  ブラウザに約570個のスクリプトを読み込み、デバッグ接続の完了も待つため、環境に
+  よっては白い画面のまま止まる。確認用には、リリース版をビルドして静的に配信する
+  方が確実：`flutter build web --release`のあと、`build/web`で
+  `python -m http.server 8765 --bind 127.0.0.1`（`build/`はGit管理外）。
 - **ブラウザ操作ツールでのテキスト入力に関する既知の制約**（2026年9月確認）：
   Claude Codeのブラウザ操作ツールで`TextField`にクリック＋キー入力すると、裏側の
   隠しinput要素には正しく文字が入る（`document.activeElement.value`で確認できる）が、
