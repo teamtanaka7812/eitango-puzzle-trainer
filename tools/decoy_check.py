@@ -23,8 +23,10 @@ minister が作れる)が完成してしまうと、「答えが2つある問題
 
 検査する組み合わせ:
 - 解答欄が k 枠なら、選択肢から k 枚を選んだ全ての順列 (正解の並びは除く)。
-- 3ピースの問題は、一部の枠だけ埋めた状態として、2枚の全順列も含める。
+- 解答欄に空きがあるときは「Answer!」が判定されないため (2026年10月〜)、3ピースの
+  問題の「一部の枠だけ埋めた状態」(2枚の組み合わせ) は検査しない。
 - 正解と同じ綴りになる別の分割も、判定上は不正解になるため禁止する。
+- 出題から外した問題 (words.json の "retired": true) は検査しない。
 """
 import itertools
 import json
@@ -89,10 +91,7 @@ def forbidden(s):
 def combos(texts, parts):
     """検査する組み合わせ (文字のタプル)。正解の並びそのものは含めない。"""
     k = len(parts)
-    result = [p for p in itertools.permutations(texts, k) if list(p) != list(parts)]
-    if k == 3:
-        result.extend(itertools.permutations(texts, 2))
-    return result
+    return [p for p in itertools.permutations(texts, k) if list(p) != list(parts)]
 
 
 def collisions(texts, parts, answer):
@@ -106,8 +105,9 @@ def collisions(texts, parts, answer):
 
 
 def load_words():
+    """出題される問題 (retired でないもの)。"""
     with open(WORDS, encoding='utf-8') as f:
-        return json.load(f)
+        return [w for w in json.load(f) if not w.get('retired')]
 
 
 def report():

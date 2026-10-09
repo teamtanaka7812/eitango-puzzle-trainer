@@ -41,17 +41,11 @@ VARIANTS = (1, 3)
 
 # new_words_49.json の注釈が壊れている 1 語 (q_No 19) など、注釈から読めない単語。
 # 旧 10 問も注釈を持たないため、構造 (PS / SX) をここで明示する。
+# 3 ピースの単語は、ここに書かなくても自動で PSX になる (2026年10月、10語を3ピースに戻した)。
 STRUCTURE_OVERRIDES = {
     'illegal': 'PS',          # il + legal
     'development': 'SX',      # develop + ment
-    'unfortunately': 'SX',    # unfortunate + ly
-    'reappearance': 'SX',     # reappear + ance
-    'independently': 'SX',    # independent + ly
-    'reconsideration': 'SX',  # reconsider + ation
     'unbelievable': 'PS',     # un + believable
-    'uncomfortable': 'PS',    # un + comfortable
-    'disagreement': 'SX',     # disagree + ment
-    'undependable': 'PS',     # un + dependable
     'minor': 'SX',            # min + or
 }
 
@@ -185,6 +179,10 @@ def main():
 
     summary = []
     for index, word in enumerate(words):
+        # 出題から外した問題 (retired) は触らない。形の番号は、外した問題も含めた
+        # 並び順で決めるので、問題を外しても他の問題の画像は変わらない。
+        if word.get('retired'):
+            continue
         variant = VARIANTS[index % len(VARIANTS)]
         structure = structure_of(word, annotations)
         correct_roles = roles_of(structure)

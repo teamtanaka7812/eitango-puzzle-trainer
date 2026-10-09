@@ -13,6 +13,9 @@
    一致する。形の役割の個数は tools/assign_piece_images.py の decoy_role_targets と同じ
    (正解の各役割に同じ形のおとりを1個以上 + 残りは最も少ない役割へ)。
 3. 正解ピースと、各問題のおとりの個数 (3〜4個) は変えない。
+   出題から外した問題 (words.json の "retired": true) は触らず、その問題にしか無い
+   ピース (他の出題中の問題の正解ピースでないもの。例: fen・curate) は、おとりに
+   使わない。文字の役割の知識は、外した問題の注釈からの分も残す (se は接尾辞でもある)。
 4. 結果は決定論的 (乱数ではなく、問題ID+文字のハッシュで同点を決める)。
 
 方針: 今のおとりを残せるだけ残し (変更が最小)、足りない分は、手持ちの文字
@@ -108,10 +111,17 @@ def main():
         words = json.load(f)
     vocab = assign.natural_roles(annotations, words)
     tier1 = set(assign.natural_roles(annotations, words, include_extra=False))
+    # 外した問題にしか無いピースは、おとりの候補にしない (役割の知識は残す)。
+    active_parts = {t for w in words if not w.get('retired') for t in w['parts']}
+    retired_only = {t for w in words if w.get('retired') for t in w['parts']} - active_parts
+    vocab = {t: roles for t, roles in vocab.items() if t not in retired_only}
+    tier1 -= retired_only
 
     failed = []
     changes = []
     for number, word in enumerate(words, 1):
+        if word.get('retired'):
+            continue
         parts = word['parts']
         current = [c['text'] for c in word['choices'] if c['text'] not in parts]
         chosen = solve(word, vocab, tier1, annotations)

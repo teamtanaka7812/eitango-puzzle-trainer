@@ -4,21 +4,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:word_puzzle_trainer/screens/level_play_screen.dart';
 
 // Level 1 は assets/data/words.json の順で、以下の19問（59問への拡張後、2026年時点）。
-// 2026年9月、13単語（このうち8つがLevel1）を3ピース→2ピースに統合したため、
-// 該当する単語のピース内訳を更新した（正解の単語・出題順は変わらない）。
+// 2026年9月に3ピース→2ピースに統合した13単語のうち、Level 1の unfortunately・
+// reappearance・independently・reconsideration・uncomfortable・disagreement・
+// undependable・adventure は、2026年10月に元の3ピースへ戻した（unbelievable は
+// 綴りが合わないため2ピースのまま）。
 const _level1Words = <List<String>>[
   ['il', 'legal'],
   ['develop', 'ment'],
-  ['unfortunate', 'ly'],
-  ['reappear', 'ance'],
-  ['independent', 'ly'],
-  ['reconsider', 'ation'],
+  ['un', 'fortunate', 'ly'],
+  ['re', 'appear', 'ance'],
+  ['in', 'dependent', 'ly'],
+  ['re', 'consider', 'ation'],
   ['un', 'believable'],
-  ['un', 'comfortable'],
-  ['disagree', 'ment'],
-  ['un', 'dependable'],
+  ['un', 'comfort', 'able'],
+  ['dis', 'agree', 'ment'],
+  ['un', 'depend', 'able'],
   ['ad', 'mire'],
-  ['ad', 'venture'],
+  ['ad', 'vent', 'ure'],
   ['ad', 'dress'],
   ['min', 'ute'],
   ['ad', 'just'],
@@ -110,8 +112,9 @@ void main() {
 
     expect(find.textContaining('1 / ${_level1Words.length}'), findsOneWidget);
 
-    // わざと間違えて Incorrect にする（1問目は il + legal の2ピース）。
+    // わざと間違えて Incorrect にする（1問目は il + legal の2ピース。逆の並びに置く）。
     await _dragPieceToSlot(tester, pieceText: 'il', slotIndex: 1);
+    await _dragPieceToSlot(tester, pieceText: 'legal', slotIndex: 0);
     await tester.tap(find.text('Answer!'));
     await tester.pumpAndSettle();
     expect(find.text('Incorrect!'), findsOneWidget);
@@ -121,9 +124,11 @@ void main() {
     // 同じ1問目のまま。
     expect(find.textContaining('1 / ${_level1Words.length}'), findsOneWidget);
 
-    // 盤面がリセットされていれば、何も置かずにAnswer!を押すと必ずIncorrectになる。
+    // 盤面がリセットされていれば、何も置かずにAnswer!を押すと、結果画面には進まず
+    // 「あと2つ」のメッセージが出る（空きがあるときは判定しない）。
     await tester.tap(find.text('Answer!'));
-    await tester.pumpAndSettle();
-    expect(find.text('Incorrect!'), findsOneWidget);
+    await tester.pump();
+    expect(find.text('あと2つ、ピースを置いてください'), findsOneWidget);
+    expect(find.text('Incorrect!'), findsNothing);
   });
 }

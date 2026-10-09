@@ -15,7 +15,8 @@ import 'package:word_puzzle_trainer/models/puzzle_word.dart';
 ///
 /// 検査する組み合わせは tools/decoy_check.py と同じ:
 /// - 解答欄が k 枠なら、選択肢から k 枚を選んだ全ての順列(正解の並びは除く)。
-/// - 3 ピースの問題は、一部の枠だけ埋めた状態として、2 枚の全順列も含む。
+/// - 解答欄に空きがあるときは「Answer!」が判定されない（2026年10月〜）ので、3 ピースの
+///   問題の「一部の枠だけ埋めた状態」は検査しない。
 /// - 正解と同じ綴りになる別の分割も、判定上は不正解になるため禁止。
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -54,7 +55,6 @@ void main() {
     for (final perm in permutations(texts, parts.length)) {
       if (perm.join('|') != parts.join('|')) yield perm;
     }
-    if (parts.length == 3) yield* permutations(texts, 2);
   }
 
   test('おとりを含む選択肢から、正解以外の実在語(区分A/B/D)は作れない', () {

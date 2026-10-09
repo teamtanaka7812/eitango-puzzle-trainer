@@ -72,7 +72,8 @@
     "word": "unfortunately",
     "level": 1,
     "parts": [
-      "unfortunate",
+      "un",
+      "fortunate",
       "ly"
     ],
     "meaningJa": "不運にも",
@@ -80,8 +81,16 @@
     "exampleJa": "残念ながら、悪天候のためイベントは中止になった。",
     "choices": [
       {
-        "text": "unfortunate",
+        "text": "un",
+        "image": "pre_1.png"
+      },
+      {
+        "text": "fortunate",
         "image": "stem_g_1.png"
+      },
+      {
+        "text": "ly",
+        "image": "suf_1.png"
       },
       {
         "text": "ob",
@@ -92,15 +101,11 @@
         "image": "pre_1.png"
       },
       {
-        "text": "ly",
-        "image": "suf_1.png"
-      },
-      {
         "text": "fend",
         "image": "stem_y_1.png"
       },
       {
-        "text": "ion",
+        "text": "ation",
         "image": "suf_1.png"
       }
     ]
@@ -110,7 +115,8 @@
     "word": "reappearance",
     "level": 1,
     "parts": [
-      "reappear",
+      "re",
+      "appear",
       "ance"
     ],
     "meaningJa": "再出現、再登場",
@@ -118,28 +124,32 @@
     "exampleJa": "その俳優が突然再び現れたことに、観客は驚いた。",
     "choices": [
       {
-        "text": "ly",
-        "image": "suf_3.png"
+        "text": "re",
+        "image": "pre_3.png"
       },
       {
-        "text": "pre",
-        "image": "pre_3.png"
+        "text": "appear",
+        "image": "stem_g_3.png"
       },
       {
         "text": "ance",
         "image": "suf_3.png"
       },
       {
-        "text": "fen",
+        "text": "capa",
         "image": "stem_y_3.png"
+      },
+      {
+        "text": "pre",
+        "image": "pre_3.png"
+      },
+      {
+        "text": "ful",
+        "image": "suf_3.png"
       },
       {
         "text": "un",
         "image": "pre_3.png"
-      },
-      {
-        "text": "reappear",
-        "image": "stem_y_3.png"
       }
     ]
   },
@@ -148,13 +158,26 @@
     "word": "independently",
     "level": 1,
     "parts": [
-      "independent",
+      "in",
+      "dependent",
       "ly"
     ],
     "meaningJa": "独立して",
     "exampleEn": "She solved the problem independently without any help.",
     "exampleJa": "彼女は誰の助けも借りずに、独力でその問題を解決した。",
     "choices": [
+      {
+        "text": "in",
+        "image": "pre_1.png"
+      },
+      {
+        "text": "dependent",
+        "image": "stem_y_1.png"
+      },
+      {
+        "text": "ly",
+        "image": "suf_1.png"
+      },
       {
         "text": "oc",
         "image": "pre_1.png"
@@ -168,16 +191,8 @@
         "image": "stem_g_1.png"
       },
       {
-        "text": "ly",
-        "image": "suf_1.png"
-      },
-      {
         "text": "dis",
         "image": "pre_1.png"
-      },
-      {
-        "text": "independent",
-        "image": "stem_g_1.png"
       }
     ]
   },
@@ -186,7 +201,8 @@
     "word": "reconsideration",
     "level": 1,
     "parts": [
-      "reconsider",
+      "re",
+      "consider",
       "ation"
     ],
     "meaningJa": "再考",
@@ -194,11 +210,23 @@
     "exampleJa": "全員の意見を聞いたあと、マネージャーは計画の再検討に同意した。",
     "choices": [
       {
+        "text": "re",
+        "image": "pre_3.png"
+      },
+      {
+        "text": "consider",
+        "image": "stem_y_3.png"
+      },
+      {
+        "text": "ation",
+        "image": "suf_3.png"
+      },
+      {
         "text": "pre",
         "image": "pre_3.png"
       },
       {
-        "text": "in",
+        "text": "oc",
         "image": "pre_3.png"
       },
       {
@@ -206,16 +234,8 @@
         "image": "suf_3.png"
       },
       {
-        "text": "tract",
+        "text": "cape",
         "image": "stem_g_3.png"
-      },
-      {
-        "text": "reconsider",
-        "image": "stem_y_3.png"
-      },
-      {
-        "text": "ation",
-        "image": "suf_3.png"
       }
     ]
   },
@@ -263,12 +283,25 @@
     "level": 1,
     "parts": [
       "un",
-      "comfortable"
+      "comfort",
+      "able"
     ],
     "meaningJa": "不快な、心地よくない",
     "exampleEn": "I felt uncomfortable speaking in front of such a large audience.",
     "exampleJa": "あれほど大勢の聴衆の前で話すのは、居心地が悪かった。",
     "choices": [
+      {
+        "text": "un",
+        "image": "pre_3.png"
+      },
+      {
+        "text": "comfort",
+        "image": "stem_g_3.png"
+      },
+      {
+        "text": "able",
+        "image": "suf_3.png"
+      },
       {
         "text": "tal",
         "image": "suf_3.png"
@@ -278,20 +311,12 @@
         "image": "stem_g_3.png"
       },
       {
-        "text": "un",
-        "image": "pre_3.png"
-      },
-      {
         "text": "il",
         "image": "pre_3.png"
       },
       {
-        "text": "comfortable",
-        "image": "stem_y_3.png"
-      },
-      {
-        "text": "city",
-        "image": "suf_3.png"
+        "text": "pre",
+        "image": "pre_3.png"
       }
     ]
   },
@@ -300,13 +325,26 @@
     "word": "disagreement",
     "level": 1,
     "parts": [
-      "disagree",
+      "dis",
+      "agree",
       "ment"
     ],
     "meaningJa": "不一致、意見の相違",
     "exampleEn": "Their disagreement over the budget delayed the project.",
     "exampleJa": "予算をめぐる意見の相違が、プロジェクトを遅らせた。",
     "choices": [
+      {
+        "text": "dis",
+        "image": "pre_1.png"
+      },
+      {
+        "text": "agree",
+        "image": "stem_g_1.png"
+      },
+      {
+        "text": "ment",
+        "image": "suf_1.png"
+      },
       {
         "text": "serve",
         "image": "stem_y_1.png"
@@ -320,16 +358,8 @@
         "image": "pre_1.png"
       },
       {
-        "text": "ment",
-        "image": "suf_1.png"
-      },
-      {
         "text": "in",
         "image": "pre_1.png"
-      },
-      {
-        "text": "disagree",
-        "image": "stem_y_1.png"
       }
     ]
   },
@@ -339,19 +369,28 @@
     "level": 1,
     "parts": [
       "un",
-      "dependable"
+      "depend",
+      "able"
     ],
     "meaningJa": "頼りにならない",
     "exampleEn": "He's talented, but unfortunately quite undependable under pressure.",
     "exampleJa": "彼は才能があるが、残念ながらプレッシャーのかかる場面ではあまり頼りにならない。",
     "choices": [
       {
-        "text": "apt",
-        "image": "stem_y_3.png"
+        "text": "un",
+        "image": "pre_3.png"
       },
       {
-        "text": "dependable",
+        "text": "depend",
         "image": "stem_g_3.png"
+      },
+      {
+        "text": "able",
+        "image": "suf_3.png"
+      },
+      {
+        "text": "apt",
+        "image": "stem_y_3.png"
       },
       {
         "text": "mis",
@@ -362,11 +401,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "ment",
-        "image": "suf_3.png"
-      },
-      {
-        "text": "un",
+        "text": "at",
         "image": "pre_3.png"
       }
     ]
@@ -415,19 +450,28 @@
     "level": 1,
     "parts": [
       "ad",
-      "venture"
+      "vent",
+      "ure"
     ],
     "meaningJa": "冒険",
     "exampleEn": "They went on an exciting adventure through the jungle.",
     "exampleJa": "彼らはジャングルでわくわくする冒険に出かけた。",
     "choices": [
       {
-        "text": "or",
+        "text": "ad",
+        "image": "pre_3.png"
+      },
+      {
+        "text": "vent",
+        "image": "stem_g_3.png"
+      },
+      {
+        "text": "ure",
         "image": "suf_3.png"
       },
       {
-        "text": "ad",
-        "image": "pre_3.png"
+        "text": "or",
+        "image": "suf_3.png"
       },
       {
         "text": "as",
@@ -435,10 +479,6 @@
       },
       {
         "text": "voc",
-        "image": "stem_g_3.png"
-      },
-      {
-        "text": "venture",
         "image": "stem_g_3.png"
       }
     ]
@@ -684,7 +724,7 @@
     "exampleJa": "失敗を受け入れるのは難しいが、それは成長の一部だ。",
     "choices": [
       {
-        "text": "fen",
+        "text": "dress",
         "image": "stem_g_1.png"
       },
       {
@@ -852,8 +892,8 @@
         "image": "pre_1.png"
       },
       {
-        "text": "fen",
-        "image": "stem_g_1.png"
+        "text": "rest",
+        "image": "stem_y_1.png"
       },
       {
         "text": "per",
@@ -912,7 +952,7 @@
     "exampleJa": "私たちは患者の容体を注意深く監視する必要がある。",
     "choices": [
       {
-        "text": "fen",
+        "text": "monstr",
         "image": "stem_g_1.png"
       },
       {
@@ -1020,32 +1060,27 @@
     "level": 2,
     "parts": [
       "pre",
-      "jud",
-      "ice"
+      "judice"
     ],
     "meaningJa": "偏見、偏見を持たせる",
     "exampleEn": "We must overcome prejudice and treat everyone fairly.",
     "exampleJa": "私たちは偏見を乗り越え、誰もを公平に扱わなければならない。",
     "choices": [
       {
-        "text": "ice",
-        "image": "suf_3.png"
+        "text": "pre",
+        "image": "pre_3.png"
+      },
+      {
+        "text": "judice",
+        "image": "stem_g_3.png"
       },
       {
         "text": "re",
         "image": "pre_3.png"
       },
       {
-        "text": "pre",
-        "image": "pre_3.png"
-      },
-      {
         "text": "ious",
         "image": "suf_3.png"
-      },
-      {
-        "text": "jud",
-        "image": "stem_y_3.png"
       },
       {
         "text": "monit",
@@ -1171,6 +1206,7 @@
     "id": "accurate",
     "word": "accurate",
     "level": 2,
+    "retired": true,
     "parts": [
       "ac",
       "curate"
@@ -1408,7 +1444,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "fen",
+        "text": "apt",
         "image": "stem_y_3.png"
       },
       {
@@ -1892,19 +1928,24 @@
     "level": 3,
     "parts": [
       "un",
-      "acceptable"
+      "accept",
+      "able"
     ],
     "meaningJa": "受け入れられない",
     "exampleEn": "His behavior at the meeting was completely unacceptable.",
     "exampleJa": "会議での彼の振る舞いは、まったく受け入れられないものだった。",
     "choices": [
       {
-        "text": "acceptable",
-        "image": "stem_y_1.png"
-      },
-      {
         "text": "un",
         "image": "pre_1.png"
+      },
+      {
+        "text": "accept",
+        "image": "stem_g_1.png"
+      },
+      {
+        "text": "able",
+        "image": "suf_1.png"
       },
       {
         "text": "es",
@@ -1925,7 +1966,8 @@
     "word": "exception",
     "level": 3,
     "parts": [
-      "except",
+      "ex",
+      "cept",
       "ion"
     ],
     "meaningJa": "例外",
@@ -1933,12 +1975,16 @@
     "exampleJa": "一人を除いて、全員がそのテストに合格した。",
     "choices": [
       {
-        "text": "ion",
-        "image": "suf_3.png"
+        "text": "ex",
+        "image": "pre_3.png"
       },
       {
-        "text": "except",
-        "image": "stem_y_3.png"
+        "text": "cept",
+        "image": "stem_g_3.png"
+      },
+      {
+        "text": "ion",
+        "image": "suf_3.png"
       },
       {
         "text": "of",
@@ -1949,8 +1995,8 @@
         "image": "suf_3.png"
       },
       {
-        "text": "comfortable",
-        "image": "stem_g_3.png"
+        "text": "mire",
+        "image": "stem_y_3.png"
       }
     ]
   },
@@ -2110,6 +2156,7 @@
     "id": "offense",
     "word": "offense",
     "level": 3,
+    "retired": true,
     "parts": [
       "of",
       "fen",
@@ -2149,6 +2196,7 @@
     "id": "defense",
     "word": "defense",
     "level": 3,
+    "retired": true,
     "parts": [
       "de",
       "fen",

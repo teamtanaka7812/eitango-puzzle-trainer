@@ -63,6 +63,9 @@ class WordRepository {
     final result = <int, List<PuzzleWord>>{};
     for (final raw in rawList) {
       final map = raw as Map<String, dynamic>;
+      // 出題から外した問題（`"retired": true`）は読み込まない。番号・形の割り当てを
+      // 変えないよう、データ自体は words.json に残してある。
+      if (map['retired'] == true) continue;
       final parts = <WordPiecePart>[
         for (final text in map['parts'] as List) WordPiecePart(text: text as String),
       ];

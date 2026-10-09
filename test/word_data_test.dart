@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -28,8 +29,44 @@ void main() {
     words = [for (final level in byLevel.values) ...level];
   });
 
+  test('出題されるのは56問（Level 1: 19、Level 2: 26、Level 3: 11）で、2ピース44問・3ピース12問', () {
+    expect(words.length, 56);
+    expect(words.where((w) => w.level == 1).length, 19);
+    expect(words.where((w) => w.level == 2).length, 26);
+    expect(words.where((w) => w.level == 3).length, 11);
+    expect(words.where((w) => w.parts.length == 2).length, 44);
+    expect(words.where((w) => w.parts.length == 3).length, 12);
+  });
+
+  test('出題から外した問題（retired）は出題されず、そのピースは他の問題のおとりに使われない', () {
+    final raw = jsonDecode(File('assets/data/words.json').readAsStringSync()) as List<dynamic>;
+    final retired = [for (final w in raw) if ((w as Map)['retired'] == true) w];
+    expect([for (final w in retired) w['word']], ['accurate', 'offense', 'defense']);
+
+    final loadedIds = {for (final w in words) w.id};
+    for (final w in retired) {
+      expect(loadedIds, isNot(contains(w['id'])), reason: '${w['id']} が出題されている');
+    }
+
+    // 外した問題にしか無いピース（他の出題中の問題の正解ピースでないもの）は、
+    // おとりに使わない。
+    final activeParts = {for (final w in words) for (final p in w.parts) p.text};
+    final retiredOnly = {
+      for (final w in retired) for (final p in w['parts'] as List) p as String,
+    }.difference(activeParts);
+    expect(retiredOnly, containsAll(['fen', 'curate']));
+    for (final w in words) {
+      final partTexts = w.parts.map((p) => p.text).toSet();
+      for (final c in w.presetChoices) {
+        if (partTexts.contains(c.text)) continue;
+        expect(retiredOnly, isNot(contains(c.text)),
+            reason: '${w.id} のおとり ${c.text} は、外した問題のピース');
+      }
+    }
+  });
+
   test('全問題の選択肢が、実在するピース画像と形状データを指している', () {
-    expect(words.length, 59);
+    expect(words.length, 56);
     for (final word in words) {
       for (final choice in word.presetChoices) {
         expect(pieceGeometryOf(choice.assetPath), isNotNull,
