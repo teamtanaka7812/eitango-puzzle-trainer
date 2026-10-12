@@ -62,7 +62,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "ful",
+        "text": "ious",
         "image": "suf_3.png"
       }
     ]
@@ -450,8 +450,7 @@
     "level": 1,
     "parts": [
       "ad",
-      "vent",
-      "ure"
+      "venture"
     ],
     "meaningJa": "冒険",
     "exampleEn": "They went on an exciting adventure through the jungle.",
@@ -462,12 +461,8 @@
         "image": "pre_3.png"
       },
       {
-        "text": "vent",
+        "text": "venture",
         "image": "stem_g_3.png"
-      },
-      {
-        "text": "ure",
-        "image": "suf_3.png"
       },
       {
         "text": "or",
@@ -622,7 +617,7 @@
         "image": "pre_3.png"
       },
       {
-        "text": "rity",
+        "text": "ious",
         "image": "suf_3.png"
       },
       {
@@ -1909,7 +1904,7 @@
         "image": "suf_3.png"
       },
       {
-        "text": "rity",
+        "text": "ious",
         "image": "suf_3.png"
       },
       {

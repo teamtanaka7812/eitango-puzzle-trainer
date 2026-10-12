@@ -6,8 +6,9 @@ import 'package:word_puzzle_trainer/screens/level_play_screen.dart';
 // Level 1 は assets/data/words.json の順で、以下の19問（59問への拡張後、2026年時点）。
 // 2026年9月に3ピース→2ピースに統合した13単語のうち、Level 1の unfortunately・
 // reappearance・independently・reconsideration・uncomfortable・disagreement・
-// undependable・adventure は、2026年10月に元の3ピースへ戻した（unbelievable は
-// 綴りが合わないため2ピースのまま）。
+// undependable は、2026年10月に元の3ピースへ戻した（unbelievable は綴りが合わない
+// ため2ピースのまま）。adventure は、英語の専門家の判断で ad + venture の2ピースにした
+// （2026年10月）。
 const _level1Words = <List<String>>[
   ['il', 'legal'],
   ['develop', 'ment'],
@@ -20,7 +21,7 @@ const _level1Words = <List<String>>[
   ['dis', 'agree', 'ment'],
   ['un', 'depend', 'able'],
   ['ad', 'mire'],
-  ['ad', 'vent', 'ure'],
+  ['ad', 'venture'],
   ['ad', 'dress'],
   ['min', 'ute'],
   ['ad', 'just'],

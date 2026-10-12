@@ -29,13 +29,13 @@ void main() {
     words = [for (final level in byLevel.values) ...level];
   });
 
-  test('出題されるのは56問（Level 1: 19、Level 2: 26、Level 3: 11）で、2ピース44問・3ピース12問', () {
+  test('出題されるのは56問（Level 1: 19、Level 2: 26、Level 3: 11）で、2ピース45問・3ピース11問', () {
     expect(words.length, 56);
     expect(words.where((w) => w.level == 1).length, 19);
     expect(words.where((w) => w.level == 2).length, 26);
     expect(words.where((w) => w.level == 3).length, 11);
-    expect(words.where((w) => w.parts.length == 2).length, 44);
-    expect(words.where((w) => w.parts.length == 3).length, 12);
+    expect(words.where((w) => w.parts.length == 2).length, 45);
+    expect(words.where((w) => w.parts.length == 3).length, 11);
   });
 
   test('出題から外した問題（retired）は出題されず、そのピースは他の問題のおとりに使われない', () {

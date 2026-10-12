@@ -9,4 +9,10 @@
 ///   uncomfortable・disagreement・undependable・unacceptable）と adventure・
 ///   exception を3ピースに戻し、prejudice を2ピースにし、accurate・offense・
 ///   defense を出題から外した問題構成。
-const String kDataVersion = '2026-10';
+/// - `2026-10b`：adventure を ad + venture の2ピースにした（英語の専門家の判断）。
+///   あわせて、禁止語（arity・inventful）が作れないよう、4問（development・
+///   achieve・pretend の3問のおとりと、adventure の構成）を変えた。
+///
+/// 命名規則：`年-月`が基本。同じ月にまた構成を変えるときは、`2026-10c`・`2026-10d`
+/// のように、英小文字を順に付けて続ける（最初の版の`2026-10`は、`a`を付けない）。
+const String kDataVersion = '2026-10b';

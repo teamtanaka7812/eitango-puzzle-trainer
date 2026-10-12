@@ -1,0 +1,15 @@
+{
+  "about": "リーダー(英語の専門家)が「選択肢の組み合わせで作れてはいけない」と判断した語。tools/decoy_check.py と tools/reselect_decoys.py が検査・おとり選びで使い、test/decoy_collision_test.dart もこのファイルを直接読んで確認する。語を追加するときは words に1件足す(word は小文字。reason に判断の根拠と日付、added に追加日を書く)。そのあと CLAUDE.md の手順(おとりの選び直し→検査用データの作り直し→flutter test)を行う。",
+  "words": [
+    {
+      "word": "arity",
+      "reason": "リーダーの判断(2026-10-12)。a + rity で作れる(問題16 achieve・問題50 pretend に存在)。",
+      "added": "2026-10-12"
+    },
+    {
+      "word": "inventful",
+      "reason": "リーダーの指摘(2026-10)。問題2 development の invent + ful で作れる。",
+      "added": "2026-10-12"
+    }
+  ]
+}

@@ -18,12 +18,23 @@ import 'package:word_puzzle_trainer/models/puzzle_word.dart';
 /// - 解答欄に空きがあるときは「Answer!」が判定されない（2026年10月〜）ので、3 ピースの
 ///   問題の「一部の枠だけ埋めた状態」は検査しない。
 /// - 正解と同じ綴りになる別の分割も、判定上は不正解になるため禁止。
+///
+/// 辞書を使わない、次の2つの検査も直接行う（検査用データを経由しない）:
+/// - `tools/forbidden_words.json`（リーダーが個別に「作れてはいけない」と判断した語）。
+/// - 出題中の全ての正解語と、全ての語幹（画像名が `stem_` のピース）のうち、
+///   「別の問題の選択肢から作れてはいけない」もの。語幹は、辞書にある語だけを
+///   守る（capa・judice のような断片は対象外。`tools/decoy_check.py` の
+///   `protected_words()` と同じ基準）。辞書が必要なこの絞り込みはテストでは行えないので、
+///   語幹は「正解語そのもの」と、`decoy_check_data.json` の `protectedStems` に
+///   書き出した語に限る。
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   late List<PuzzleWord> words;
   late Set<String> forbidden;
   late Set<String> checked;
+  late Set<String> protectedStems;
+  late Set<String> leaderForbidden;
 
   setUpAll(() async {
     final byLevel = await WordRepository.loadByLevel();
@@ -32,6 +43,12 @@ void main() {
         as Map<String, dynamic>;
     forbidden = {for (final s in data['forbidden'] as List) s as String};
     checked = {for (final s in data['checked'] as List) s as String};
+    protectedStems = {for (final s in data['protectedStems'] as List) s as String};
+    final leader = jsonDecode(File('tools/forbidden_words.json').readAsStringSync())
+        as Map<String, dynamic>;
+    leaderForbidden = {
+      for (final w in leader['words'] as List) ((w as Map)['word'] as String).toLowerCase(),
+    };
   });
 
   /// [items] から [k] 個を選んだ全ての順列。
@@ -83,5 +100,38 @@ void main() {
         reason: 'words.json を変えたのに検査用データが古い。'
             'python tools/decoy_check.py --write-test-data で作り直し、'
             '衝突が出たらおとりを選び直すこと。');
+  });
+
+  test('リーダーが禁止した語（tools/forbidden_words.json）は、どの問題でも作れない', () {
+    expect(leaderForbidden, containsAll(['arity', 'inventful']));
+    final problems = <String>[];
+    for (final word in words) {
+      for (final perm in combosOf(word)) {
+        final spelling = perm.join();
+        if (leaderForbidden.contains(spelling)) {
+          problems.add('${word.id}: ${perm.join('+')} = $spelling');
+        }
+      }
+    }
+    expect(problems, isEmpty,
+        reason: '禁止語が作れてしまう。おとりを選び直すこと(python tools/reselect_decoys.py)。');
+  });
+
+  test('出題中の全ての正解語と、辞書にある語幹は、別の問題の選択肢から作れない', () {
+    final protected = {
+      for (final w in words) w.word.toLowerCase(),
+      ...protectedStems,
+    };
+    final problems = <String>[];
+    for (final word in words) {
+      for (final perm in combosOf(word)) {
+        final spelling = perm.join();
+        if (protected.contains(spelling)) {
+          problems.add('${word.id}: ${perm.join('+')} = $spelling');
+        }
+      }
+    }
+    expect(problems, isEmpty,
+        reason: '別の問題の正解語・語幹が作れてしまう。おとりを選び直すこと。');
   });
 }

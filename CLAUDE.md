@@ -56,7 +56,7 @@
   のみで、単語・正解・判定ロジックは変えていない）。旧画像セット（`02008green.png`
   等の28枚）は廃止し、`assets/puzzle_pieces_v2/`ごと削除した。
 - 出題数は2026年10月時点で合計**56問**（Level 1: 19問、Level 2: 26問、Level 3: 11問。
-  2ピース44問・3ピース12問）。`words.json`には59エントリがあり、うち3つ
+  2ピース45問・3ピース11問）。`words.json`には59エントリがあり、うち3つ
   （`accurate`・`offense`・`defense`）は英語面の確認の結果、出題から外した
   （`"retired": true`）。外した問題は`WordRepository`が読み込まず、`tools/`の
   検査・割り当て・おとり選びも飛ばす。データ自体は残してあるので、並び順
@@ -105,12 +105,21 @@
     `independently`(in+dependent+ly)、`reconsideration`(re+consider+ation)、
     `uncomfortable`(un+comfort+able)、`disagreement`(dis+agree+ment)、
     `undependable`(un+depend+able)、`unacceptable`(un+accept+able)、
-    `adventure`(ad+vent+ure)、`exception`(ex+cept+ion)。次の語はそのまま：
+    `exception`(ex+cept+ion)（`adventure`もこのとき3ピース ad+vent+ure に戻したが、
+    下記のとおりその後2ピースにした）。次の語はそのまま：
     `unbelievable`は2ピース（un+believable。believe+ableを連結すると綴りが
     合わないため）、`defensively`は2ピース（defensive+ly。deは接頭辞ではなく
     defensive+lyと捉えるのが自然との確認）。あわせて`prejudice`はpre+judice
     （2ピース）にした。`demonstrate`(de+monstr+ate)・`advocate`(ad+voc+ate)は3ピースのまま。
     解答欄の幅は、最長の`independently`（3ピース）でも約303px（Roboto実測）で収まる。
+  - **`adventure`は2ピース（ad+venture）**（2026年10月、英語の専門家＝リーダーの判断。
+    高校生向けの場合は2語（2ピース）が良いとのコメント）。これが、リーダーの確認依頼
+    への回答（`minority`は mino+rity、`capacity`は capa+city、`demonstrate`は
+    de+monstr+ate のまま。`offense`・`defense`は外したまま）のうち、分け方が変わった
+    唯一の語。`vent`・`ure`は、組み合わせると`venture`（別の語幹）になるので、
+    `adventure`の問題のおとりには使わない。これで出題は2ピース45問・3ピース11問
+    （全56問）。問題の構成を変えたので、`kDataVersion`を`"2026-10b"`に更新した
+    （おとりも、禁止語が作れないよう development・achieve・pretend の3問で入れ替えた）。
   - **今後、新しい単語をデータに追加する際の注意点**：3ピース（接頭辞＋語幹＋接尾辞）
     の単語を追加するときは、(1) 2ピースだけの組み合わせが別の実在単語に見えないか、
     (2) 3ピースをそのまま連結した文字列が正しい綴りと一致するか（`unbelievable`の
@@ -146,11 +155,15 @@
     `signInAnonymously()`が`ADMIN_ONLY_OPERATION`エラーで失敗する（`AuthService`は
     この失敗を握りつぶすので、アプリ自体は起動するが学習記録は送信されなくなる）。
 - **データの版**（2026年10月）：学習記録（`attempts`）に`dataVersion`を付ける
-  （値は`lib/data_version.dart`の`kDataVersion`、現在は`"2026-10"`）。問題データや
+  （値は`lib/data_version.dart`の`kDataVersion`、現在は`"2026-10b"`）。問題データや
   出題の仕様（空き判定、問題の構成、ピース数など）を変えたときに、この値を更新する。
   この項目が無い記録は、この仕組みを入れる前の旧版。`"2026-10"`は、「Answer!」の
   空き判定が入り、かつ8語＋adventure・exceptionが3ピースに戻り、accurate・offense・
-  defenseが外れた版。端末内の履歴（`LocalHistoryService`）は集計値のみなので、
+  defenseが外れた版。`"2026-10b"`は、さらにadventureが2ピース（ad+venture）になり、
+  禁止語（arity・inventful）が作れないようおとりを入れ替えた版。**命名規則**：基本は
+  `年-月`。同じ月にまた構成を変えるときは、`2026-10c`・`2026-10d`のように英小文字を
+  順に続ける（最初の版の`"2026-10"`には`a`を付けない）。次の月になったら`2026-11`の
+  ように改める。端末内の履歴（`LocalHistoryService`）は集計値のみなので、
   版の印は付けない。Firestoreのセキュリティルールは項目を制限していないので、
   項目を足してもルールの変更は不要（`ownerUid`の一致だけを見る）。
 - 「Answer!」で、解答欄が埋まった状態で正誤判定が行われるたびに、`participants/{参加者ID}/attempts/{記録ID}`に
@@ -336,7 +349,25 @@
     正解と同じ綴りになる別の分割も禁止。「実在語」の基準（`tools/decoy_check.py`の
     冒頭に固定）は、辞書（`english_words`のweb2+gcide）にある語でzipf頻度1.5以上、
     辞書に無くても頻度3.0以上（活用形など）、さらに`admin`・`ara`・`arse`・`addis`・
-    `distal`は必ず避ける（小学生向けのため）。非語に近い語（区分C）は対象外。
+    `distal`は必ず避ける（小学生向けのため）。非語に近い語（区分C）は、全体としては対象外。
+  - **禁止語リスト**（2026年10月）：区分Cのうち、リーダーが個別に「作れてはいけない」と
+    判断した語は`tools/forbidden_words.json`に登録する（現在は`arity`・`inventful`）。
+    リーダーが許容と判断した語（`capa`・`judice`・`vocable`など、おとりの断片を含む）は
+    登録しない。書式は`{"word": "小文字の語", "reason": "判断の根拠と日付",
+    "added": "追加日"}`を`words`に1件ずつ足す。`decoy_check.py`・`reselect_decoys.py`は
+    このファイルを読み、`test/decoy_collision_test.dart`も直接読んで確認する。
+    **語を追加する手順**：①`forbidden_words.json`に1件足す → ②
+    `python tools/decoy_check.py`で、その語が作れる問題を確認する → ③
+    `python tools/reselect_decoys.py`でおとりを最小限だけ入れ替える（`--dry-run`で
+    先に確認）→ ④`python tools/decoy_check.py --write-test-data` → ⑤`flutter test`。
+  - **出題中の全正解語・語幹も、別の問題から作れてはいけない**（2026年10月）：
+    `decoy_check.py`の`protected_words()`が、出題中（`retired`でない）の全ての
+    正解語と、語幹のうち辞書にある語（`develop`・`legal`・`serve`・`dependent`など）を
+    集めて、禁止語に加える。`capa`・`judice`・`monstr`のような語として存在しない断片は
+    守らない（リーダーが、断片が作れてもよいと判断したため）。Dartのテストは辞書を使えない
+    ので、語幹の一覧を`decoy_check_data.json`の`protectedStems`に書き出して渡す。
+  - 衝突の一覧（`decoy_check.py`）の問題番号は、`words.json`の並び順（1始まり、
+    出題から外した問題も数える）で、リーダーの番号と同じ。
   - **新しい単語を追加するとき**（手順）：
     1. `words.json`に`parts`と`choices`（`image`は仮でよい）を追加し、その単語の構造
        （`new_words_49.json`の注釈か`STRUCTURE_OVERRIDES`）を用意する。
@@ -352,8 +383,8 @@
     4. `python tools/assign_piece_images.py`で画像を再生成する（`reselect_decoys.py`は
        最後にこれも実行する）。全単語の画像が決定論的に再生成される。
     5. `python tools/decoy_check.py --write-test-data`で検査用データ
-       （`test/data/decoy_check_data.json`）を作り直す。衝突が残っていると`forbidden`
-       に載ってテストが失敗する。
+       （`test/data/decoy_check_data.json`）を作り直す（語幹の一覧`protectedStems`も
+       入る）。衝突が残っていると`forbidden`に載ってテストが失敗する。
     6. `flutter test`（`test/decoy_collision_test.dart`が、検査用データと突き合わせる）。
        検査用データは`test/`配下にあり、アプリには同梱されない。テストはPythonも辞書も
        使わない。
