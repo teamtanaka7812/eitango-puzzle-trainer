@@ -46,3 +46,9 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# 個人の記録・認証情報（コミットしない）
+# - secrets/ : Firebaseのサービスアカウントキーなど（tools/export_attempts.pyが読む）
+# - exports/ : Firestoreから書き出した解答データのCSV（参加者IDを含む）
+secrets/
+exports/

@@ -213,6 +213,37 @@
   （2026年9月時点の決定、ユーザーからの指示）。レベルごとの解答数・正解数のみを
   カウンターとして保持し（1件ずつの解答履歴は保存しない）、正誤判定のたびに加算する。
 
+- **解答記録のCSV書き出しツール**（`tools/export_attempts.py`、2026年10月）：Firestoreの
+  `participants/{参加者ID}/attempts`を、Excelで集計できるCSVに書き出す、**開発者用の
+  読み取り専用ツール**（Python。公開版アプリには含まれない）。Firestoreへの書き込み・更新・
+  削除は一切しない。
+  - **事前準備**：`pip install firebase-admin`。Firebaseコンソールで作ったサービス
+    アカウントキー（JSON）を、プロジェクト直下の`secrets/`に置く（1個だけなら自動で使う。
+    複数あるときは`--key`で指定）。
+  - **実行**（リポジトリ直下から）：`python tools/export_attempts.py`。絞り込み（任意）は
+    `--data-version 2026-10b`（`none`＝dataVersionの無い旧版だけ）、`--participant ID`、
+    `--since 2026-10-01`（日本時間のその日の0時以降）。
+  - **出力**：`exports/attempts_YYYYMMDD_HHMMSS.csv`（日本時間の実行時刻）。UTF-8（BOM付き）で、
+    Excelでダブルクリックで開いても文字化けしない。1行＝1回の解答。列は`participantId, word,
+    level, isCorrect, answeredAt, startedAt, durationSeconds, dragCount, dataVersion, ownerUid`。
+    日時は日本時間（`YYYY-MM-DD HH:MM:SS`）、`isCorrect`は`TRUE`/`FALSE`。並びは
+    participantId・answeredAtの昇順。記録に無い項目（旧版の`startedAt`など）は空欄になる
+    （止まらない）。実行後に、総行数・参加者数・dataVersionごとの件数（旧版の件数も）を表示する。
+  - **Firestoreの構造**（2026年10月に読み取りで確認）：ルート直下のコレクションは`participants`
+    だけで、参加者のドキュメント自体は項目を持たず（サブコレクションだけがあり、存在しない
+    ドキュメント扱い）、その下の`attempts`だけがある。参加者IDは親のIDから取る。全件は
+    collection group（`attempts`）をドキュメント名の順に500件ずつ読む。絞り込みと並べ替えは
+    手元で行うので、Firestoreのインデックスは要らない。
+  - **キーの扱い（重要）**：サービスアカウントキーは、Firestoreのセキュリティルールを
+    すり抜けて全データを読み書きできる強い権限を持つ。**`secrets/`と`exports/`は
+    `.gitignore`済みで、コミットされない**（`exports/`は参加者IDを含む個人の記録のため）。
+    キーの中身（`private_key`など）を、画面・ログ・チャット・報告に出さない。
+    `git check-ignore -v secrets/<キーのファイル名>`で無視されていることを確認できる。
+    キーを漏らした（コミットした・貼り付けた）かもしれないときは、Firebaseコンソールの
+    サービスアカウントでそのキーを削除（無効化）し、新しいキーを作り直す。
+  - 参加者IDは自由入力なので、`=`で始まるIDがあるとExcelが数式として解釈することがある
+    （CSVを開く前にIDを確認する）。
+
 ## ゲームロジック（決定事項）
 
 - 出題方式：英単語を「接頭辞・語幹・接尾辞」の3ピースに分解し、ジグソーパズルとして出題する
