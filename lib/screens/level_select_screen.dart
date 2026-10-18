@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/recording_notices.dart';
 import 'level_play_screen.dart';
 
 class LevelSelectScreen extends StatelessWidget {
@@ -30,6 +31,8 @@ class LevelSelectScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // ログインに失敗しているときだけ出る、小さな案内（普段は場所も取らない）。
+                const AuthStatusBanner(),
                 Text(
                   'レベルをえらんでね',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(

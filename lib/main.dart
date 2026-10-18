@@ -1,8 +1,7 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-import 'firebase_options.dart';
 import 'screens/history_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/level_select_screen.dart';
@@ -10,20 +9,17 @@ import 'screens/participant_id_screen.dart';
 import 'screens/settings_screen.dart';
 import 'services/auth_service.dart';
 import 'services/participant_service.dart';
+import 'widgets/recording_notices.dart';
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  // Firebase接続は現時点でWeb版のみ対応（DefaultFirebaseOptionsを参照）。
-  // 他プラットフォーム向けビルドでは初期化自体をスキップし、コンパイル・起動が
-  // 壊れないようにする。
-  if (kIsWeb) {
-    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-    // 匿名認証（画面には出さず、裏側で自動的にサインインする）。学習記録の
-    // 書き込み・読み取りを「本人の記録だけ」に絞り込むための識別子として使う
-    // （AuthService、firestore.rules参照）。
-    await AuthService.ensureSignedIn();
-  }
   runApp(const WordPuzzleTrainerApp());
+  // 匿名ログイン（学習記録を「本人の記録だけ」に絞り込むための識別子。AuthService、
+  // firestore.rules参照）は、画面の表示を待たせないよう、アプリの起動後に始める。
+  // 失敗しても（通信できない・1時間あたりの新規作成の上限に達した、など）ゲームは
+  // 遊べる。失敗したときは、ホーム画面などに小さな案内と「もう一度」ボタンが出る
+  // （AuthStatusBanner）。Web以外では何もしない。
+  unawaited(AuthService.ensureSignedIn());
 }
 
 class WordPuzzleTrainerApp extends StatelessWidget {
@@ -34,6 +30,9 @@ class WordPuzzleTrainerApp extends StatelessWidget {
     return MaterialApp(
       title: '英単語パズルトレーナー',
       debugShowCheckedModeBanner: false,
+      // 記録の保存に失敗したときの小さな案内を、どの画面でも出せるようにする。
+      scaffoldMessengerKey: kMessengerKey,
+      builder: (context, child) => RecordingNoticeListener(child: child ?? const SizedBox.shrink()),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF5B9BD5)),
         useMaterial3: true,

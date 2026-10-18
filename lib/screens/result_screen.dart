@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/puzzle_word.dart';
 import '../services/sound_service.dart';
+import '../widgets/recording_notices.dart';
 
 /// 結果画面のボタン操作を呼び出し元（LevelPlayScreen）に伝えるための戻り値。
 enum ResultAction { retry, next }
@@ -134,6 +135,8 @@ class _ResultScreenState extends State<ResultScreen> with SingleTickerProviderSt
                         ),
                       ],
                     ),
+                    // 記録を保存できなかった解答があるときだけ、小さく出る（0問なら何も出ない）。
+                    const UnsavedCountLabel(),
                     const SizedBox(height: 32),
                     SizedBox(
                       width: 220,

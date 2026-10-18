@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/recording_notices.dart';
 import '../widgets/sheep_guide.dart';
 import 'coming_soon_screen.dart';
 import 'history_screen.dart';
@@ -55,6 +56,8 @@ class HomeScreen extends StatelessWidget {
                           color: const Color(0xFF37474F),
                         ),
                   ),
+                  // ログインに失敗しているときだけ出る、小さな案内（普段は場所も取らない）。
+                  const AuthStatusBanner(),
                   const SizedBox(height: 48),
                   Expanded(
                     child: Center(
